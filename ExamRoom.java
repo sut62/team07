@@ -1,4 +1,4 @@
-package com.relation.backend.Calendar.entity;
+package com.relation.backend.entity;
 
 import lombok.*;
 import javax.persistence.Id;
