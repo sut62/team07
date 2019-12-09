@@ -55,6 +55,11 @@ public class LecturerController {
         return lecturerRepository.findByName(name);
     }
 
+    @GetMapping("/{lecturerCode}")
+    public Optional<Lecturer> findByLecturerCode(@PathVariable String lecturerCode) {
+        return lecturerRepository.findByLecturerCode(lecturerCode);
+    }
+
     @PostMapping
     public Lecturer lecturerRegister(@RequestBody LecturerRequest request) {
         Optional<Major> major = majorRepository.findById(request.getMajor());
