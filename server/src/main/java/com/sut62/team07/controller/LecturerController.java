@@ -51,7 +51,7 @@ public class LecturerController {
     }
 
     @GetMapping("/{name}")
-    public Optional<Lecturer> findByName(@PathVariable String name) {
+    public Collection<Lecturer> findByName(@PathVariable String name) {
         return lecturerRepository.findByName(name);
     }
 
