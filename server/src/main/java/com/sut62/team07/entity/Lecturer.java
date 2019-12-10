@@ -2,6 +2,7 @@ package com.sut62.team07.entity;
 
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,6 +33,7 @@ public class Lecturer {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lecturer_seq")
     private Long id;
 
+    @Column(unique = true)
     private @NotNull String lecturerCode;
 
     private @NotNull String password;
