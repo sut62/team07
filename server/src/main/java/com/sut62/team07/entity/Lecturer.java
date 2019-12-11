@@ -19,10 +19,12 @@ import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Table
 @Entity
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -45,7 +47,7 @@ public class Lecturer {
 
     private @NotNull @Email String email;
 
-    @Pattern(regexp = "(\\0)[0-9]{9}")
+    @Pattern(regexp = "\\d{10}")
     private @NotNull String tel;
 
     @ManyToOne

@@ -50,12 +50,12 @@ public class LecturerController {
         return lecturerRepository.findById(id);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/name/{name}")
     public Collection<Lecturer> findByName(@PathVariable String name) {
         return lecturerRepository.findByName(name);
     }
 
-    @GetMapping("/{lecturerCode}")
+    @GetMapping("/lecturer/code/{lecturerCode}")
     public Optional<Lecturer> findByLecturerCode(@PathVariable String lecturerCode) {
         return lecturerRepository.findByLecturerCode(lecturerCode);
     }

@@ -10,10 +10,12 @@ import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Table
 @Entity
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
