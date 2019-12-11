@@ -12,17 +12,29 @@
       </v-toolbar>
       <v-card-title></v-card-title>
       <v-card-text>
-        <v-data-table :headers="headers"></v-data-table>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-card-search-outline"
+          label="ค้นหารายวิชา"
+          single-line
+        ></v-text-field>
+        <v-data-table :headers="headers" :items="courses" :search="search" show-select></v-data-table>
       </v-card-text>
-      <v-card-actions></v-card-actions>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn text color="primary">เลือก</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data: () => ({
     dialog: false,
+    search: "",
     headers: [
       {
         text: "รหัสวิชา",
@@ -31,7 +43,7 @@ export default {
       },
       {
         text: "ชื่อวิชา",
-        value: "courseName"
+        value: "name"
       },
       {
         text: "หน่วยกิต",
@@ -39,13 +51,21 @@ export default {
       },
       {
         text: "สำนักวิชา",
-        value: "institute"
+        value: "major.institute.name"
       },
       {
         text: "สาขาวิชา",
-        value: "major"
+        value: "major.name"
       }
     ]
-  })
+  }),
+  created() {
+    this.$store.commit("setCourses");
+  },
+  computed: {
+    ...mapState({
+      courses: state => state.courses
+    })
+  }
 };
 </script>
