@@ -13,33 +13,36 @@ export default new Vuex.Store({
     specificMajor: null
   },
   mutations: {
-    setMajors(state) {
-      axios.get('majors').then(response => {
+    async setMajors(state) {
+      await axios.get('majors').then(response => {
         state.majors = response.data
       })
     },
-    setInstitutes(state) {
-      axios.get('institutes').then(response => {
+    async setInstitutes(state) {
+      await axios.get('institutes').then(response => {
         state.institutes = response.data
       })
     },
-    setGenders(state) {
-      axios.get('genders').then(response => {
+    async setGenders(state) {
+      await axios.get('genders').then(response => {
         state.genders = response.data
       })
     },
-    setCourses(state) {
-      axios.get('courses').then(response => {
+    async setCourses(state) {
+      await axios.get('courses').then(response => {
         state.courses = response.data
       })
     },
-    setSpecificMajor(state, payload) {
-      axios.get(`majors/institute/${payload}`).then(response => {
+    async setSpecificMajor(state, payload) {
+      await axios.get(`majors/institute/${payload}`).then(response => {
         state.specificMajor = response.data
       })
     }
   },
   actions: {
+    async createLecturer(commit, payload) {
+      await axios.post(`lecturers`, payload)
+    }
   },
   modules: {
   }

@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" persistent class="mx-auto">
     <template v-slot:activator="{ on }">
-      <v-btn color="primary" v-on="on" width="100%">เลือกรายวิชาที่สอน</v-btn>
+      <v-btn color="primary" v-on="on" expanded>เลือกรายวิชาที่สอน</v-btn>
     </template>
     <v-card raised>
       <v-toolbar color="primary">
@@ -18,11 +18,11 @@
           label="ค้นหารายวิชา"
           single-line
         ></v-text-field>
-        <v-data-table :headers="headers" :items="courses" :search="search" show-select></v-data-table>
+        <v-data-table :headers="headers" :items="courses" :search="search" show-select v-model="$v.selected.$model"></v-data-table>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn text color="primary">เลือก</v-btn>
+        <v-btn text color="primary" @click="selectedCourses" :disabled="$v.selected.$invalid">เลือก</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -30,10 +30,12 @@
 
 <script>
 import { mapState } from "vuex";
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   data: () => ({
     dialog: false,
+    selected: [],
     search: "",
     headers: [
       {
@@ -59,6 +61,11 @@ export default {
       }
     ]
   }),
+  validations: {
+    selected: {
+      required
+    }
+  },
   created() {
     this.$store.commit("setCourses");
   },
@@ -66,6 +73,12 @@ export default {
     ...mapState({
       courses: state => state.courses
     })
+  },
+  methods: {
+    selectedCourses: async function() {
+      this.$emit('selectedCourses', this.$v.selected.$model)
+      this.dialog = false
+    }
   }
 };
 </script>
