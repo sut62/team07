@@ -10,10 +10,12 @@ import com.sut62.team07.entity.Course;
 import com.sut62.team07.entity.Gender;
 import com.sut62.team07.entity.Lecturer;
 import com.sut62.team07.entity.Major;
+import com.sut62.team07.entity.Prefix;
 import com.sut62.team07.repository.CourseRepository;
 import com.sut62.team07.repository.GenderRepository;
 import com.sut62.team07.repository.LecturerRepository;
 import com.sut62.team07.repository.MajorRepository;
+import com.sut62.team07.repository.PrefixRepository;
 import com.sut62.team07.request.LecturerRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,9 @@ public class LecturerController {
     @Autowired
     private CourseRepository courseRepository;
 
+    @Autowired
+    private PrefixRepository prefixRepository;
+
     @GetMapping
     public Collection<Lecturer> findAll() {
         return lecturerRepository.findAll().stream().collect(Collectors.toList());
@@ -64,6 +69,7 @@ public class LecturerController {
     public Lecturer lecturerRegister(@RequestBody LecturerRequest request) {
         Optional<Major> major = majorRepository.findById(request.getMajor());
         Optional<Gender> gender = genderRepository.findById(request.getGender());
+        Optional<Prefix> prefix = prefixRepository.findById(request.getPrefix());
 
         Set<Course> courses = new HashSet<>();
         try {
@@ -83,6 +89,7 @@ public class LecturerController {
                     .major(major.get())
                     .password(request.getPassword())
                     .personalId(request.getPersonalId())
+                    .prefix(prefix.get())
                     .tel(request.getTel())
                     .courses(courses)
                     .build();

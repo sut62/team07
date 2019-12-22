@@ -10,6 +10,7 @@ export default new Vuex.Store({
     institutes: null,
     genders: null,
     courses: null,
+    prefixs: null,
     specificMajor: null
   },
   mutations: {
@@ -31,6 +32,11 @@ export default new Vuex.Store({
     async setCourses(state) {
       await axios.get('courses').then(response => {
         state.courses = response.data
+      })
+    },
+    async setPrefixs(state) {
+      await axios.get('prefixs').then(response => {
+        state.prefixs = response.data
       })
     },
     async setSpecificMajor(state, payload) {
