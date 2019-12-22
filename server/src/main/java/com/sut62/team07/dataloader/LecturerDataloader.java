@@ -117,21 +117,21 @@ public class LecturerDataloader implements ApplicationRunner {
         Course course1 = Course.builder().courseCode("523211")
                 .major(majorRepository.findByName("วิศวกรรมคอมพิวเตอร์").get())
                 .name("DATABASE SYSTEM")
-                .weight(4)
+                .credit(4)
                 .build();
         courseRepository.save(course1);
 
         Course course2 = Course.builder().courseCode("523231")
                 .major(majorRepository.findByName("วิศวกรรมคอมพิวเตอร์").get())
                 .name("DATA STRUCTURES AND ALGORITHMS")
-                .weight(4)
+                .credit(4)
                 .build();
         courseRepository.save(course2);
 
         Course course3 = Course.builder().courseCode("523232")
                 .major(majorRepository.findByName("วิศวกรรมคอมพิวเตอร์").get())
                 .name("OBJECT-ORIENTED TECHNOLOGY")
-                .weight(4)
+                .credit(4)
                 .build();
         courseRepository.save(course3);
 

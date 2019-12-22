@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,6 +39,7 @@ public class Lecturer {
     @Column(unique = true)
     private @NotNull String lecturerCode;
 
+    @Size(min = 8)
     private @NotNull String password;
 
     @Pattern(regexp = "[0-9]{13}")
@@ -51,10 +53,16 @@ public class Lecturer {
     private @NotNull String tel;
 
     @ManyToOne
+    private Prefix prefix;
+
+    @ManyToOne
     private Major major;
 
     @ManyToOne
     private Gender gender;
+
+    @ManyToOne
+    private RegistrationOfficer createdBy;
 
     @ManyToMany
     @JoinTable(

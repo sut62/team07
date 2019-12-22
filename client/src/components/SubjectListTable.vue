@@ -49,7 +49,7 @@ export default {
       },
       {
         text: "หน่วยกิต",
-        value: "weight"
+        value: "credit"
       },
       {
         text: "สำนักวิชา",
