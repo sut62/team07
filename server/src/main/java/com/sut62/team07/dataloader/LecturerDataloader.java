@@ -8,11 +8,13 @@ import com.sut62.team07.entity.Gender;
 import com.sut62.team07.entity.Institute;
 import com.sut62.team07.entity.Lecturer;
 import com.sut62.team07.entity.Major;
+import com.sut62.team07.entity.Prefix;
 import com.sut62.team07.repository.CourseRepository;
 import com.sut62.team07.repository.GenderRepository;
 import com.sut62.team07.repository.InstituteRepository;
 import com.sut62.team07.repository.LecturerRepository;
 import com.sut62.team07.repository.MajorRepository;
+import com.sut62.team07.repository.PrefixRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -37,11 +39,19 @@ public class LecturerDataloader implements ApplicationRunner {
     @Autowired
     private GenderRepository genderRepository;
 
+    @Autowired
+    private PrefixRepository prefixRepository;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         Stream.of("ชาย", "หญิง").forEach(sex -> {
             Gender gender = Gender.builder().name(sex).build();
             genderRepository.save(gender);
+        });
+
+        Stream.of("นาย", "นาง", "นางสาว").forEach(p -> {
+            Prefix prefix = Prefix.builder().name(p).build();
+            prefixRepository.save(prefix);
         });
 
         Stream.of("สำนักวิชาวิทยาศาสตร์", "สำนักวิชาเทคโนโลยีสังคม", "สำนักวิชาเทคโนโลยีการเกษตร",
@@ -140,9 +150,10 @@ public class LecturerDataloader implements ApplicationRunner {
                     .gender(genderRepository.findById(1L).get())
                     .lecturerCode("A0001")
                     .major(majorRepository.findByName("วิศวกรรมคอมพิวเตอร์").get())
-                    .name("ผศ.ดร.อนันตกิจ ดวงดี")
+                    .name("อนันตกิจ ดวงดี")
                     .password("123456789")
                     .personalId("1896655748447")
+                    .prefix(prefixRepository.findById(1L).get())
                     .courses(Arrays.asList(course1, course2))
                     .tel("0988857444").build();
         lecturerRepository.save(lecturer);
