@@ -1,13 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Register from '../components/Register';
+import StudentRegister from '../components/StudentRegister';
+
 
 Vue.use(VueRouter)
 
 const routes = [
+  
+  {
+    path: '/student',
+    component: StudentRegister
+},
   {
     path: '/',
-    redirect: '/registration'
-  },
+    component: Register
+},
   {
     path: '/registration',
     component: () => import('@/layouts/RegistrationLayout'),

@@ -1,0 +1,244 @@
+<template>
+<v-content>
+  <v-container>
+    <v-layout text-center wrap>
+      
+      <v-flex mb-4>
+        <h1 class="display-2 font-weight-bold mb-3">
+          ระบบลงทะเบียนเรียน
+        </h1>
+        
+        <!-- semester -->
+        <v-form v-model="validsec" ref="form">
+          <v-row justify="center">
+            <v-col cols="auto">
+              <v-select
+                label="ภาคการศึกษา"
+                outlined
+                v-model="register.semesterId"
+                :items="semesters"
+                item-text="sem"
+                item-value="id"
+                hide-selected
+                :rules="[(v) => !!v || '*กรุณาเลือกภาคการศึกษา']"
+                required
+                ></v-select>
+              </v-col>
+            </v-row>
+
+            <!-- student -->
+            <v-row justify="center">
+              <v-col cols="auto">
+                <v-select
+                  label="รหัสนักศึกษา"
+                  outlined
+                  v-model="register.studentId"
+                  :items="students"
+                  item-text="student_id"
+                  item-value="id"
+                  hide-selected
+                  :rules="[(v) => !!v || '*กรุณาเลือกรหัสนักศึกษา']"
+                  required
+                  ></v-select>
+                </v-col>
+              </v-row>
+
+            <!-- subject -->
+            <v-row justify="center">
+              <v-col cols="auto">
+                <v-autocomplete
+                  v-model="register.courseId"
+                  :items="course"
+                  item-text="courseCode"
+                  item-value="id"
+                  label="รายวิชา"
+                  placeholder="กรุณากรอกรหัสวิชา"
+                  hide-selected
+                  :rules="[(v) => !!v || 'กรุณากรอกรหัสวิชาที่ต้องการลงทะเบียนเรียน']"
+                  ></v-autocomplete>
+                </v-col>
+          
+              <v-col cols='auto'> 
+                <v-btn @click="showSection" 
+                :class="{ red: !validsec, green: validsec }">ค้นหา</v-btn>
+                </v-col>
+              </v-row>
+          </v-form>
+
+            <!-- section -->
+          <v-form v-model="validsave" ref="form">
+            <div v-if="this.getSectionCheck">
+              <v-row justify="center">
+                  <v-col cols="auto">
+                    <v-card color="#FFCC80">
+                    <v-card-text>
+                      <div class="text--primary">{{this.register.courseCode}} {{courseName}}<br>
+                      หน่วยกิต : {{this.register.credit}}</div>
+                    </v-card-text>
+                    </v-card><br>
+                    <v-select
+                      label="กลุ่มเรียน"
+                      outlined
+                      v-model="register.sectionId"
+                      :items="sections"
+                      item-text="sec"
+                      item-value="id"
+                      ></v-select>
+                    </v-col>
+                </v-row>
+
+              <!-- submit -->
+              <v-row justify="center">
+                <v-col cols="auto">
+                  <v-btn dark large @click="saveRegister" class="indigo">ยืนยันการลงทะเบียน</v-btn>
+                 </v-col>
+                </v-row>
+              </div>
+            </v-form>
+        </v-flex>
+      </v-layout>
+    </v-container>
+</v-content>
+</template>
+
+<script>
+
+
+export default {
+  name: "register",
+  data() {
+    return {
+      register: {
+        studentId: "",
+        semesterId: "",
+        sectionId: "",
+        courseId:"",
+        courseCode:null,
+        credit:null
+      },
+      semesters:[],
+      students:[],
+      course:[],
+      sections:[],
+      validsec: false,
+      validsave: false,
+      getSectionCheck: false,
+      saveCheck: false,
+      studentName: "",
+      courseName: ""
+    };
+  },
+  methods: {
+    getSemesters() {
+      this.axios
+        .get("/semester")
+        .then(response => {
+          this.semesters = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    getStudents() {
+      this.axios
+        .get("/student")
+        .then(response => {
+          this.students = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    getCourses() {
+      this.axios
+        .get("/course")
+        .then(response => {
+          this.courses = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+       getSubnum() {
+      this.axios
+        .get("/course/" + this.register.courseId)
+        .then(response => {
+          console.log(response.data);
+          this.s = response.data;
+          this.register.courseCode = response.data.courseCode;
+          this.register.credit = response.data.credit;
+          this.coursetName = response.data.name;
+          if(response.data!=null)
+            this.saveCheck = response.status;
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    getSections() {
+      this.axios
+        .get("/section/" + this.register.courseId)
+        .then(response => {
+          if(response.data!=null)
+            this.sections = response.data;
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+        this.getSubnum();
+    },
+    showSection(){
+        if(this.register.courseId != null 
+          && this.register.semesterId != null 
+          && this.register.studentId != null ){
+            this.getSectionCheck = true;   
+            this.getSections();
+         }
+
+        },
+    saveRegister() {
+      this.axios
+        .post(
+          "/register/" +
+            this.register.studentId
+            + "/"  +
+            this.register.semesterId
+            + "/"  +
+            this.register.sectionId
+            + "/" +
+            this.register.courseCode
+            + "/" +
+            this.register.credit,
+          this.register
+        )
+        .then(response => {
+          console.log(response);
+          this.$router.push("/viewreg");
+        })
+        .catch(e => {
+          console.log(e);
+        });
+      this.submitted = true;
+    },
+    refreshList() {
+    this.getSemesters();
+    this.getStudents();
+    this.getCourses();
+    this.getSections();
+    this.getSubnum();
+    }
+  },
+  mounted() {
+    this.getSemesters();
+    this.getStudents();
+    this.getCourses();
+    this.getSections();
+    this.getSubnum();
+  }
+}
+</script>
+
