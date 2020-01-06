@@ -6,16 +6,25 @@
       <v-spacer />
     </v-app-bar>
     <v-navigation-drawer app v-model="drawer" clipped color="secondary">
-      <v-list-item>
+      <!-- <v-list-item>
         <v-list-item-avatar>
           <v-img src="https://randomuser.me/api/portraits/men/78.jpg"/>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>John Leider</v-list-item-title>
         </v-list-item-content>
-      </v-list-item>
+      </v-list-item> -->
 
       <v-divider></v-divider>
+
+      <v-list-item link to="register-lecturer" color="black">
+        <v-list-item-action>
+            <v-icon>mdi-account-plus</v-icon>
+          </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>เพิ่มอาจารย์</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
 
       <template v-slot:append>
         <div class="pa-2">
