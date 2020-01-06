@@ -44,4 +44,17 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     @JsonBackReference
     private Collection<Lecturer> lecturers;
+
+	public void setSubNum(String courseCode) {
+        this.courseCode = courseCode;
+}
+
+public void setSubName(String string) {
+        name = string;
+}
+
+public void setCredit(int string) {
+        credit = string;
+}
+
 }
