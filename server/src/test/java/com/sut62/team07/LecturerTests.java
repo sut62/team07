@@ -1,7 +1,6 @@
 package com.sut62.team07;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Optional;
 
@@ -41,20 +40,81 @@ public class LecturerTests {
                 .build();
         lecturer = lecturerRepository.saveAndFlush(lecturer);
         Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
-        assertNotEquals(found.isPresent(), false);
         assertEquals("A0001", found.get().getLecturerCode());
     }
 
-    // @Test
-    // void lecturerCodeMustBeNotNull() {
-    //     Lecturer lecturer = Lecturer.builder()
-    //             .email("gg@gmail.com")
-    //             .lecturerCode(null)
-    //             .name("John Doe")
-    //             .password("12345678")
-    //             .personalId("1234567890123")
-    //             .tel("0987458745")
-    //             .build();
-        
-    // }
+    @Test
+    void emailShouldBeOK() {
+        Lecturer lecturer = Lecturer.builder()
+                .email("gg@gmail.com")
+                .lecturerCode("A0001")
+                .name("John Doe")
+                .password("12345678")
+                .personalId("1234567890123")
+                .tel("0987458745")
+                .build();
+        lecturer = lecturerRepository.saveAndFlush(lecturer);
+        Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
+        assertEquals("gg@gmail.com", found.get().getEmail());
+    }
+
+    @Test
+    void nameShouldBeOK() {
+        Lecturer lecturer = Lecturer.builder()
+                .email("gg@gmail.com")
+                .lecturerCode("A0001")
+                .name("John Doe")
+                .password("12345678")
+                .personalId("1234567890123")
+                .tel("0987458745")
+                .build();
+        lecturer = lecturerRepository.saveAndFlush(lecturer);
+        Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
+        assertEquals("John Doe", found.get().getName());
+    }
+
+    @Test
+    void passwordShouldBeOK() {
+        Lecturer lecturer = Lecturer.builder()
+                .email("gg@gmail.com")
+                .lecturerCode("A0001")
+                .name("John Doe")
+                .password("12345678")
+                .personalId("1234567890123")
+                .tel("0987458745")
+                .build();
+        lecturer = lecturerRepository.saveAndFlush(lecturer);
+        Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
+        assertEquals("12345678", found.get().getPassword());
+    }
+
+    @Test
+    void personalIdShouldBeOK() {
+        Lecturer lecturer = Lecturer.builder()
+                .email("gg@gmail.com")
+                .lecturerCode("A0001")
+                .name("John Doe")
+                .password("12345678")
+                .personalId("1234567890123")
+                .tel("0987458745")
+                .build();
+        lecturer = lecturerRepository.saveAndFlush(lecturer);
+        Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
+        assertEquals("1234567890123", found.get().getPersonalId());
+    }
+
+    @Test
+    void telIdShouldBeOK() {
+        Lecturer lecturer = Lecturer.builder()
+                .email("gg@gmail.com")
+                .lecturerCode("A0001")
+                .name("John Doe")
+                .password("12345678")
+                .personalId("1234567890123")
+                .tel("0987458745")
+                .build();
+        lecturer = lecturerRepository.saveAndFlush(lecturer);
+        Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
+        assertEquals("0987458745", found.get().getTel());
+    }
 }
