@@ -27,7 +27,8 @@ public class Major {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "major_seq")
     private Long id;
 
-    private @NotNull String name;
+    @NotNull(message = "name must be not null")
+    private String name;
 
     @ManyToOne
     private Institute institute;

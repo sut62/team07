@@ -1,15 +1,10 @@
 package com.sut62.team07.entity;
 
-import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -37,20 +32,28 @@ public class Lecturer {
     private Long id;
 
     @Column(unique = true)
-    private @NotNull String lecturerCode;
+    @Pattern(regexp = "[A]\\d{4}")
+    @NotNull(message = "lecturer code must be not null")
+    private String lecturerCode;
 
-    @Size(min = 8)
-    private @NotNull String password;
+    @NotNull(message = "password must be not null")
+    @Size(min = 8, message = "password at least 8 characters")
+    private String password;
 
-    @Pattern(regexp = "[0-9]{13}")
-    private @NotNull String personalId;
+    @NotNull(message = "personalId must be not null")
+    @Pattern(regexp = "\\d{13}", message = "personalId must be match")
+    private String personalId;
 
-    private @NotNull String name;
+    @NotNull(message = "name must be not null")
+    private String name;
 
-    private @NotNull @Email String email;
+    @Email(message = "email is invalid")
+    @NotNull(message = "email must be not null")
+    private String email;
 
-    @Pattern(regexp = "\\d{10}")
-    private @NotNull String tel;
+    @NotNull(message = "tel must be not null")
+    @Pattern(regexp = "[0]\\d{9}", message = "tel must be match")
+    private String tel;
 
     @ManyToOne
     private Prefix prefix;
@@ -64,11 +67,4 @@ public class Lecturer {
     @ManyToOne
     private RegistrationOfficer createdBy;
 
-    @ManyToMany
-    @JoinTable(
-        name = "lecturer_course",
-        joinColumns = @JoinColumn(name = "lecturer_id"),
-        inverseJoinColumns = @JoinColumn(name = "course_id")
-    )
-    private Collection<Course> courses;
 }

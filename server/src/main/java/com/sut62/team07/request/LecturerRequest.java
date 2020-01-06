@@ -1,7 +1,5 @@
 package com.sut62.team07.request;
 
-import java.util.Collection;
-
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -36,5 +34,6 @@ public class LecturerRequest {
     @NotNull
     private Long gender;
 
-    private Collection<Long> courses;
+    @NotNull
+    private Long createdBy;
 }

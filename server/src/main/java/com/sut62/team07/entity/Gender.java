@@ -26,5 +26,6 @@ public class Gender {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gender_seq")
     private Long id;
     
-    private @NotNull String name;
+    @NotNull(message = "gender name must be not null")
+    private String name;
 }

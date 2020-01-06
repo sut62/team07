@@ -30,12 +30,15 @@ public class RegistrationOfficer {
     private Long id;
 
     @Column(unique = true)
-    private @NotNull String officerCode;
+    @NotNull(message = "officer code must be not null")
+    private String officerCode;
 
+    @NotNull(message = "password must be not null")
     @Size(min = 8, message = "password at least 8 characters")
-    private @NotNull String password;
+    private String password;
 
-    private @NotNull String name;
+    @NotNull(message = "name must be not null")
+    private String name;
 
     @ManyToOne
     private Prefix prefix;

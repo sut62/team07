@@ -1,21 +1,19 @@
 package com.sut62.team07.controller;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.sut62.team07.entity.Course;
 import com.sut62.team07.entity.Gender;
 import com.sut62.team07.entity.Lecturer;
 import com.sut62.team07.entity.Major;
 import com.sut62.team07.entity.Prefix;
-import com.sut62.team07.repository.CourseRepository;
+import com.sut62.team07.entity.RegistrationOfficer;
 import com.sut62.team07.repository.GenderRepository;
 import com.sut62.team07.repository.LecturerRepository;
 import com.sut62.team07.repository.MajorRepository;
 import com.sut62.team07.repository.PrefixRepository;
+import com.sut62.team07.repository.RegistrationOfficerRepository;
 import com.sut62.team07.request.LecturerRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +38,10 @@ public class LecturerController {
     private MajorRepository majorRepository;
 
     @Autowired
-    private CourseRepository courseRepository;
+    private PrefixRepository prefixRepository;
 
     @Autowired
-    private PrefixRepository prefixRepository;
+    private RegistrationOfficerRepository registrationOfficerRepository;
 
     @GetMapping
     public Collection<Lecturer> findAll() {
@@ -70,16 +68,7 @@ public class LecturerController {
         Optional<Major> major = majorRepository.findById(request.getMajor());
         Optional<Gender> gender = genderRepository.findById(request.getGender());
         Optional<Prefix> prefix = prefixRepository.findById(request.getPrefix());
-
-        Set<Course> courses = new HashSet<>();
-        try {
-            request.getCourses().forEach(course -> {
-                Optional<Course> crs = courseRepository.findById(course);
-                courses.add(crs.get());
-            });
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
+        Optional<RegistrationOfficer> registrationOfficer = registrationOfficerRepository.findById(request.getCreatedBy());
 
         Lecturer lecturer = Lecturer.builder()
                     .email(request.getEmail())
@@ -91,7 +80,7 @@ public class LecturerController {
                     .personalId(request.getPersonalId())
                     .prefix(prefix.get())
                     .tel(request.getTel())
-                    .courses(courses)
+                    .createdBy(registrationOfficer.get())
                     .build();
         return lecturerRepository.save(lecturer);
     }

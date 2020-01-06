@@ -55,7 +55,6 @@
           v-model="$v.lecturerForm.major.$model"
           :error-messages="majorError"
         ></v-combobox>
-        <subject-list-table @selectedCourses="selectedCourses"></subject-list-table>
       </v-form>
     </v-card-text>
     <v-card-actions>
@@ -74,20 +73,15 @@
 </template>
 
 <script>
-import SubjectListTable from "@/components/SubjectListTable";
 import { required, minLength, numeric, email } from "vuelidate/lib/validators";
 import { mapState, mapMutations } from "vuex";
 
 export default {
-  components: {
-    SubjectListTable
-  },
   data: () => ({
     table: false,
     snackbar: false,
     message: "",
     institute: null,
-    courses: null,
     lecturerForm: {
       prefix: null,
       name: null,
@@ -97,15 +91,11 @@ export default {
       personalId: null,
       tel: null,
       email: null,
-      major: null,
-      courses: []
+      major: null
     }
   }),
   validations: {
     institute: {
-      required
-    },
-    courses: {
       required
     },
     lecturerForm: {
@@ -138,9 +128,6 @@ export default {
         required
       },
       major: {
-        required
-      },
-      courses: {
         required
       }
     }
@@ -220,23 +207,10 @@ export default {
       if (!this.$v.institute.$dirty) return errors;
       !this.$v.institute.required && errors.push("กรุณาเลือกสำนักวิชา");
       return errors;
-    },
-    coursesError() {
-      const errors = [];
-      if (!this.$v.lecturerForm.courses.$dirty) return errors;
-      !this.$v.lecturerForm.courses.required && errors.push("กรุณาเลือกวิชาที่สอน");
-      return errors;
     }
   },
   methods: {
     ...mapMutations(["setSpecificMajor"]),
-    selectedCourses: async function(response) {
-      // hold it
-      this.courses = response;
-      await response.forEach(course => {
-        this.$v.lecturerForm.courses.$model.push(course.id);
-      });
-    },
     createLecturer: async function() {
       this.$v.lecturerForm.major.$model = this.$v.lecturerForm.major.$model.id;
       try {
