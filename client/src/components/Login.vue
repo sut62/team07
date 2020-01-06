@@ -59,64 +59,64 @@
   </template>
 
 <script>
-import http from "../http-common";
+// import http from "../http-common";
 
-export default {
+// export default {
 
-  name: "Loing",
-  data() {
-    return {
+//   name: "Loing",
+//   data() {
+//     return {
 
-      valid:false,
-      username: '',
-      password: '',
-      idz:[],
-      ch:"",
-      k:""
-    };
-  },
-  methods: {
-    emCheck(){
-      if(this.username =="admin" && this.password == "1234"){
-          this.$router.push("/");
-      }
-    },
-    getsCheck() {
-      http
-        .get("/check/" + this.username + "/" + this.password)
-        .then(response => {
-          this.idz = response.data;
-          console.log(response);
-          if (response.data[0] != null) {
-              this.ch = this.idz[0].id;
+//       valid:false,
+//       username: '',
+//       password: '',
+//       idz:[],
+//       ch:"",
+//       k:""
+//     };
+//   },
+//   methods: {
+//     emCheck(){
+//       if(this.username =="admin" && this.password == "1234"){
+//           this.$router.push("/");
+//       }
+//     },
+//     getsCheck() {
+//       http
+//         .get("/check/" + this.username + "/" + this.password)
+//         .then(response => {
+//           this.idz = response.data;
+//           console.log(response);
+//           if (response.data[0] != null) {
+//               this.ch = this.idz[0].id;
               
-              localStorage.setItem("siteId", this.ch);
-             localStorage.setItem("siteUser", this.username);
+//               localStorage.setItem("siteId", this.ch);
+//              localStorage.setItem("siteUser", this.username);
             
-            this.$router.push("/vote");
-            window.location.reload();
+//             this.$router.push("/vote");
+//             window.location.reload();
             
-          } else {
-            alert('รหัสผ่านไม่ถูกต้อง')
-          }          
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
-     setId() {
-      http
-        .get("/id/"+ this.username)
-        .then(response => {
-          this.years = response.data;
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
+//           } else {
+//             alert('รหัสผ่านไม่ถูกต้อง')
+//           }          
+//         })
+//         .catch(e => {
+//           console.log(e);
+//         });
+//     },
+//      setId() {
+//       http
+//         .get("/id/"+ this.username)
+//         .then(response => {
+//           this.years = response.data;
+//           console.log(response.data);
+//         })
+//         .catch(e => {
+//           console.log(e);
+//         });
+//     },
     
     
-  }
-};
+//   }
+// };
 </script>

@@ -7,14 +7,13 @@ import StudentRegister from '../components/StudentRegister';
 Vue.use(VueRouter)
 
 const routes = [
-
-  {
-    path: '/student',
-    component: StudentRegister
-  },
   {
     path: '/',
     redirect: '/login'
+  },
+  {
+    path: '/student',
+    component: StudentRegister
   },
   {
     path: '/register',
