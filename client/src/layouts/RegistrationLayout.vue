@@ -28,7 +28,7 @@
 
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn block color="error">Logout</v-btn>
+          <v-btn block color="error" @click="logout">Logout</v-btn>
         </div>
       </template>
     </v-navigation-drawer>
@@ -44,6 +44,12 @@
 export default {
   data: () => ({
     drawer: null
-  })
+  }),
+  methods: {
+    logout: async function() {
+      localStorage.removeItem("payload")
+      this.$router.push("/login")
+    }
+  }
 };
 </script>

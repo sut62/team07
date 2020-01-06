@@ -9,7 +9,13 @@
           </v-toolbar>
           <v-card-text>
             <v-form>
-              <v-text-field v-model="$v.loginForm.username.$model" label="Login" name="login" type="text" :error-messages="loginError"></v-text-field>
+              <v-text-field
+                v-model="$v.loginForm.username.$model"
+                label="Login"
+                name="login"
+                type="text"
+                :error-messages="loginError"
+              ></v-text-field>
 
               <v-text-field
                 v-model="$v.loginForm.password.$model"
@@ -22,11 +28,10 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn >RegistrationOfficer</v-btn>
-            <v-btn >Create account</v-btn>
-            <v-btn >Login</v-btn>
+            <v-btn @click="login">เข้าสู่ระบบ</v-btn>
           </v-card-actions>
         </v-card>
+        <v-snackbar v-model="snackbar">{{ message }}</v-snackbar>
       </v-flex>
     </v-layout>
   </v-container>
@@ -40,7 +45,9 @@ export default {
     loginForm: {
       username: null,
       password: null
-    }
+    },
+    snackbar: false,
+    message: null
   }),
   validations: {
     loginForm: {
@@ -55,17 +62,44 @@ export default {
   },
   computed: {
     loginError() {
-      const errors = []
-      if (!this.$v.loginForm.username.$dirty) return errors
+      const errors = [];
+      if (!this.$v.loginForm.username.$dirty) return errors;
       !this.$v.loginForm.username.required && errors.push("กรุณากรอก username");
       return errors;
     },
     passwordError() {
-      const errors = []
-      if (!this.$v.loginForm.password.$dirty) return errors
-      !this.$v.loginForm.password.required && errors.push("กรุณากรอก password")
-      !this.$v.loginForm.password.minLength && errors.push("password มีความยาวอย่างน้อย 8 ตัวอักษร")
-      return errors
+      const errors = [];
+      if (!this.$v.loginForm.password.$dirty) return errors;
+      !this.$v.loginForm.password.required && errors.push("กรุณากรอก password");
+      !this.$v.loginForm.password.minLength &&
+        errors.push("password มีความยาวอย่างน้อย 8 ตัวอักษร");
+      return errors;
+    }
+  },
+  methods: {
+    login: async function() {
+      if (!this.$v.loginForm.$invalid) {
+        await this.$http
+          .post(`auth`, this.$v.loginForm.$model)
+          .then(response => {
+            if (
+              response.data.username !== null &&
+              response.data.role !== null
+            ) {
+              localStorage.setItem("payload", {
+                username: response.data.username,
+                role: response.data.role
+              });
+              if (response.data.role === "RegistrationOfficer")
+                this.$router.push("/registration");
+              if (response.data.role === "Lecturer") this.$router.push("/");
+              if (response.data.role === "Student") this.$router.push("/");
+            } else {
+              this.message = "username หรือ password ไม่ถูกต้อง"
+              this.snackbar = !this.snackbar
+            }
+          });
+      }
     }
   }
 };
