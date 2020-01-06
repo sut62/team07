@@ -29,7 +29,7 @@ public class Student {
         @Column(name = "ID_STUDENT_ID", unique = true, nullable = true)
         private @NonNull Long id;
 
-        @Column(name = "STUDENT_ID")
+        @Column(name = "STUDENT_ID", unique = true)
         private @NonNull String student_id;
 
         @Column(name = "STUDENT_PHONE")
