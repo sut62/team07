@@ -1,4 +1,4 @@
-package com.cpe.backend.entity;
+package com.sut62.team07.entity;
 import lombok.*;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -7,12 +7,15 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import java.util.Optional;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import  com.cpe.backend.entity.Major;
-import  com.cpe.backend.entity.TypeName;
-import  com.cpe.backend.entity.Year;
+import  com.sut62.team07.entity.Major;
+import  com.sut62.team07.entity.TypeName;
+import  com.sut62.team07.entity.Year;
 @Data
 @Entity
 @NoArgsConstructor
@@ -83,6 +86,9 @@ public class Student {
         public void setYear(Year year) {
         this.year=year;
 	}
+
+		public void setMajor(Optional<Major> major2) {
+		}
 
     
 }

@@ -1,4 +1,4 @@
-package com.cpe.backend.entity;
+package com.sut62.team07.entity;
 import lombok.*;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;

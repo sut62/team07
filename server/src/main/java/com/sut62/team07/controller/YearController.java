@@ -1,6 +1,6 @@
-package com.cpe.backend.controller;
-import com.cpe.backend.entity.Year;
-import com.cpe.backend.repository.YearRep;
+package com.sut62.team07.controller;
+import com.sut62.team07.entity.Year;
+import com.sut62.team07.repository.YearRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class YearController {
 
     @Autowired
-    private final YearRep yearRep;
+    private final YearRepository yearRep;
 
-    public YearController(YearRep yearRep) {
+    public YearController(YearRepository yearRep) {
         this.yearRep = yearRep;
     }
 
