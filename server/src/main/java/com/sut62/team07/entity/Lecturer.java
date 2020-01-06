@@ -37,20 +37,28 @@ public class Lecturer {
     private Long id;
 
     @Column(unique = true)
-    private @NotNull String lecturerCode;
+    @Pattern(regexp = "[A]\\d{4}")
+    @NotNull(message = "lecturer code must be not null")
+    private String lecturerCode;
 
-    @Size(min = 8)
-    private @NotNull String password;
+    @NotNull(message = "password must be not null")
+    @Size(min = 8, message = "password at least 8 characters")
+    private String password;
 
-    @Pattern(regexp = "\\d{13}")
-    private @NotNull String personalId;
+    @NotNull(message = "personalId must be not null")
+    @Pattern(regexp = "\\d{13}", message = "personalId must be match")
+    private String personalId;
 
-    private @NotNull String name;
+    @NotNull(message = "name must be not null")
+    private String name;
 
-    private @NotNull @Email String email;
+    @Email(message = "email is invalid")
+    @NotNull(message = "email must be not null")
+    private String email;
 
-    @Pattern(regexp = "\\d{10}")
-    private @NotNull String tel;
+    @NotNull(message = "tel must be not null")
+    @Pattern(regexp = "\\d{10}", message = "tel must be match")
+    private String tel;
 
     @ManyToOne
     private Prefix prefix;
