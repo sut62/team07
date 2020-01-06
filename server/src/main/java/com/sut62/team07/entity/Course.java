@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -32,10 +34,12 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_seq")
     private Long id;
 
+    @Pattern(regexp = "\\d{6}")
     private @NotNull String courseCode;
 
     private @NotNull String name;
 
+    @Min(1)
     private @NotNull int credit;
 
     @ManyToOne

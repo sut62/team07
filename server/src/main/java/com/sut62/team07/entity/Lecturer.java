@@ -42,7 +42,7 @@ public class Lecturer {
     @Size(min = 8)
     private @NotNull String password;
 
-    @Pattern(regexp = "[0-9]{13}")
+    @Pattern(regexp = "\\d{13}")
     private @NotNull String personalId;
 
     private @NotNull String name;
