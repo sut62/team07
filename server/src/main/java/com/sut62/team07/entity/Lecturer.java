@@ -72,11 +72,4 @@ public class Lecturer {
     @ManyToOne
     private RegistrationOfficer createdBy;
 
-    @ManyToMany
-    @JoinTable(
-        name = "lecturer_course",
-        joinColumns = @JoinColumn(name = "lecturer_id"),
-        inverseJoinColumns = @JoinColumn(name = "course_id")
-    )
-    private Collection<Course> courses;
 }

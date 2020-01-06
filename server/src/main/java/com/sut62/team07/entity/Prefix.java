@@ -25,6 +25,6 @@ public class Prefix {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prefix_seq")
     private Long id;
-
-    private @NotNull String name;
+    @NotNull(message = "name must be not null")
+    private String name;
 }

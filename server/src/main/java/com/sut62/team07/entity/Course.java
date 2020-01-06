@@ -45,9 +45,6 @@ public class Course {
     @ManyToOne
     private Major major;
 
-    @ManyToMany(mappedBy = "courses")
-    @JsonBackReference
-    private Collection<Lecturer> lecturers;
 
 	public void setSubNum(String courseCode) {
         this.courseCode = courseCode;

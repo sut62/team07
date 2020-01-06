@@ -40,9 +40,6 @@ public class LecturerController {
     private MajorRepository majorRepository;
 
     @Autowired
-    private CourseRepository courseRepository;
-
-    @Autowired
     private PrefixRepository prefixRepository;
 
     @GetMapping
@@ -71,16 +68,6 @@ public class LecturerController {
         Optional<Gender> gender = genderRepository.findById(request.getGender());
         Optional<Prefix> prefix = prefixRepository.findById(request.getPrefix());
 
-        Set<Course> courses = new HashSet<>();
-        try {
-            request.getCourses().forEach(course -> {
-                Optional<Course> crs = courseRepository.findById(course);
-                courses.add(crs.get());
-            });
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-
         Lecturer lecturer = Lecturer.builder()
                     .email(request.getEmail())
                     .gender(gender.get())
@@ -91,7 +78,6 @@ public class LecturerController {
                     .personalId(request.getPersonalId())
                     .prefix(prefix.get())
                     .tel(request.getTel())
-                    .courses(courses)
                     .build();
         return lecturerRepository.save(lecturer);
     }
