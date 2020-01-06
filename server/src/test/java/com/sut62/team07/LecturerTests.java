@@ -32,9 +32,9 @@ public class LecturerTests {
         validator = factory.getValidator();
     }
 
-    // lecturerCode สามารถ save ได้
+    // lecturer สามารถ save ได้
     @Test
-    void lecturerCodeShouldBeOK() {
+    void lecturerObjectShouldBeOK() {
         // สร้าง Lecturer Object และใส่ข้อมูล
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
@@ -48,8 +48,13 @@ public class LecturerTests {
         lecturer = lecturerRepository.saveAndFlush(lecturer);
         // ค้นหา lecturer
         Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
-        // ทดสอบ field lecturerCode และหวังไว้ว่าต้องเท่ากับ A0001
+        
         assertEquals("A0001", found.get().getLecturerCode());
+        assertEquals("gg@gmail.com", found.get().getEmail());
+        assertEquals("12345678", found.get().getPassword());
+        assertEquals("John Doe", found.get().getName());
+        assertEquals("1234567890123", found.get().getPersonalId());
+        assertEquals("0987458745", found.get().getTel());
     }
 
     // lecturerCode ต้องไม่ใช่ค่า null
@@ -68,24 +73,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("lecturer code must be not null", validation.getMessage());
-        assertEquals("lecturerCode", validation.getPropertyPath().toString());
-    }
-
-    @Test
-    void emailShouldBeOK() {
-        Lecturer lecturer = Lecturer.builder()
-                .email("gg@gmail.com")
-                .lecturerCode("A0001")
-                .name("John Doe")
-                .password("12345678")
-                .personalId("1234567890123")
-                .tel("0987458745")
-                .build();
-        lecturer = lecturerRepository.saveAndFlush(lecturer);
-        Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
-        assertEquals("gg@gmail.com", found.get().getEmail());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("lecturer code must be not null", violation.getMessage());
+        assertEquals("lecturerCode", violation.getPropertyPath().toString());
     }
 
     // email ต้องไม่ใช่ค่า null
@@ -102,9 +92,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("email must be not null", validation.getMessage());
-        assertEquals("email", validation.getPropertyPath().toString());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("email must be not null", violation.getMessage());
+        assertEquals("email", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -120,25 +110,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("email is invalid", validation.getMessage());
-        assertEquals("email", validation.getPropertyPath().toString());
-    }
-
-    // name ต้องสามารถ save ได้
-    @Test
-    void nameShouldBeOK() {
-        Lecturer lecturer = Lecturer.builder()
-                .email("gg@gmail.com")
-                .lecturerCode("A0001")
-                .name("John Doe")
-                .password("12345678")
-                .personalId("1234567890123")
-                .tel("0987458745")
-                .build();
-        lecturer = lecturerRepository.saveAndFlush(lecturer);
-        Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
-        assertEquals("John Doe", found.get().getName());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("email is invalid", violation.getMessage());
+        assertEquals("email", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -155,24 +129,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("name must be not null", validation.getMessage());
-        assertEquals("name", validation.getPropertyPath().toString());
-    }
-
-    @Test
-    void passwordShouldBeOK() {
-        Lecturer lecturer = Lecturer.builder()
-                .email("gg@gmail.com")
-                .lecturerCode("A0001")
-                .name("John Doe")
-                .password("12345678")
-                .personalId("1234567890123")
-                .tel("0987458745")
-                .build();
-        lecturer = lecturerRepository.saveAndFlush(lecturer);
-        Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
-        assertEquals("12345678", found.get().getPassword());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("name must be not null", violation.getMessage());
+        assertEquals("name", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -188,9 +147,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("password must be not null", validation.getMessage());
-        assertEquals("password", validation.getPropertyPath().toString());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("password must be not null", violation.getMessage());
+        assertEquals("password", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -206,24 +165,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("password at least 8 characters", validation.getMessage());
-        assertEquals("password", validation.getPropertyPath().toString());
-    }
-
-    @Test
-    void personalIdShouldBeOK() {
-        Lecturer lecturer = Lecturer.builder()
-                .email("gg@gmail.com")
-                .lecturerCode("A0001")
-                .name("John Doe")
-                .password("12345678")
-                .personalId("1234567890123")
-                .tel("0987458745")
-                .build();
-        lecturer = lecturerRepository.saveAndFlush(lecturer);
-        Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
-        assertEquals("1234567890123", found.get().getPersonalId());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("password at least 8 characters", violation.getMessage());
+        assertEquals("password", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -240,9 +184,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("personalId must be not null", validation.getMessage());
-        assertEquals("personalId", validation.getPropertyPath().toString());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("personalId must be not null", violation.getMessage());
+        assertEquals("personalId", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -259,9 +203,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("personalId must be match", validation.getMessage());
-        assertEquals("personalId", validation.getPropertyPath().toString());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("personalId must be match", violation.getMessage());
+        assertEquals("personalId", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -278,9 +222,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("personalId must be match", validation.getMessage());
-        assertEquals("personalId", validation.getPropertyPath().toString());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("personalId must be match", violation.getMessage());
+        assertEquals("personalId", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -297,24 +241,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("personalId must be match", validation.getMessage());
-        assertEquals("personalId", validation.getPropertyPath().toString());
-    }
-
-    @Test
-    void telIdShouldBeOK() {
-        Lecturer lecturer = Lecturer.builder()
-                .email("gg@gmail.com")
-                .lecturerCode("A0001")
-                .name("John Doe")
-                .password("12345678")
-                .personalId("1234567890123")
-                .tel("0987458745")
-                .build();
-        lecturer = lecturerRepository.saveAndFlush(lecturer);
-        Optional<Lecturer> found = lecturerRepository.findById(lecturer.getId());
-        assertEquals("0987458745", found.get().getTel());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("personalId must be match", violation.getMessage());
+        assertEquals("personalId", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -331,9 +260,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("tel must be not null", validation.getMessage());
-        assertEquals("tel", validation.getPropertyPath().toString());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("tel must be not null", violation.getMessage());
+        assertEquals("tel", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -350,9 +279,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("tel must be match", validation.getMessage());
-        assertEquals("tel", validation.getPropertyPath().toString());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("tel must be match", violation.getMessage());
+        assertEquals("tel", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -369,9 +298,9 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("tel must be match", validation.getMessage());
-        assertEquals("tel", validation.getPropertyPath().toString());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("tel must be match", violation.getMessage());
+        assertEquals("tel", violation.getPropertyPath().toString());
     }
 
     @Test
@@ -388,8 +317,25 @@ public class LecturerTests {
         Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
         // result ต้องมี 1 ค่าเท่านั้น
         assertEquals(1, result.size());
-        ConstraintViolation<Lecturer> validation = result.iterator().next();
-        assertEquals("tel must be match", validation.getMessage());
-        assertEquals("tel", validation.getPropertyPath().toString());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("tel must be match", violation.getMessage());
+        assertEquals("tel", violation.getPropertyPath().toString());
+    }
+
+    @Test
+    void telMustBe0AtIndex0() {
+        Lecturer lecturer = Lecturer.builder()
+                .email("gg@gmail.com")
+                .lecturerCode("A0001")
+                .name("John Doe")
+                .password("12345678")
+                .personalId("1234567890123")
+                .tel("1023456789")
+                .build();
+        Set<ConstraintViolation<Lecturer>> result = validator.validate(lecturer);
+        assertEquals(1, result.size());
+        ConstraintViolation<Lecturer> violation = result.iterator().next();
+        assertEquals("tel must be match", violation.getMessage());
+        assertEquals("tel", violation.getPropertyPath().toString());
     }
 }

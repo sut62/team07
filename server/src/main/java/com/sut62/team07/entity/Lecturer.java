@@ -1,15 +1,10 @@
 package com.sut62.team07.entity;
 
-import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -57,7 +52,7 @@ public class Lecturer {
     private String email;
 
     @NotNull(message = "tel must be not null")
-    @Pattern(regexp = "\\d{10}", message = "tel must be match")
+    @Pattern(regexp = "[0]\\d{9}", message = "tel must be match")
     private String tel;
 
     @ManyToOne

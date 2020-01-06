@@ -3,7 +3,9 @@ package com.sut62.team07;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Optional;
+import java.util.Set;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -38,5 +40,16 @@ public class GenderTests {
 
         Optional<Gender> found = genderRepository.findById(gender.getId());
         assertEquals("ชาย", found.get().getName());
+    }
+
+    @Test
+    void genderNameMustBeNotNull() {
+        Gender gender = Gender.builder().name(null).build();
+
+        Set<ConstraintViolation<Gender>> result = validator.validate(gender);
+        assertEquals(1, result.size());
+        ConstraintViolation<Gender> violation = result.iterator().next();
+        assertEquals("gender name must be not null", violation.getMessage());
+        assertEquals("name", violation.getPropertyPath().toString());
     }
 }

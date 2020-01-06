@@ -36,5 +36,6 @@ public class LecturerRequest {
     @NotNull
     private Long gender;
 
-    private Collection<Long> courses;
+    @NotNull
+    private Long createdBy;
 }

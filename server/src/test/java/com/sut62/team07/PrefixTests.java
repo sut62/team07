@@ -47,8 +47,8 @@ public class PrefixTests {
 
         Set<ConstraintViolation<Prefix>> result = validator.validate(prefix);
         assertEquals(1, result.size());
-        ConstraintViolation<Prefix> validation = result.iterator().next();
-        assertEquals("name must be not null", validation.getMessage());
-        assertEquals("name", validation.getPropertyPath().toString());
+        ConstraintViolation<Prefix> violation = result.iterator().next();
+        assertEquals("name must be not null", violation.getMessage());
+        assertEquals("name", violation.getPropertyPath().toString());
     }
 }
