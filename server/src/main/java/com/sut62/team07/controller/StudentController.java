@@ -1,7 +1,5 @@
 package com.sut62.team07.controller;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +11,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import com.sut62.team07.entity.Student;
 import com.sut62.team07.entity.Major;
-import com.sut62.team07.entity.TypeName;
+import com.sut62.team07.entity.Prefix;
 import com.sut62.team07.entity.Year;
-import com.sut62.team07.repository.TypeNameRepository;
 import com.sut62.team07.repository.MajorRepository;
+import com.sut62.team07.repository.PrefixRepository;
 import com.sut62.team07.repository.StudentRepository;
 import com.sut62.team07.repository.YearRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +25,7 @@ public class StudentController {
     @Autowired
     private final StudentRepository studentRepository;
     @Autowired
-    private  TypeNameRepository typemaeRepository;
+    private  PrefixRepository prefixRepository;
     @Autowired
     private MajorRepository majorRepository;
     @Autowired
@@ -55,7 +53,7 @@ public class StudentController {
     
     
     Optional<Major> major = majorRepository.findById(major_id);
-    TypeName typename = typemaeRepository.findById(typename_id);
+    Prefix typename = prefixRepository.findById(typename_id).get();
     Year year = yearRepository.findById(year_id);
     
     newStudent.setMajor(major);
