@@ -13,6 +13,10 @@ const routes = [
     component: () => import('@/layouts/RegistrationLayout'),
     children: [
       {
+        path: '',
+        redirect: 'register-lecturer'
+      },
+      {
         path: 'register-lecturer',
         component: () => import('@/views/LecturerForm')
       }
