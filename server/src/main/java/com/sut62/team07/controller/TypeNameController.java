@@ -1,6 +1,6 @@
-package com.cpe.backend.controller;
-import com.cpe.backend.entity.TypeName;
-import com.cpe.backend.repository.TypeNameRep;
+package com.sut62.team07.controller;
+import com.sut62.team07.entity.TypeName;
+import com.sut62.team07.repository.TypeNameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,15 +14,15 @@ public class TypeNameController {
 
    
     @Autowired
-    private final TypeNameRep typeNameRep;
+    private final TypeNameRepository typeNameRepository;
 
-    public TypeNameController(TypeNameRep typeNameRep) {
-        this.typeNameRep = typeNameRep;
+    public TypeNameController(TypeNameRepository typeNameRep) {
+        this.typeNameRepository = typeNameRep;
     }
 
     @GetMapping("/typeName")
     public Collection<TypeName> TypeName() {
-        return typeNameRep.findAll().stream().collect(Collectors.toList());
+        return typeNameRepository.findAll().stream().collect(Collectors.toList());
     }
 }
 

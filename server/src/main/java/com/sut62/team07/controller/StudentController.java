@@ -1,4 +1,4 @@
-package com.cpe.backend.controller;
+package com.sut62.team07.controller;
 
 
 
@@ -9,36 +9,37 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import com.cpe.backend.entity.Student;
-import com.cpe.backend.entity.Major;
-import com.cpe.backend.entity.TypeName;
-import com.cpe.backend.entity.Year;
-import com.cpe.backend.repository.TypeNameRep;
-import com.cpe.backend.repository.MajorRep;
-import com.cpe.backend.repository.StudentRep;
-import com.cpe.backend.repository.YearRep;
+import com.sut62.team07.entity.Student;
+import com.sut62.team07.entity.Major;
+import com.sut62.team07.entity.TypeName;
+import com.sut62.team07.entity.Year;
+import com.sut62.team07.repository.TypeNameRepository;
+import com.sut62.team07.repository.MajorRepository;
+import com.sut62.team07.repository.StudentRepository;
+import com.sut62.team07.repository.YearRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin(origins = "http://localhost:8082")
 @RestController
 public class StudentController {
     @Autowired
-    private final StudentRep studentRep;
+    private final StudentRepository studentRepository;
     @Autowired
-    private  TypeNameRep typemaeRep;
+    private  TypeNameRepository typemaeRepository;
     @Autowired
-    private MajorRep majorRep;
+    private MajorRepository majorRepository;
     @Autowired
-    private YearRep yearRep;
+    private YearRepository yearRepository;
 
    
-    StudentController(StudentRep studentRep) {
-        this.studentRep = studentRep;
+    StudentController(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
     @GetMapping("/student")
     public Collection<Student> Student() {
-        return studentRep.findAll().stream().collect(Collectors.toList());
+        return studentRepository.findAll().stream().collect(Collectors.toList());
     }
     @PostMapping("/student/{student_id}/{typename_id}/{student_name}/{major_id}/{year_id}/{student_email}/{student_phone}/{password}")
     public Student newStudent(Student newStudent,
@@ -53,9 +54,9 @@ public class StudentController {
     
     
     
-    Major major = majorRep.findById(major_id);
-    TypeName typename = typemaeRep.findById(typename_id);
-    Year year = yearRep.findById(year_id);
+    Optional<Major> major = majorRepository.findById(major_id);
+    TypeName typename = typemaeRepository.findById(typename_id);
+    Year year = yearRepository.findById(year_id);
     
     newStudent.setMajor(major);
     newStudent.setTypeName(typename);
@@ -67,7 +68,7 @@ public class StudentController {
     newStudent.setPassword((String)password);
     
 
-    return studentRep.save(newStudent);
+    return studentRepository.save(newStudent);
     
     }
 }

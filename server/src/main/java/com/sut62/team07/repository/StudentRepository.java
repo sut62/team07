@@ -1,6 +1,6 @@
-package com.cpe.backend.repository;
+package com.sut62.team07.repository;
 
-import  com.cpe.backend.entity.Student;
+import  com.sut62.team07.entity.Student;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.*;
 
 @RepositoryRestResource
 public
-interface StudentRep extends JpaRepository<Student, Long> {
+interface StudentRepository extends JpaRepository<Student, Long> {
     Student findById(long id);
     
 
