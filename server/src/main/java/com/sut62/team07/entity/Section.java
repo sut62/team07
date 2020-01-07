@@ -19,11 +19,7 @@ public class Section {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Course.class)
     private Course subInSec;
 
-	public void setName(String string) {
-	}
-
-	public void setSubInSec(Course sj1) {
-	}
+	
 	
 
 }
