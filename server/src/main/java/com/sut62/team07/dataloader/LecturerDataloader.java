@@ -6,10 +6,12 @@ import com.sut62.team07.entity.Gender;
 import com.sut62.team07.entity.Institute;
 import com.sut62.team07.entity.Major;
 import com.sut62.team07.entity.Prefix;
+import com.sut62.team07.entity.RegistrationOfficer;
 import com.sut62.team07.repository.GenderRepository;
 import com.sut62.team07.repository.InstituteRepository;
 import com.sut62.team07.repository.MajorRepository;
 import com.sut62.team07.repository.PrefixRepository;
+import com.sut62.team07.repository.RegistrationOfficerRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -30,6 +32,9 @@ public class LecturerDataloader implements ApplicationRunner {
 
     @Autowired
     private PrefixRepository prefixRepository;
+
+    @Autowired
+    private RegistrationOfficerRepository registrationOfficerRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -113,6 +118,15 @@ public class LecturerDataloader implements ApplicationRunner {
             majorRepository.save(major);
         });
 
+        RegistrationOfficer registrationOfficer = RegistrationOfficer.builder()
+                .gender(genderRepository.getOne(1L))
+                .name("Jack Daw")
+                .officerCode("R0001")
+                .password("password1")
+                .prefix(prefixRepository.getOne(1L))
+                .build();
+
+        registrationOfficerRepository.save(registrationOfficer);
 
     }
 
