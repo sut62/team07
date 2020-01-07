@@ -39,7 +39,7 @@ public class RegisterController {
         return registerRepository.findRegister(id);
     }
     //save register
-    @PostMapping("/register/{student_id}/{semester_id}/{section_id}/{sub_num}/{credit}")
+    @PostMapping("/register/{student_id}/{semester_id}/{section_id}/{courseCode}/{credit}")
     public Register newRegister(Register newRegister,
     @PathVariable long student_id,
     @PathVariable long semester_id,

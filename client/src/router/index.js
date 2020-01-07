@@ -16,12 +16,22 @@ const routes = [
     component: StudentRegister
   },
   {
-    path: '/register',
-    component: Register
-  },
-  {
     path: '/login',
     component: () => import('@/views/Login')
+  },
+  {
+    path: '/Student',
+    component: () => import('@/layouts/StudentLayout'),
+    children: [
+      {
+        path: '',
+        redirect: 'register'
+      },
+      {
+        path: 'register',
+        component: Register
+      }
+    ]
   },
   {
     path: '/registration',

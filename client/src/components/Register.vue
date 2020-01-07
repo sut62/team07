@@ -48,7 +48,7 @@
               <v-col cols="auto">
                 <v-autocomplete
                   v-model="register.courseId"
-                  :items="course"
+                  :items="courses"
                   item-text="courseCode"
                   item-value="id"
                   label="รายวิชา"
@@ -118,7 +118,7 @@ export default {
       },
       semesters:[],
       students:[],
-      course:[],
+      courses:[],
       sections:[],
       validsec: false,
       validsave: false,
@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     getSemesters() {
-      this.axios
+      this.$http
         .get("/semester")
         .then(response => {
           this.semesters = response.data;
@@ -141,7 +141,7 @@ export default {
         });
     },
     getStudents() {
-      this.axios
+      this.$http
         .get("/student")
         .then(response => {
           this.students = response.data;
@@ -152,8 +152,8 @@ export default {
         });
     },
     getCourses() {
-      this.axios
-        .get("/course")
+      this.$http
+        .get("/courses")
         .then(response => {
           this.courses = response.data;
           console.log(response.data);
@@ -163,14 +163,14 @@ export default {
         });
     },
        getSubnum() {
-      this.axios
-        .get("/course/" + this.register.courseId)
+      this.$http
+        .get("/courses/" + this.register.courseId)
         .then(response => {
           console.log(response.data);
           this.s = response.data;
           this.register.courseCode = response.data.courseCode;
           this.register.credit = response.data.credit;
-          this.coursetName = response.data.name;
+          this.courseName = response.data.name;
           if(response.data!=null)
             this.saveCheck = response.status;
         })
@@ -179,7 +179,7 @@ export default {
         });
     },
     getSections() {
-      this.axios
+      this.$http
         .get("/section/" + this.register.courseId)
         .then(response => {
           if(response.data!=null)
@@ -195,13 +195,13 @@ export default {
         if(this.register.courseId != null 
           && this.register.semesterId != null 
           && this.register.studentId != null ){
-            this.getSectionCheck = true;   
+             this.getSectionCheck = true;   
             this.getSections();
          }
 
         },
     saveRegister() {
-      this.axios
+      this.$http
         .post(
           "/register/" +
             this.register.studentId
