@@ -15,6 +15,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true)
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("Authorization", "Content-Type", "Accept", "Origin")
-                .allowedOrigins("http://localhost:8081", "http://localhost:8080", "http://localhost:8082");
+                .allowedOrigins("http://localhost:8081", "http://localhost:8080", "http://localhost:8082", "http://localhost:9090");
     }
 }
