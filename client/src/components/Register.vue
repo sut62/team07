@@ -43,26 +43,13 @@
                 </v-col>
               </v-row>
 
-            <!-- subject -->
-            <v-row justify="center">
-              <v-col cols="auto">
-                <v-autocomplete
-                  v-model="register.courseId"
-                  :items="courses"
-                  item-text="courseCode"
-                  item-value="id"
-                  label="รายวิชา"
-                  placeholder="กรุณากรอกรหัสวิชา"
-                  hide-selected
-                  :rules="[(v) => !!v || 'กรุณากรอกรหัสวิชาที่ต้องการลงทะเบียนเรียน']"
-                  ></v-autocomplete>
-                </v-col>
-          
+              <subject-list-table></subject-list-table>
+           
               <v-col cols='auto'> 
                 <v-btn @click="showSection" 
-                :class="{ red: !validsec, green: validsec }">ค้นหา</v-btn>
+                :class="{ red: !validsec, green: validsec }">ค้นหากลุ่มเรียน</v-btn>
                 </v-col>
-              </v-row>
+              
           </v-form>
 
             <!-- section -->
@@ -71,10 +58,6 @@
               <v-row justify="center">
                   <v-col cols="auto">
                     <v-card color="#FFCC80">
-                    <v-card-text>
-                      <div class="text--primary">{{this.register.courseCode}} {{courseName}}<br>
-                      หน่วยกิต : {{this.register.credit}}</div>
-                    </v-card-text>
                     </v-card><br>
                     <v-select
                       label="กลุ่มเรียน"
@@ -86,6 +69,8 @@
                       ></v-select>
                     </v-col>
                 </v-row>
+                
+
 
               <!-- submit -->
               <v-row justify="center">
@@ -93,6 +78,7 @@
                   <v-btn dark large @click="saveRegister" class="indigo">ยืนยันการลงทะเบียน</v-btn>
                  </v-col>
                 </v-row>
+
               </div>
             </v-form>
         </v-flex>
@@ -102,10 +88,13 @@
 </template>
 
 <script>
-
+import SubjectListTable from '@/components/SubjectListTable'
 
 export default {
   name: "register",
+  components: {
+    SubjectListTable
+  },
   data() {
     return {
       register: {
