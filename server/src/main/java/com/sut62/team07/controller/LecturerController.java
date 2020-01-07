@@ -68,7 +68,7 @@ public class LecturerController {
         Optional<Major> major = majorRepository.findById(request.getMajor());
         Optional<Gender> gender = genderRepository.findById(request.getGender());
         Optional<Prefix> prefix = prefixRepository.findById(request.getPrefix());
-        Optional<RegistrationOfficer> registrationOfficer = registrationOfficerRepository.findById(request.getCreatedBy());
+        Optional<RegistrationOfficer> registrationOfficer = registrationOfficerRepository.findByOfficerCode(request.getCreatedBy());
 
         Lecturer lecturer = Lecturer.builder()
                     .email(request.getEmail())

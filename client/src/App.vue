@@ -6,21 +6,11 @@
 
 <script>
 export default {
-  // name: "App",
-  // data() {
-  //   return {
-  //     valid: false,
-  //     check: false,
-  //     ids: localStorage.getItem("siteUser")
-  //   };
-  // },
-  // methods: {
-  //   logOut() {
-  //     localStorage.removeItem("siteId");
-  //     localStorage.removeItem("siteUser");
-  //     this.ids = null;
-  //     this.$router.push("/");
-  //   }
-  // }
+  created() {
+    const username = localStorage.getItem("username")
+    if (username !== null) {
+      this.$store.commit("setUsername", username)
+    }
+  }
 };
 </script>
