@@ -18,7 +18,7 @@
           label="ค้นหารายวิชา"
           single-line
         ></v-text-field>
-        <v-data-table :headers="headers" :items="courses" :search="search" show-select v-model="$v.selected.$model"></v-data-table>
+        <v-data-table :headers="headers" :items="courses" :search="search" show-select v-model="$v.selected.$model" single-select></v-data-table>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -51,14 +51,6 @@ export default {
         text: "หน่วยกิต",
         value: "credit"
       },
-      {
-        text: "สำนักวิชา",
-        value: "major.institute.name"
-      },
-      {
-        text: "สาขาวิชา",
-        value: "major.name"
-      }
     ]
   }),
   validations: {
