@@ -3,15 +3,7 @@
     <v-card-title>เพิ่มอาจารย์ผู้สอน</v-card-title>
     <v-card-text>
       <v-form>
-        <v-radio-group label="คำนำหน้า" row v-model="$v.lecturerForm.prefix.$model" :error-messages="prefixError">
-          <v-radio
-            v-for="prefix in prefixs"
-            :key="prefix.id"
-            :value="prefix.id"
-            :label="prefix.name"
-            color="primary"
-          ></v-radio>
-        </v-radio-group>
+        <v-select :items="prefixs" item-text="name" label="คำนำหน้า" item-value="id" v-model="$v.lecturerForm.prefix.$model" :error-messages="prefixError"></v-select>
         <v-text-field label="ชื่อ - สกุล" v-model="$v.lecturerForm.name.$model" :error-messages="nameError"></v-text-field>
         <v-text-field label="รหัสอาจารย์" v-model="$v.lecturerForm.lecturerCode.$model" :error-messages="lecturerCodeError"></v-text-field>
         <v-text-field label="รหัสผ่าน" type="password" v-model="$v.lecturerForm.password.$model" :error-messages="passwordError"></v-text-field>
@@ -91,7 +83,8 @@ export default {
       personalId: null,
       tel: null,
       email: null,
-      major: null
+      major: null,
+      createdBy: null
     }
   }),
   validations: {
@@ -129,6 +122,9 @@ export default {
       },
       major: {
         required
+      },
+      createdBy: {
+        required
       }
     }
   },
@@ -136,6 +132,8 @@ export default {
     this.$store.commit("setGenders");
     this.$store.commit("setInstitutes");
     this.$store.commit("setPrefixs");
+    this.$v.lecturerForm.createdBy.$model = this.$store.state.username
+    console.log(this.$store.state.username)
   },
   computed: {
     ...mapState({

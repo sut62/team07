@@ -86,17 +86,15 @@ export default {
               response.data.username !== null &&
               response.data.role !== null
             ) {
-              localStorage.setItem("payload", {
-                username: response.data.username,
-                role: response.data.role
-              });
+              localStorage.setItem("username", response.data.username);
+              this.$store.commit("setUsername", response.data.username);
               if (response.data.role === "RegistrationOfficer")
                 this.$router.push("/registration");
               if (response.data.role === "Lecturer") this.$router.push("/");
               if (response.data.role === "Student") this.$router.push("/");
             } else {
-              this.message = "username หรือ password ไม่ถูกต้อง"
-              this.snackbar = !this.snackbar
+              this.message = "username หรือ password ไม่ถูกต้อง";
+              this.snackbar = !this.snackbar;
             }
           });
       }

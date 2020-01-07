@@ -35,5 +35,5 @@ public class LecturerRequest {
     private Long gender;
 
     @NotNull
-    private Long createdBy;
+    private String createdBy;
 }
