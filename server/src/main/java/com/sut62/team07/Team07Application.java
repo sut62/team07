@@ -23,21 +23,24 @@ public class Team07Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Team07Application.class, args);
 	}
-	
+
 	@Bean
-	ApplicationRunner init( SemesterRepository semesterRepository,SectionRepository sectionRepository,StudentRepository studentRepository,CourseRepository courseRepository,YearRepository yearRepository) {	return args -> {
-			
-		Stream.of("1", "2", "3").forEach(name -> { //aum
+	ApplicationRunner init(SemesterRepository semesterRepository, SectionRepository sectionRepository,
+			StudentRepository studentRepository, CourseRepository courseRepository, YearRepository yearRepository) {
+		return args -> {
+
+			Stream.of("1", "2", "3").forEach(name -> { // aum
 				Semester semester = new Semester(); // สร้าง Object Semester
 				semester.setName(name); // set ชื่อ (name) ให้ Object ชื่อ Semester
 				semesterRepository.save(semester); // บันทึก Objcet ชื่อ Semester
 			});
 
-			Stream.of("ชั้นปีการศึกษาที่ 1", "ชั้นปีการศึกษาที่ 2", "ชั้นปีการศึกษาที่ 3", "ชั้นปีการศึกษาที่ 4").forEach(name -> {
-				Year year = new Year(); 
-				year.setName(name); 
-				yearRepository.save(year); 
-			});
+			Stream.of("ชั้นปีการศึกษาที่ 1", "ชั้นปีการศึกษาที่ 2", "ชั้นปีการศึกษาที่ 3", "ชั้นปีการศึกษาที่ 4")
+					.forEach(name -> {
+						Year year = new Year();
+						year.setName(name);
+						yearRepository.save(year);
+					});
 
 			Course sj1 = new Course();
 			sj1.setSubNum("523331");
@@ -75,12 +78,12 @@ public class Team07Application {
 			sj6.setCredit(4);
 			courseRepository.save(sj6);
 
-			//sa
+			// sa
 			Section sec1 = new Section();
 			sec1.setName("1");
 			sec1.setSubInSec(sj1);
 			sectionRepository.save(sec1);
-			
+
 			Section sec2 = new Section();
 			sec2.setName("2");
 			sec2.setSubInSec(sj1);
@@ -91,7 +94,7 @@ public class Team07Application {
 			sec3.setSubInSec(sj1);
 			sectionRepository.save(sec3);
 
-			//micro
+			// micro
 			Section sec1_2 = new Section();
 			sec1_2.setName("1");
 			sec1_2.setSubInSec(sj2);
@@ -112,7 +115,7 @@ public class Team07Application {
 			sec4_2.setSubInSec(sj2);
 			sectionRepository.save(sec4_2);
 
-			//com stat
+			// com stat
 			Section sec1_3 = new Section();
 			sec1_3.setName("1");
 			sec1_3.setSubInSec(sj3);
@@ -121,9 +124,9 @@ public class Team07Application {
 			Section sec2_3 = new Section();
 			sec2_3.setName("2");
 			sec2_3.setSubInSec(sj3);
-			sectionRepository.save(sec2_3); 
+			sectionRepository.save(sec2_3);
 
-			//formal
+			// formal
 			Section sec1_4 = new Section();
 			sec1_4.setName("1");
 			sec1_4.setSubInSec(sj4);
@@ -132,22 +135,21 @@ public class Team07Application {
 			Section sec2_4 = new Section();
 			sec2_4.setName("2");
 			sec2_4.setSubInSec(sj4);
-			sectionRepository.save(sec2_4); 
+			sectionRepository.save(sec2_4);
 
-			//man eco
+			// man eco
 			Section sec1_5 = new Section();
 			sec1_5.setName("1");
 			sec1_5.setSubInSec(sj5);
-			sectionRepository.save(sec1_5); 
+			sectionRepository.save(sec1_5);
 
-			//java
+			// java
 			Section sec1_6 = new Section();
 			sec1_6.setName("1");
 			sec1_6.setSubInSec(sj6);
-			sectionRepository.save(sec1_6); 
-		
-			
- 	};
+			sectionRepository.save(sec1_6);
+
+		};
 	}
 
 }
