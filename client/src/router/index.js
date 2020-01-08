@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Register from '../components/Register';
+import ViewRegister from '../components/ViewRegister';
 import StudentRegister from '../components/StudentRegister';
 
 
@@ -30,6 +31,10 @@ const routes = [
       {
         path: 'register',
         component: Register
+      },
+      {
+        path: 'viewreg',
+        component: ViewRegister
       }
     ]
   },
