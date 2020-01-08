@@ -1,5 +1,7 @@
 package com.sut62.team07.entity;
 
+import lombok.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 
 @Table
 @Entity
@@ -51,5 +58,19 @@ public class Course {
         public void setCredit(int string) {
                 credit = string;
         }
+
+
+        @ManyToOne(fetch = FetchType.EAGER, targetEntity = Trimester.class)
+         @JoinColumn(name = "TRIMESTER_ID", insertable = true)
+        private Trimester trimester;
+
+         @ManyToOne(fetch = FetchType.EAGER, targetEntity = Type.class)
+        @JoinColumn(name = "TYPE_ID", insertable = true)
+         private Type type;
+
+
+         @ManyToOne(fetch = FetchType.EAGER, targetEntity = ProgramInfo.class)
+         @JoinColumn(name = "ProgramInfo_ID", insertable = true)
+        private ProgramInfo programInfo;
 
 }
