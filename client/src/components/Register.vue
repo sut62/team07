@@ -223,6 +223,8 @@ export default {
     },
     getCourse(course) {
       this.register.courseId = course[0].id
+      this.register.courseCode = course[0].courseCode
+      this.register.credit = course[0].credit
     }
   },
   mounted() {
