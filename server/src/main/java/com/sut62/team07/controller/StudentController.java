@@ -45,13 +45,13 @@ public class StudentController {
     
     
  
-    @PostMapping("/student/{student_id}/{Prefixs}/{student_name}/{majors}/{year_id}/{student_email}/{student_phone}/{password}")
+    @PostMapping("/student/{student_id}/{Prefixs}/{student_name}/{majors}/{id}/{student_email}/{student_phone}/{password}")
     public Student newStudent(Student newStudent,
     @PathVariable String student_id,
     @PathVariable long Prefixs,
     @PathVariable String student_name,
     @PathVariable long majors,
-    @PathVariable long year_id,
+    @PathVariable long id,
     @PathVariable String student_email,
     @PathVariable String student_phone,
     @PathVariable String password){
@@ -60,13 +60,15 @@ public class StudentController {
     
         Major major = majorRepository.findById(majors).get();
         Prefix Prefix = prefixRepository.findById(Prefixs).get();
-        Year year = yearRepository.findById(year_id);
+        Year year = yearRepository.findById(id);
         
-        newStudent.setMajor(major);
-        newStudent.setPrefix(Prefix);
-        newStudent.setYear(year);
+        
+        
         newStudent.setStudent_id((String)student_id);
+        newStudent.setPrefix(Prefix);
         newStudent.setStudent_name((String)student_name);
+        newStudent.setMajor(major);
+        newStudent.setYear(year);
         newStudent.setStudent_email((String)student_email);
         newStudent.setStudent_phone(student_phone);
         newStudent.setPassword((String)password);

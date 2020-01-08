@@ -78,10 +78,10 @@
               <v-select
                 label="ชั้นปีที่ศึกษา"
                 solo
-                v-model="student.year_id"
+                v-model="student.id"
                 :items="year"
                 item-text="year_name"
-                item-value="year_id"
+                item-value="id"
                 :rules="[(v) => !!v || 'กรุณาใส่ ชั้นปีที่ศึกษา']"
                 required
               ></v-select>
@@ -191,7 +191,7 @@ export default {
       student: {
         prefixs: "",
         majors: "",
-        year_id: "",
+        id: "",
       },
         valid: false,
         show1: false,
@@ -257,6 +257,7 @@ export default {
   
     // function เมื่อกดปุ่ม submit
    saveData() {
+     console.log(this.student.id)
     {
       this.$http
         .post(
@@ -269,14 +270,14 @@ export default {
             "/" +
             this.student.majors +
             "/" +
-            this.student.year_id+
+            this.student.id+
             "/" +
             this.student_email +
             "/" +
              this.student_phone +
             "/" +
              this.password ,
-            // this.student
+           //  this.student
         )
         .then(response => {
           console.log(response);
@@ -292,13 +293,13 @@ export default {
     checkfeild(){
 if(    this.student.student_id=='')
 alert('กรุณาใส่ข้อมูลให้ครบถ้วน')
-if(    this.student.nametypeId=="")
+if(    this.student.prefixs=="")
 alert('กรุณาใส่ข้อมูลให้ครบถ้วน')
 if(    this.student.student_name=='')
 alert('กรุณาใส่ข้อมูลให้ครบถ้วน')
-if(    this.student.majorId=="")
+if(    this.student.majors=="")
 alert('กรุณาใส่ข้อมูลให้ครบถ้วน')
-if(    this.student.yearId=="")
+if(    this.student.id=="")
 alert('กรุณาใส่ข้อมูลให้ครบถ้วน')
 if(    this.student.student_email=='')
 alert('กรุณาใส่ข้อมูลให้ครบถ้วน')
@@ -317,9 +318,9 @@ alert('กรุณาใส่ข้อมูลให้ครบถ้วน'
         this.student_phone = '';
         this.password = '';
         this.repassword = '';
-        this.student.nametypeId = '';
-        this.student.majorId = '';
-        this.student.yearId = '';
+        this.student.prefixs= '';
+        this.student.majors = '';
+        this.student.id = '';
     },
     refreshList() {
       this.getprefix();
