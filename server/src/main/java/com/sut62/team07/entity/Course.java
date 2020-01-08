@@ -1,6 +1,6 @@
 package com.sut62.team07.entity;
 
-import lombok.*;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,8 +18,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 
