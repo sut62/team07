@@ -17,7 +17,7 @@ public class RoomDataloader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Stream.of("B4101", "B3101", "B3102", "B3103", "B3104", "B2101", "B2102", "B2103", "B2104",
+        Stream.of("B2101", "B2102", "B2103", "B2104", "B3101", "B3102", "B3103", "B3104", "B4101",
                 "B5101", "B5102", "B5103", "B5104", "B5105", "B5106", "B5107", "B5108").forEach(name -> {
             Room room = new Room();
             room.setName(name);
