@@ -37,8 +37,8 @@ public class Course {
         @Min(1)
         private @NotNull int credit;
 
-        @ManyToOne
-        private Major major;
+        // @ManyToOne
+        // private Major major;
 
         public void setSubNum(String courseCode) {
                 this.courseCode = courseCode;
