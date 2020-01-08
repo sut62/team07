@@ -2,6 +2,7 @@ package com.sut62.team07.repository;
 
 import java.util.Collection;
 
+import com.sut62.team07.entity.Course;
 import com.sut62.team07.entity.Section;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,5 +19,7 @@ interface SectionRepository extends JpaRepository<Section, Long> {
     @Query( value = "SELECT * FROM SECTION s where s.ID  = :sub",
             nativeQuery = true)
     Collection<Section> findSectionBySubInSec(@Param("sub") Long sub);
+
+    Collection<Section> findBySubInSec(Course course);
     
 }

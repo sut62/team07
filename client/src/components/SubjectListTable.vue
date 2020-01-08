@@ -1,14 +1,14 @@
 <template>
   <v-dialog v-model="dialog" persistent class="mx-auto">
     <template v-slot:activator="{ on }">
-      <v-btn color="primary" v-on="on" expanded>เลือกรายวิชาที่สอน</v-btn>
+      <v-btn color="primary" v-on="on" expanded>เลือกรายวิชาที่เปิดสอน</v-btn>
     </template>
     <v-card raised>
       <v-toolbar color="primary">
         <v-btn icon @click="dialog = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <v-toolbar-title>รายวิชาที่สอน</v-toolbar-title>
+        <v-toolbar-title>รายวิชา</v-toolbar-title>
       </v-toolbar>
       <v-card-title></v-card-title>
       <v-card-text>
