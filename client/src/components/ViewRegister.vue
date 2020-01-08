@@ -1,12 +1,14 @@
 <template>
 <v-content>
   <v-container>
+    
     <v-layout text-center wrap>
       <v-flex mb-4>
         <br />
         <h1 class="display-2 font-weight-bold mb-3">ผลการลงทะเบียน</h1>
       </v-flex>
     </v-layout>
+   
 
     <v-row justify="center">
       <v-col cols="10">
@@ -38,7 +40,7 @@ export default {
           value: "registerBy.student_name"
         },
         { text: "ภาคการศึกษา/ปีการศึกษา", value: "inSemester.sem" },
-        { text: "รหัสวิชา", value: "course" },
+        { text: "รหัสวิชา", value: "sub_num" },
         { text: "รายวิชา", value: "chooseSec.subInSec.name" },
         { text: "กลุ่มเรียน", value: "chooseSec.sec" },
         { text: "หน่วยกิต", value: "credit" }
