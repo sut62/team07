@@ -1,6 +1,7 @@
 <template>
 <v-content>
   <v-container>
+    
     <v-layout text-center wrap>
       
       <v-flex mb-4>
@@ -207,7 +208,7 @@ export default {
         )
         .then(response => {
           console.log(response);
-          this.$router.push("/viewreg");
+          this.$router.push("viewreg");
         })
         .catch(e => {
           console.log(e);

@@ -26,6 +26,17 @@
         </v-list-item-content>
       </v-list-item>
 
+      <v-list-item link to="viewreg" color="black">
+        <v-list-item-action>
+            <v-icon>mdi-account-plus</v-icon>
+          </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>ผลการลงทะเบียนเรียน</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      
+
       <template v-slot:append>
         <div class="pa-2">
           <v-btn block color="error" @click="logout">Logout</v-btn>
@@ -33,7 +44,7 @@
       </template>
     </v-navigation-drawer>
     <v-content>
-      <v-container fluid class="orange lighten-3 fill-height">
+      <v-container fluid class="cyan lighten-5 fill-height">
         <router-view />
       </v-container>
     </v-content>
