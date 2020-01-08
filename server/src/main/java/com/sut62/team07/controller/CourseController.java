@@ -34,8 +34,11 @@ public class CourseController {
 
     @Autowired
     private CourseRepository courseRepository;
+    @Autowired
     private TrimesterRepository trimesterRepository;
+    @Autowired
     private TypeRepository typeRepository;
+    @Autowired
     private ProgramInfoRepository programInfoRepository;
 
     @GetMapping
