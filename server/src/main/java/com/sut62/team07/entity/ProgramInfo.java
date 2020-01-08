@@ -27,6 +27,4 @@ public class ProgramInfo {
     private @NonNull Long id;
     private @NonNull String name;
 
-    //@OneToMany(fetch = FetchType.EAGER)
-    //private Collection<Course> Course;
 }

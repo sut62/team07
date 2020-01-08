@@ -22,8 +22,6 @@ public class Year {
     @Column(name="YEAR_ID",unique = true, nullable = true)
     private @NonNull Long id;
     private @NonNull String year_name;
-   // @OneToMany(fetch = FetchType.EAGER)
-   // private Collection<Student> student;
     
     public void setName(String name2) {
 		this.year_name = name2;
