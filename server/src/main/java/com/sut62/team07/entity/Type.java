@@ -30,6 +30,6 @@ public class Type {
     private @NonNull String name;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private Collection<Subject> Subject;
+    private Collection<Course> Course;
 }
 

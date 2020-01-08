@@ -18,15 +18,15 @@ import javax.persistence.FetchType;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name="Grade")
-public class Grade {
+@Table(name="ProgramInfo")
+public class ProgramInfo {
     @Id    
-    @SequenceGenerator(name="Grade_SEQ",sequenceName="Grade_SEQ")               
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="Grade_SEQ")  
-    @Column(name="Grade_ID",unique = true, nullable = true)
+    @SequenceGenerator(name="ProgramInfo_SEQ",sequenceName="ProgramInfo_SEQ")               
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ProgramInfo_SEQ")  
+    @Column(name="ProgramInfo_ID",unique = true, nullable = true)
     private @NonNull Long id;
     private @NonNull String name;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private Collection<Subject> Subject;
+    private Collection<Course> Course;
 }

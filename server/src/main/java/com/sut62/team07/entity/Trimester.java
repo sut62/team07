@@ -29,5 +29,5 @@ public class Trimester {
 
 
     @OneToMany(fetch = FetchType.EAGER)
-    private Collection<Subject> Subject;
+    private Collection<Course> Course;
 }
