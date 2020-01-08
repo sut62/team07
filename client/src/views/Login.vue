@@ -3,7 +3,7 @@
     <v-layout align-center justify-center>
       <v-flex xs12 sm8 md4>
         <v-card class="elevation-12">
-          <v-toolbar color="#A7FFEB" dark flat>
+          <v-toolbar color="#26C6DA" dark flat>
             <v-toolbar-title>LOGIN REG</v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
@@ -27,8 +27,9 @@
             </v-form>
           </v-card-text>
           <v-card-actions>
+               <v-btn link to="/Student/" color="primary">Sign Up</v-btn>
             <v-spacer></v-spacer>
-            <v-btn @click="login">เข้าสู่ระบบ</v-btn>
+            <v-btn @click="login" color="primary">Sign In</v-btn>
           </v-card-actions>
         </v-card>
         <v-snackbar v-model="snackbar">{{ message }}</v-snackbar>
@@ -91,7 +92,7 @@ export default {
               if (response.data.role === "RegistrationOfficer")
                 this.$router.push("/registration");
               if (response.data.role === "Lecturer") this.$router.push("/");
-              if (response.data.role === "Student") this.$router.push("/Student");
+              if (response.data.role === "Student") this.$router.push("/RegisterStudent");
             } else {
               this.message = "username หรือ password ไม่ถูกต้อง";
               this.snackbar = !this.snackbar;
