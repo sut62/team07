@@ -56,7 +56,7 @@ public class ExamScheduleController {
                                         @PathVariable String START_TIME,
                                         @PathVariable String END_TIME) {
 
-        Course course = courseRepository.findById(course_id);
+        Course course = courseRepository.findById(course_id).get();
         Room room = roomRepository.findById(room_id);
         Semester semester = semesterRepository.findById(semester_id);
 
