@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import com.sut62.team07.entity.Section;
+import com.sut62.team07.entity.Course;
 import com.sut62.team07.repository.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "http://localhost:8080")
@@ -14,7 +15,8 @@ public class SectionController {
 
     @Autowired
     private final SectionRepository sectionRepository;
-    
+    @Autowired
+    private CourseRepository courseRepository;
 
     public SectionController(SectionRepository sectionRepository) {
         this.sectionRepository = sectionRepository;
@@ -30,7 +32,11 @@ public class SectionController {
     public Collection<Section> getSectionBySubInSec(@PathVariable("sub") Long sub) {
         return sectionRepository.findSectionBySubInSec(sub);
     }
-
+    @GetMapping("/section/sec/{id}")
+    public Collection<Section> getSectionByCourse(@PathVariable Long id) {
+        Course course = courseRepository.findById(id).get();
+        return sectionRepository.findBySubInSec(course);
+    }
     
 
 }

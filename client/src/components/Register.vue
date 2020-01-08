@@ -43,7 +43,7 @@
                 </v-col>
               </v-row>
 
-              <subject-list-table></subject-list-table>
+              <subject-list-table @selectedCourses="getCourse"></subject-list-table>
            
               <v-col cols='auto'> 
                 <v-btn @click="showSection" 
@@ -168,12 +168,13 @@ export default {
         });
     },
     getSections() {
+      console.log(this.register.courseId)
       this.$http
-        .get("/section/" + this.register.courseId)
+        .get("/section/sec/" + this.register.courseId)
         .then(response => {
           if(response.data!=null)
             this.sections = response.data;
-          console.log(response.data);
+           console.log(response.data);
         })
         .catch(e => {
           console.log(e);
@@ -219,6 +220,9 @@ export default {
     this.getCourses();
     this.getSections();
     this.getSubnum();
+    },
+    getCourse(course) {
+      this.register.courseId = course[0].id
     }
   },
   mounted() {
@@ -227,6 +231,7 @@ export default {
     this.getCourses();
     this.getSections();
     this.getSubnum();
+ 
   }
 }
 </script>

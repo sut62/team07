@@ -91,7 +91,7 @@ export default {
               if (response.data.role === "RegistrationOfficer")
                 this.$router.push("/registration");
               if (response.data.role === "Lecturer") this.$router.push("/");
-              if (response.data.role === "Student") this.$router.push("/");
+              if (response.data.role === "Student") this.$router.push("/Student");
             } else {
               this.message = "username หรือ password ไม่ถูกต้อง";
               this.snackbar = !this.snackbar;
