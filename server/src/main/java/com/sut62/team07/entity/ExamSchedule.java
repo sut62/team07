@@ -51,8 +51,8 @@ public class ExamSchedule  {
     @JoinColumn(name = "SEMESTER_ID", insertable = true)
     private Semester semester;
 
-    @OneToMany(fetch = FetchType.EAGER ,mappedBy="examSchedule")
-    @JsonManagedReference
-    private Collection<Course_Schedule> course_schedule;
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Course.class)
+    @JoinColumn(name = "COURSE_ID", insertable = true)
+    private Course course;
 
 }
