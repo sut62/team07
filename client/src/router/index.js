@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Register from '../components/Register';
 import StudentRegister from '../components/StudentRegister';
-
+import StudentData from '../components/StudentData';
 
 Vue.use(VueRouter)
 
@@ -16,11 +16,16 @@ const routes = [
     component: StudentRegister
   },
   {
+    path: '/studentdata',
+    component: StudentData
+  },
+  
+  {
     path: '/login',
     component: () => import('@/views/Login')
   },
   {
-    path: '/Student',
+    path: '/RegisterStudent',
     component: () => import('@/layouts/StudentLayout'),
     children: [
       {

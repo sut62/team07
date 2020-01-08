@@ -1,10 +1,15 @@
 <template>
  <v-app >
-   <v-content class = "orange lighten-4">
-     <v-layout text-center wrap>
-      <v-flex mb-3>
-       <h1 class="display-2 font-weight-bold mb-0">สมัครสมาชิก</h1>
+
+   <v-app-bar  color="cyan lighten-7" dark >
+    <v-flex mb-3 ="center">
+       <h1  class="display-2 font-weight-bold mb-0">CreateAccount</h1>
       </v-flex>
+    </v-app-bar>
+   <v-content class="cyan lighten-5">
+     <v-layout text-center wrap>
+
+      
     </v-layout>
 
   <v-container class="fill-height"> 
