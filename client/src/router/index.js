@@ -4,6 +4,7 @@ import Register from '../components/Register';
 import ViewRegister from '../components/ViewRegister';
 import StudentRegister from '../components/StudentRegister';
 import StudentData from '../components/StudentData';
+import ExamSchedule from '../components/ExamSchedule';
 
 Vue.use(VueRouter)
 
@@ -56,6 +57,10 @@ const routes = [
         component: () => import('@/views/LecturerForm')
       }
     ]
+  },
+  {
+    path: '/examSchedule',
+    component: ExamSchedule
   }
 ]
 
