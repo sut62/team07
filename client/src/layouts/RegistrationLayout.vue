@@ -25,6 +25,14 @@
           <v-list-item-title>เพิ่มอาจารย์</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+      <v-list-item link to="examSchedule" color="black">
+        <v-list-item-action>
+            <v-icon>mdi-account-plus</v-icon>
+          </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>เพิ่มตารางสอบ</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
 
       <template v-slot:append>
         <div class="pa-2">
