@@ -80,6 +80,12 @@
                  </v-col>
                 </v-row>
 
+                <v-row justify="center">
+                <v-col cols="auto">
+                  <v-btn dark large @click="clear" class="indigo">Clear</v-btn>
+                 </v-col>
+                </v-row>
+
               </div>
             </v-form>
         </v-flex>
@@ -191,6 +197,7 @@ export default {
          }
 
         },
+       
     saveRegister() {
       this.$http
         .post(
@@ -206,15 +213,26 @@ export default {
             this.register.credit,
           this.register
         )
-        .then(response => {
-          console.log(response);
-          this.$router.push("viewreg");
-        })
+        // .then(response => {
+        //   console.log(response);
+        //   this.$router.push("viewreg");
+        // })
         .catch(e => {
           console.log(e);
         });
       this.submitted = true;
     },
+     clear(){
+        this.register = {
+        studentId: "",
+        semesterId:  "",
+        sectionId: "",
+        courseId:"",
+        courseCode:null,
+        credit:null
+      }
+          
+        },
     refreshList() {
     this.getSemesters();
     this.getStudents();
