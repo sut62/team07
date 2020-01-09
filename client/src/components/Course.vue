@@ -1,20 +1,12 @@
 <template>
- <v-app >
+ 
 
-   <v-app-bar  color="teal darken-4" dark >
-    <v-flex mb-3 ="center">
-       <h1  class="display-2 font-weight-bold mb-0">ADD COURSE</h1>
-      </v-flex>
-    </v-app-bar>
+
    <v-content class="cyan accent-1">
-     <v-layout text-center wrap>
-
-      
-    </v-layout>
+     
      <v-container>
-  <v-row justify="center">
-      <v-col cols="5">
-        <v-form >
+        <v-row justify="center">
+           <v-col cols="5">
 
            <!-- รหัสรายวิชา -->
           <v-row justify="center">
@@ -115,14 +107,12 @@
               
             </v-col>
           </v-row>
-
-
-        </v-form>
-      </v-col>
-    </v-row>
+          
+  </v-col>
+  </v-row>
    </v-container>
   </v-content >
-  </v-app >
+  
 </template>
 
 <script>

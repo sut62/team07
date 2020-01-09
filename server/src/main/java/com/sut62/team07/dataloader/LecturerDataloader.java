@@ -4,11 +4,13 @@ import java.util.stream.Stream;
 
 import com.sut62.team07.entity.Gender;
 import com.sut62.team07.entity.Institute;
+import com.sut62.team07.entity.Lecturer;
 import com.sut62.team07.entity.Major;
 import com.sut62.team07.entity.Prefix;
 import com.sut62.team07.entity.RegistrationOfficer;
 import com.sut62.team07.repository.GenderRepository;
 import com.sut62.team07.repository.InstituteRepository;
+import com.sut62.team07.repository.LecturerRepository;
 import com.sut62.team07.repository.MajorRepository;
 import com.sut62.team07.repository.PrefixRepository;
 import com.sut62.team07.repository.RegistrationOfficerRepository;
@@ -35,6 +37,9 @@ public class LecturerDataloader implements ApplicationRunner {
 
     @Autowired
     private RegistrationOfficerRepository registrationOfficerRepository;
+
+    @Autowired
+    private LecturerRepository lecturerRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -127,6 +132,16 @@ public class LecturerDataloader implements ApplicationRunner {
                 .build();
 
         registrationOfficerRepository.save(registrationOfficer);
+
+        Lecturer lecturer = Lecturer.builder()
+                .email("gg@gmail.com")
+                .lecturerCode("A0001")
+                .name("Tom")
+                .password("12345678")
+                .personalId("1234567890123")
+                .tel("0123456789")
+                .build();
+        lecturerRepository.save(lecturer);
 
     }
 
