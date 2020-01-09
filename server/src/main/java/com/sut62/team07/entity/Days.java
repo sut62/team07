@@ -26,15 +26,11 @@ public class Days {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="DAYS_SEQ")
     @Column(name="DAYS_ID",unique = true, nullable = true)
     private @NonNull Long id;
-    //private @NonNull String name;
+    private @NonNull String name;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn(name = "TEACHTABLE_ID")
-    @JsonIgnore
-    private Teachtable teachtable;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+//    @JoinColumn(name = "TEACHTABLE_ID")
+//    @JsonIgnore
+//    private Teachtable teachtable;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn(name = "DAYOFWEEK_ID")
-    @JsonIgnore
-    private Dayofweek dayofweek ;
 }
