@@ -46,7 +46,7 @@ public class ExamScheduleController {
     public Collection<ExamSchedule> examSchedules() {
         return examScheduleRepository.findAll().stream().collect(Collectors.toList());
     }
-    @PostMapping("/examSchedule/{semester_id}/{academicYear}/{course_id}/{room_id}/{DATE}/{START_TIME}/{END_TIME}")
+    @PostMapping("/examSchedule/{semester_id}/{academicYear}/{course_id}/{room_id}/{DATE}/{START_TIME}/{END_TIME}/{annotation}")
     public ExamSchedule newExamSchedule(ExamSchedule newExamSchedule,
                                         @PathVariable long semester_id,
                                         @PathVariable String academicYear,
@@ -54,7 +54,8 @@ public class ExamScheduleController {
                                         @PathVariable long room_id,
                                         @PathVariable String DATE,
                                         @PathVariable String START_TIME,
-                                        @PathVariable String END_TIME) {
+                                        @PathVariable String END_TIME,
+                                        @PathVariable String annotation) {
 
         Course course = courseRepository.findById(course_id).get();
         Room room = roomRepository.findById(room_id);
@@ -76,6 +77,7 @@ public class ExamScheduleController {
         newExamSchedule.setDate(date);
         newExamSchedule.setStartTime(startTime);
         newExamSchedule.setEndTime(endTime);
+        newExamSchedule.setAnnotation(annotation);
 
         return examScheduleRepository.save(newExamSchedule);
 
