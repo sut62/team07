@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.FetchType;
@@ -32,7 +33,9 @@ public class Teachtable  {
 	private @NonNull Long id;
 
 	@Column(name = "ACADEMIC_YEAR")
-	private @NonNull String academicYear;
+	@NotNull(message = "Academic year cannot be null")
+	@Pattern(regexp = "\\d{4}")
+	private String academicYear;
 
 	@Column(name = "START_TIME")
 	private @NonNull LocalTime startTime;

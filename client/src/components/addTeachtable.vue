@@ -140,8 +140,8 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <v-col cols="4">
-                            <v-btn :disabled="!valid" color="success" @click="saveTeachtable">Save</v-btn>
+                        <v-col cols="5">
+                            <v-btn color="success" @click="saveTeachtable">Save</v-btn>
                             <v-btn style="margin-left: 15px;" @click="clear">Clear</v-btn>
                         </v-col>
                     </v-row>
@@ -155,11 +155,11 @@
         data() {
             return {
                 teachtable: {
-                    lecturersId: [],
-                    courseId: [],
-                    semesterId: [],
-                    daysId: [],
-                    roomId: []
+                    lecturersId: null,
+                    courseId: null,
+                    semesterId: null,
+                    daysId: null,
+                    roomId: null
                 },
                 valid: false,
                 menu1: false,
@@ -204,6 +204,7 @@
                         console.log(e);
                     });
             },
+
             getSemesters() {
                 this.$http
                     .get("/semester")
@@ -252,7 +253,7 @@
                         "/" +
                         this.teachtable.academicYear +
                         "/" +
-                        this.teachtable.days +
+                        this.teachtable.daysId +
                         "/" +
                         this.teachtable.roomId +
                         "/" +
@@ -273,7 +274,7 @@
 
             clear() {
                 this.teachtable = {
-                    lecturersId: null,
+                        lecturersId: null,
                         courseId: null,
                         semesterId: null,
                         daysId: null,
