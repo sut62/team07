@@ -3,31 +3,44 @@
 
     <v-temp class="cyan lighten-5" > 
 
-  <v-container class="cyan lighten-10" >
+  <v-container class="cyan darken-1" >
     
     <v-layout text-center wrap>
     <v-flex mb-4>
         <br />
-        <h1 class="display-2 font-weight-bold mb-3">Members</h1>
+        <h1 class="display-2 font-weight-bold mb-3">Members Information</h1>
       </v-flex>
     </v-layout>
-
+     
     <v-row justify="center">
       <v-col cols="20">
         <v-data-table :headers="headers" :items="items" :items-per-page="15" class="elevation-1">
         </v-data-table>
       </v-col>
     </v-row>
+     <v-card-actions>
+               
+     <v-chip link to="/login/"
+      class="ma-2"
+      color="indigo"
+      text-color="white" >
+      <v-avatar left>
+        <v-icon>mdi-account-circle</v-icon>
+      </v-avatar>
+       Sign in
+      </v-chip>
+
+          </v-card-actions>
   </v-container>
    
   </v-temp>
  
 </template>
 
-<script>
+<script >
 
 
-
+ 
 export default {
   name: "ViewStudent",
   data() {

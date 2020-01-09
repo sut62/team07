@@ -23,13 +23,14 @@
           <v-row justify="center">
             <v-col cols="10">
               <v-text-field
+                
                 solo
                 label="เลขประจำตัวนักศึกษา"
                 v-model="student_id"
                 :rules="[(v) => !!v || 'กรุณาใส่เลขประจำตัวนักศึกษา']"
                 required
                 clearable
-                
+                prepend-icon="mdi-account-multiple"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -37,7 +38,7 @@
             
           <v-row justify="center">
             <!-- คำนำหน้า -->
-            <v-col cols="3">
+            <v-col cols="4">
               <v-select
                 label="คำนำหน้า"
                 solo
@@ -47,6 +48,8 @@
                 item-value="id"
                 :rules="[(v) => !!v || 'กรุณาใส่เลือก']"
                 required
+                prepend-icon= "mdi-human-male-female"
+
               ></v-select>
             </v-col>
             <!-- ชื่อ-นามสกุล -->
@@ -65,7 +68,7 @@
 
             <!-- Major --> 
           <v-row justify="center">
-            <v-col cols="4">
+            <v-col cols="10">
               <v-select
                 label="สาขาวิชา"
                 solo
@@ -74,12 +77,14 @@
                 item-text="name"
                 item-value="id"
                 :rules="[(v) => !!v || 'กรุณาใส่ สาขาวิชา']"
+                prepend-icon="mdi-clipboard-account"
                 required
+                
               ></v-select>
             </v-col>
             
             <!-- year -->  
-               <v-col cols="4">
+               <v-col cols="10">
               <v-select
                 label="ชั้นปีที่ศึกษา"
                 solo
@@ -89,6 +94,7 @@
                 item-value="id"
                 :rules="[(v) => !!v || 'กรุณาใส่ ชั้นปีที่ศึกษา']"
                 required
+                 prepend-icon="mdi-image-filter-frames"
               ></v-select>
             </v-col>
           </v-row>
@@ -167,13 +173,15 @@
  
           <v-row justify="center">
             <v-col cols="12">
+              
+             <v-btn style="margin-left: 25%;" link to="/login/" color="primary">Back</v-btn>
               <v-btn 
-                style="margin-left: 20%;"
-                @click="saveData">save
+                style="margin-left: 2%;"
+                @click="clear" color="primary">clear
               </v-btn>
-              <v-btn 
-                style="margin-left: 30%;"
-                @click="clear">clear
+               <v-btn 
+                style="margin-left: 2%;"
+                @click="saveData" color="primary">save
               </v-btn>
             </v-col>
           </v-row>
