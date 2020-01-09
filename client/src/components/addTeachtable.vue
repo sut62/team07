@@ -1,13 +1,9 @@
 <template>
-    <v-container>
-        <v-form ref="form" v-model="valid" persistent max-width="500px">
-            <v-layout text-center wrap>
-                <v-container>
-                    <div>
-                        <p class="font-weight-black display-1">Add Teach Table</p>
-                    </div>
+    <v-card class="mx-auto yellow lighten-4" raised width="50%">
+        <v-card-title>เพิ่มตารางสอนสำหรับอาจารย์</v-card-title>
+
                     <v-row justify="center">
-                        <v-col class="d-flex" cols="12" sm="5">
+                        <v-col class="d-flex" cols="10" >
                             <v-select
                                     label="ชื่ออาจารย์"
                                     outlined
@@ -21,7 +17,7 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <v-col class="d-flex" cols="12" sm="4">
+                        <v-col class="d-flex" cols="8">
                             <v-select
                                     label="วิชา"
                                     outlined
@@ -35,7 +31,7 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <v-col class="d-flex" cols="12" sm="2">
+                        <v-col class="d-flex" cols="4">
                             <v-select
                                     label="ภาคการศึกษา"
                                     outlined
@@ -47,7 +43,7 @@
                                     required
                             ></v-select>
                         </v-col>
-                        <v-col cols="12" sm="3">
+                        <v-col cols="5">
                             <v-text-field
                                     label="ปีการศึกษา"
                                     outlined
@@ -59,7 +55,7 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <v-col class="d-flex" cols="12" sm="3">
+                        <v-col class="d-flex" cols="5">
                             <v-select
                                     label="วัน"
                                     outlined
@@ -71,7 +67,7 @@
                                     required
                             ></v-select>
                         </v-col>
-                        <v-col class="d-flex" cols="12" sm="2">
+                        <v-col class="d-flex" cols="4">
                             <v-select
                                     label="ห้องเรียน"
                                     outlined
@@ -86,7 +82,7 @@
                     </v-row>
 
                     <v-row justify="center">
-                        <v-col cols="12" sm="2">
+                        <v-col cols="4">
                             <v-menu
                                     ref="menu"
                                     v-model="menu3"
@@ -114,7 +110,7 @@
                                 ></v-time-picker>
                             </v-menu>
                         </v-col>
-                        <v-col cols="12" sm="2">
+                        <v-col cols="4">
                             <v-menu
                                     ref="menu"
                                     v-model="menu4"
@@ -144,17 +140,13 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <v-col cols="12">
+                        <v-col cols="4">
                             <v-btn :disabled="!valid" color="success" @click="saveTeachtable">Save</v-btn>
-                            <v-btn style="margin-left: 15px;" @click="clear">Reset</v-btn>
+                            <v-btn style="margin-left: 15px;" @click="clear">Clear</v-btn>
                         </v-col>
                     </v-row>
-                </v-container>
-            </v-layout>
-        </v-form>
-    </v-container>
+        </v-card>
 </template>
-
 
 <script>
     /* eslint-disable */
@@ -266,13 +258,12 @@
                         "/" +
                         this.teachtable.startTime +
                         "/" +
-                        this.teachtable.endTime ,
-                        this.teachtable
+                        this.teachtable.endTime
                     )
                     .then(response => {
                         console.log(response);
                         alert('บันทึกข้อมูลสำเร็จ');
-                        this.$refs.form.reset();
+                        this.clear()
                     })
                     .catch(e => {
                         console.log(e);
@@ -281,7 +272,13 @@
             },
 
             clear() {
-                this.$refs.form.reset();
+                this.teachtable = {
+                    lecturersId: null,
+                        courseId: null,
+                        semesterId: null,
+                        daysId: null,
+                        roomId: null
+                }
             },
 
             /* eslint-enable no-console */
