@@ -122,7 +122,7 @@ export default {
   data() {
     return {
       courses: {
-        //lecturerId: "",
+        personalId: "",
         courseCode: "",
         credit: "",
         name: "",
@@ -131,7 +131,7 @@ export default {
         typeId:"",
       },
 
-     // lecturers:[],
+      personals:[],
       courseCode:[],
       credit:[],
       name:[],
@@ -194,7 +194,7 @@ export default {
           "/courses/course/" +
             this.courses.programInfo_id
             + "/"  +
-            this.courses.lecturerId
+            this.courses.personalId
             + "/"  +
             this.courses.courseCode
             + "/" +
@@ -226,6 +226,9 @@ export default {
     this.getTrimesters();
     this.getTypes();
  
+  },
+  created(){
+    this.courses.personalId = this.$store.state.username
   }
 }
 </script>
