@@ -24,7 +24,7 @@ const routes = [
     component: StudentData
   },
   {
-    path: '/course',
+    path: '/courses',
     component: Course
   },
 
@@ -70,6 +70,25 @@ const routes = [
       {
         path: 'examSchedule',
         component: ExamSchedule
+      },
+
+      {
+        path: 'courses',
+        component: () => import('@/components/Course')
+      }
+    ]
+  },
+  {
+    path: '/teachers',
+    component: () => import('@/layouts/TeacherLayout'),
+    children: [
+      {
+        path: '',
+        redirect: 'courses'
+      },
+      {
+        path: 'courses',
+        component: () => import('@/components/Course')
       }
     ]
   }

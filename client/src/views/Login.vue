@@ -91,7 +91,7 @@ export default {
               this.$store.commit("setUsername", response.data.username);
               if (response.data.role === "RegistrationOfficer")
                 this.$router.push("/registration");
-              if (response.data.role === "Lecturer") this.$router.push("/");
+              if (response.data.role === "Lecturer") this.$router.push("/teachers");
               if (response.data.role === "Student") this.$router.push("/RegisterStudent");
             } else {
               this.message = "username หรือ password ไม่ถูกต้อง";
