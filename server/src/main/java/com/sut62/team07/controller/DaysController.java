@@ -16,20 +16,20 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 //@CrossOrigin(origins = "http://localhost:8081")
 @RestController
-public class DayofweekController {
+public class DaysController {
 
     @Autowired
-    private final DayofweekRepository  dayofweekRepository;
+    private final DaysRepository  daysRepository;
 
-    public DayofweekController(DayofweekRepository  dayofweekRepository) {
-            this.dayofweekRepository = dayofweekRepository;
+    public DaysController(DaysRepository  daysRepository) {
+            this.daysRepository = daysRepository;
     }
-    @GetMapping("/dayofweek")
-    public Collection<Dayofweek> getDayofweekAll() {
-        return dayofweekRepository.findAll().stream().collect(Collectors.toList());
+    @GetMapping("/days")
+    public Collection<Days> getsAll() {
+        return daysRepository.findAll().stream().collect(Collectors.toList());
     }
-    @GetMapping("/dayofweek/{id}")
-    public Dayofweek getDayofweekById(@PathVariable("id") Long id) {
-        return dayofweekRepository.findById(id).get();
+    @GetMapping("/days/{id}")
+    public Days getDaysById(@PathVariable("id") Long id) {
+        return daysRepository.findById(id).get();
     }
 }

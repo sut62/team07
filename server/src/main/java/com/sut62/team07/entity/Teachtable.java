@@ -31,6 +31,9 @@ public class Teachtable  {
 	@Column(name = "TEACHTABLE_ID", unique = true, nullable = true)
 	private @NonNull Long id;
 
+	@Column(name = "ACADEMIC_YEAR")
+	private @NonNull String academicYear;
+
 	@Column(name = "START_TIME")
 	private @NonNull LocalTime startTime;
 
@@ -41,12 +44,20 @@ public class Teachtable  {
 	@JoinColumn(name = "LECTURER_ID", insertable = true)
 	private Lecturer lecturer;
 
-//	@OneToMany(fetch = FetchType.EAGER ,mappedBy="teachtable")
-//	@JsonManagedReference
-//	private Collection<Room> room;
-//
-//	@OneToMany(fetch = FetchType.EAGER ,mappedBy="teachtable")
-//	@JsonManagedReference
-//	private Collection<Section> section;
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Course.class)
+	@JoinColumn(name = "COURSE_ID", insertable = true)
+	private Course course;
+
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Room.class)
+	@JoinColumn(name = "ROOM_ID", insertable = true)
+	private Room room;
+
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Semester.class)
+	@JoinColumn(name = "SEMESTER_ID", insertable = true)
+	private Semester semester;
+
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Days.class)
+	@JoinColumn(name = "DAYS_ID", insertable = true)
+	private Days days;
 
 }
