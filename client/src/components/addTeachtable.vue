@@ -11,9 +11,9 @@
                             <v-select
                                     label="ชื่ออาจารย์"
                                     outlined
-                                    v-model="teachtable.nameteacherId"
-                                    :items="nameteacher"
-                                    item-text="sem"
+                                    v-model="teachtable.lecturersId"
+                                    :items="lecturers"
+                                    item-text="name"
                                     item-value="id"
                                     :rules="[(v) => !!v || 'กรุณาเลือกชื่ออาจารย์']"
                                     required
@@ -65,7 +65,7 @@
                                     outlined
                                     v-model="teachtable.daysId"
                                     :items="days"
-                                    item-text="sem"
+                                    item-text="name"
                                     item-value="id"
                                     :rules="[(v) => !!v || 'กรุณาเลือกวัน']"
                                     required
@@ -163,7 +163,7 @@
         data() {
             return {
                 teachtable: {
-                    nameteacherId: [],
+                    lecturersId: [],
                     courseId: [],
                     semesterId: [],
                     daysId: [],
@@ -174,12 +174,13 @@
                 menu2: false,
                 menu3: false,
                 menu4: false,
-                nameteacher: null,
+                lecturers: null,
                 course: null,
                 semester: null,
                 academicYear: null,
                 days: null,
                 room: null,
+                time: null,
                 startTime: null,
                 endTime: null
             };
@@ -188,11 +189,11 @@
         methods: {
             /* eslint-disable no-console */
 
-            getNameteachers() {
+            getLecturers() {
                 this.$http
-                    .get("/nameteacher")
+                    .get("/lecturers")
                     .then(response => {
-                        this.nameteacher = response.data;
+                        this.lecturers = response.data;
                         console.log(response.data);
                     })
                     .catch(e => {
@@ -202,7 +203,7 @@
 
             getCourses() {
                 this.$http
-                    .get("/course")
+                    .get("/courses")
                     .then(response => {
                         this.course = response.data;
                         console.log(response.data);
@@ -251,7 +252,7 @@
                 this.$http
                     .post(
                         "/teachtable/" +
-                        this.teachtable.nameteacherId +
+                        this.teachtable.lecturersId +
                         "/" +
                         this.teachtable.courseId +
                         "/" +
@@ -287,11 +288,14 @@
         },
 
         mounted() {
-            this.getNameteachers();
+            this.getLecturers();
             this.getSemesters();
             this.getCourses();
-            this.getDayss();
             this.getRooms();
+            console.log(this.days)
+        },
+        created() {
+            this.getDayss();
         }
     };
 </script>
