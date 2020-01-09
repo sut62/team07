@@ -6,6 +6,7 @@ import StudentRegister from '../components/StudentRegister';
 import StudentData from '../components/StudentData';
 import ExamSchedule from '../components/ExamSchedule';
 import addTeachtable from '../components/addTeachtable';
+import Course from '../components/Course';
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,11 @@ const routes = [
     path: '/studentdata',
     component: StudentData
   },
+  {
+    path: '/course',
+    component: Course
+  },
+
   
   {
     path: '/login',
