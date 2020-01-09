@@ -5,6 +5,7 @@ import ViewRegister from '../components/ViewRegister';
 import StudentRegister from '../components/StudentRegister';
 import StudentData from '../components/StudentData';
 import ExamSchedule from '../components/ExamSchedule';
+import Course from '../components/Course';
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/studentdata',
     component: StudentData
   },
+  {
+    path: '/course',
+    component: Course
+  },
+
   
   {
     path: '/login',

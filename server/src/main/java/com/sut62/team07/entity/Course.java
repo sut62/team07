@@ -72,4 +72,8 @@ public class Course {
          @JoinColumn(name = "ProgramInfo_ID", insertable = true)
         private ProgramInfo programInfo;
 
+        @ManyToOne(fetch = FetchType.EAGER, targetEntity = Lecturer.class)
+         @JoinColumn(name = "personalId", insertable = true)
+        private Lecturer lecturer;
+
 }
