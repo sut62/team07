@@ -39,7 +39,7 @@
                                     :items="course"
                                     item-text="name"
                                     item-value="id"
-                                    :rules="[(v) => !!v || 'กรุณาใส่วิชา']"
+                                    :rules="[(v) => !!v || 'กรุณาเลือกวิชา']"
                                     required
                             ></v-select>
                         </v-col>
@@ -51,7 +51,7 @@
                                     :items="room"
                                     item-text="name"
                                     item-value="id"
-                                    :rules="[(v) => !!v || 'กรุณาใส่ห้องสอบ']"
+                                    :rules="[(v) => !!v || 'กรุณาเลือกห้องสอบ']"
                                     required
                             ></v-select>
                         </v-col>
@@ -137,6 +137,21 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
+                        <v-col cols="12" sm="6">
+                            <v-textarea
+                                    v-model="examSchedule.annotation"
+                                    label="หมายเหตุ"
+                                    auto-grow
+                                    outlined
+                                    rows="1"
+                                    row-height="15"
+                                    clearable
+                                    :rules="[(v) => !!v || 'กรุณาใส่หมายเหตุ 5-200 ตัวอักษร']"
+                                    required
+                            ></v-textarea>
+                        </v-col>
+                    </v-row>
+                    <v-row justify="center">
                         <v-col cols="12">
                             <v-btn :disabled="!valid" color="success" @click="saveExamSchedule">Save</v-btn>
                             <v-btn style="margin-left: 15px;" @click="clear">Reset</v-btn>
@@ -161,6 +176,7 @@ export default {
         roomId: []
       },
       valid: false,
+      menu: false,
       menu1: false,
       menu2: false,
       menu3: false,
@@ -172,7 +188,8 @@ export default {
       date: new Date().toISOString().substr(0, 10),
       time: null,
       startTime: null,
-      endTime: null
+      endTime: null,
+      annotation: null
     };
   },
 
@@ -231,7 +248,9 @@ export default {
                   "/" +
                   this.examSchedule.startTime +
                   "/" +
-                  this.examSchedule.endTime ,
+                  this.examSchedule.endTime +
+                  "/" +
+                  this.examSchedule.annotation,
                   this.examSchedule
               )
               .then(response => {

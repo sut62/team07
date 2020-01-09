@@ -42,8 +42,8 @@ public class ExamSchedule  {
     private @NotNull LocalTime endTime;
 
     @Column(name = "ANNOTATION")
-    @Null(message = "Annotation can be null")
-    @Size(min = 0, max = 200, message = "About Me must be between 0 and 200 characters")
+    @NotNull(message = "Annotation cannot be null")
+    @Size(min = 5, max = 200, message = "About Me must be between 5 and 200 characters")
     private String annotation;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Room.class)
