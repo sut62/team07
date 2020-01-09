@@ -11,6 +11,12 @@ import com.sut62.team07.repository.SectionRepository;
 import com.sut62.team07.repository.SemesterRepository;
 import com.sut62.team07.repository.StudentRepository;
 import com.sut62.team07.repository.YearRepository;
+import com.sut62.team07.entity.Trimester;
+import com.sut62.team07.entity.Type;
+import com.sut62.team07.entity.ProgramInfo;
+import com.sut62.team07.repository.TrimesterRepository;
+import com.sut62.team07.repository.TypeRepository;
+import com.sut62.team07.repository.ProgramInfoRepository;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +32,8 @@ public class Team07Application {
 
 	@Bean
 	ApplicationRunner init(SemesterRepository semesterRepository, SectionRepository sectionRepository,
-			StudentRepository studentRepository, CourseRepository courseRepository, YearRepository yearRepository) {
+			StudentRepository studentRepository, CourseRepository courseRepository, YearRepository yearRepository,
+			TrimesterRepository trimesterRepository, TypeRepository typeRepository, ProgramInfoRepository programInfoRepository) {
 		return args -> {
 
 			Stream.of("1", "2", "3").forEach(name -> { // aum
@@ -41,6 +48,26 @@ public class Team07Application {
 						year.setName(name);
 						yearRepository.save(year);
 					});
+			
+			Stream.of("ภาคเรียนที่ 1", "ภาคเรียนที่ 2", "ภาคเรียนที่ 3").forEach(name -> {
+						Trimester trimester = new Trimester(); 
+						trimester.setName(name); 
+						trimesterRepository.save(trimester); 
+					});
+				
+			Stream.of("วิชาภาคบังคับ", "วิชาเลือกเสรี", "วิชาเลือกบังคับ", "วิชาศึกษาทั่วไปแบบเลือก").forEach(name -> {
+						Type type = new Type(); 
+						type.setName(name); 
+						typeRepository.save(type); 
+					});
+		
+			Stream.of("2554","2555","2556","2557","2558","2559","2560","2561","2562").forEach(name -> {
+						ProgramInfo programInfo = new ProgramInfo(); 
+						programInfo.setName(name); 
+						programInfoRepository.save(programInfo); 
+					});	
+					
+
 
 			Course sj1 = new Course();
 			sj1.setSubNum("523331");
@@ -149,7 +176,11 @@ public class Team07Application {
 			sec1_6.setSubInSec(sj6);
 			sectionRepository.save(sec1_6);
 
+			trimesterRepository.findAll().forEach(System.out::println); 
+			typeRepository.findAll().forEach(System.out::println); 
+			programInfoRepository.findAll().forEach(System.out::println);
 		};
+
 	}
 
 }

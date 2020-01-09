@@ -46,9 +46,10 @@ public class CourseController {
         return courseRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/course/{trimester_id}/{type_id}/{programInfo_id}")
+    @PostMapping("/course/{programInfo_id}/{personalId}/{courseCode}/{credit}/{name}/{trimester_id}/{type_id}")
     public Course newCourse(Course newCourse,
     @PathVariable long programInfo_id,
+    @PathVariable String personalId,
     @PathVariable String courseCode,
     @PathVariable int credit,
     @PathVariable String name,
@@ -60,7 +61,9 @@ public class CourseController {
     Type type = typeRepository.findById(type_id);
     ProgramInfo programInfo = programInfoRepository.findById(programInfo_id);
 
-        
+    newCourse.setSubNum(courseCode); 
+    newCourse.setSubName(name); 
+    newCourse.setCredit(credit);
     newCourse.setTrimester(trimester);
     newCourse.setType(type);
     newCourse.setProgramInfo(programInfo);
