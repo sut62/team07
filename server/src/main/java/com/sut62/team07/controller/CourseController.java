@@ -11,10 +11,12 @@ import java.util.stream.Collectors;
 import java.net.URLDecoder;
 
 import com.sut62.team07.entity.Course;
+import com.sut62.team07.entity.Lecturer;
 import com.sut62.team07.entity.Trimester;
 import com.sut62.team07.entity.Type;
 import com.sut62.team07.entity.ProgramInfo;
 import com.sut62.team07.repository.CourseRepository;
+import com.sut62.team07.repository.LecturerRepository;
 import com.sut62.team07.repository.TrimesterRepository;
 import com.sut62.team07.repository.TypeRepository;
 import com.sut62.team07.repository.ProgramInfoRepository;
@@ -40,6 +42,8 @@ public class CourseController {
     private TypeRepository typeRepository;
     @Autowired
     private ProgramInfoRepository programInfoRepository;
+    @Autowired
+    private LecturerRepository lecturerRepository;
 
     @GetMapping
     public Collection<Course> findAll() {
@@ -60,6 +64,7 @@ public class CourseController {
     Trimester trimester = trimesterRepository.findById(trimester_id);
     Type type = typeRepository.findById(type_id);
     ProgramInfo programInfo = programInfoRepository.findById(programInfo_id);
+        Lecturer lecturer = lecturerRepository.findByLecturerCode(personalId).get();
 
     newCourse.setSubNum(courseCode); 
     newCourse.setSubName(name); 
@@ -67,6 +72,7 @@ public class CourseController {
     newCourse.setTrimester(trimester);
     newCourse.setType(type);
     newCourse.setProgramInfo(programInfo);
+    newCourse.setLecturer(lecturer);
 
     return courseRepository.save(newCourse); 
     }
