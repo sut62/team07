@@ -27,7 +27,7 @@
       </v-list-item>
       <v-list-item link to="examSchedule" color="black">
         <v-list-item-action>
-            <v-icon>mdi-account-plus</v-icon>
+            <v-icon>mdi-table-edit</v-icon>
           </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>เพิ่มตารางสอบ</v-list-item-title>
