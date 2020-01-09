@@ -55,12 +55,12 @@ const routes = [
       {
         path: 'register-lecturer',
         component: () => import('@/views/LecturerForm')
+      },
+      {
+        path: 'examSchedule',
+        component: ExamSchedule
       }
     ]
-  },
-  {
-    path: '/examSchedule',
-    component: ExamSchedule
   }
 ]
 
