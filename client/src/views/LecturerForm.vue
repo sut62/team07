@@ -1,13 +1,38 @@
 <template>
-  <v-card class="mx-auto yellow lighten-4" raised width="50%">
+  <v-card class="mx-auto cyan lighten-4" raised width="50%">
     <v-card-title>เพิ่มอาจารย์ผู้สอน</v-card-title>
     <v-card-text>
       <v-form>
-        <v-select :items="prefixs" item-text="name" label="คำนำหน้า" item-value="id" v-model="$v.lecturerForm.prefix.$model" :error-messages="prefixError"></v-select>
-        <v-text-field label="ชื่อ - สกุล" v-model="$v.lecturerForm.name.$model" :error-messages="nameError"></v-text-field>
-        <v-text-field label="รหัสอาจารย์" v-model="$v.lecturerForm.lecturerCode.$model" :error-messages="lecturerCodeError"></v-text-field>
-        <v-text-field label="รหัสผ่าน" type="password" v-model="$v.lecturerForm.password.$model" :error-messages="passwordError"></v-text-field>
-        <v-radio-group label="เพศ" row v-model="$v.lecturerForm.gender.$model" :error-messages="genderError">
+        <v-select
+          :items="prefixs"
+          item-text="name"
+          label="คำนำหน้า"
+          item-value="id"
+          v-model="$v.lecturerForm.prefix.$model"
+          :error-messages="prefixError"
+        ></v-select>
+        <v-text-field
+          label="ชื่อ - สกุล"
+          v-model="$v.lecturerForm.name.$model"
+          :error-messages="nameError"
+        ></v-text-field>
+        <v-text-field
+          label="รหัสอาจารย์"
+          v-model="$v.lecturerForm.lecturerCode.$model"
+          :error-messages="lecturerCodeError"
+        ></v-text-field>
+        <v-text-field
+          label="รหัสผ่าน"
+          type="password"
+          v-model="$v.lecturerForm.password.$model"
+          :error-messages="passwordError"
+        ></v-text-field>
+        <v-radio-group
+          label="เพศ"
+          row
+          v-model="$v.lecturerForm.gender.$model"
+          :error-messages="genderError"
+        >
           <v-radio
             v-for="gender in genders"
             :key="gender.id"
@@ -29,7 +54,12 @@
           v-model="$v.lecturerForm.tel.$model"
           :error-messages="telError"
         ></v-text-field>
-        <v-text-field label="E-mail" type="email" v-model="$v.lecturerForm.email.$model" :error-messages="emailError"></v-text-field>
+        <v-text-field
+          label="E-mail"
+          type="email"
+          v-model="$v.lecturerForm.email.$model"
+          :error-messages="emailError"
+        ></v-text-field>
         <v-combobox
           label="สำนักวิชา"
           :items="institutes"
@@ -58,9 +88,7 @@
         :disabled="$v.lecturerForm.$invalid"
       >เพิ่มอาจารย์ผู้สอน</v-btn>
     </v-card-actions>
-    <v-snackbar v-model="snackbar">
-      {{ message }}
-    </v-snackbar>
+    <v-snackbar v-model="snackbar">{{ message }}</v-snackbar>
   </v-card>
 </template>
 
@@ -132,8 +160,8 @@ export default {
     this.$store.commit("setGenders");
     this.$store.commit("setInstitutes");
     this.$store.commit("setPrefixs");
-    this.$v.lecturerForm.createdBy.$model = this.$store.state.username
-    console.log(this.$store.state.username)
+    this.$v.lecturerForm.createdBy.$model = this.$store.state.username;
+    console.log(this.$store.state.username);
   },
   computed: {
     ...mapState({
@@ -144,27 +172,32 @@ export default {
     }),
     prefixError() {
       const errors = [];
-      if(!this.$v.lecturerForm.prefix.$dirty) return errors;
-      !this.$v.lecturerForm.prefix.required && errors.push("กรุณาเลือกคำนำหน้า");
+      if (!this.$v.lecturerForm.prefix.$dirty) return errors;
+      !this.$v.lecturerForm.prefix.required &&
+        errors.push("กรุณาเลือกคำนำหน้า");
       return errors;
     },
     nameError() {
       const errors = [];
       if (!this.$v.lecturerForm.name.$dirty) return errors;
-      !this.$v.lecturerForm.name.required && errors.push("กรุณากรอกชื่อ - สกุล");
+      !this.$v.lecturerForm.name.required &&
+        errors.push("กรุณากรอกชื่อ - สกุล");
       return errors;
     },
     lecturerCodeError() {
       const errors = [];
       if (!this.$v.lecturerForm.lecturerCode.$dirty) return errors;
-      !this.$v.lecturerForm.lecturerCode.required && errors.push("กรุณากรอกรหัสอาจารย์");
+      !this.$v.lecturerForm.lecturerCode.required &&
+        errors.push("กรุณากรอกรหัสอาจารย์");
       return errors;
     },
     passwordError() {
       const errors = [];
       if (!this.$v.lecturerForm.password.$dirty) return errors;
-      !this.$v.lecturerForm.password.required && errors.push("กรุณากรอกรหัสผ่าน");
-      !this.$v.lecturerForm.password.minLength && errors.push("รหัสผ่านความยาวอย่างน้อย 8 ตัวอักษร");
+      !this.$v.lecturerForm.password.required &&
+        errors.push("กรุณากรอกรหัสผ่าน");
+      !this.$v.lecturerForm.password.minLength &&
+        errors.push("รหัสผ่านความยาวอย่างน้อย 8 ตัวอักษร");
       return errors;
     },
     genderError() {
@@ -176,22 +209,27 @@ export default {
     personalIdError() {
       const errors = [];
       if (!this.$v.lecturerForm.personalId.$dirty) return errors;
-      !this.$v.lecturerForm.personalId.required && errors.push("กรุณากรอกรหัสบัตรประชาชน");
-      !this.$v.lecturerForm.personalId.numeric && errors.push("รหัสบัตรประชาชนควรเป็นตัวเลขเท่านั้น");
+      !this.$v.lecturerForm.personalId.required &&
+        errors.push("กรุณากรอกรหัสบัตรประชาชน");
+      !this.$v.lecturerForm.personalId.numeric &&
+        errors.push("รหัสบัตรประชาชนควรเป็นตัวเลขเท่านั้น");
       return errors;
     },
     telError() {
       const errors = [];
       if (!this.$v.lecturerForm.tel.$dirty) return errors;
-      !this.$v.lecturerForm.tel.required && errors.push("กรุณากรอกเบอร์โทรศัพท์");
-      !this.$v.lecturerForm.tel.numeric && errors.push("เบอร์โทรศัพท์ควรเป็นตัวเลขเท่านั้น");
+      !this.$v.lecturerForm.tel.required &&
+        errors.push("กรุณากรอกเบอร์โทรศัพท์");
+      !this.$v.lecturerForm.tel.numeric &&
+        errors.push("เบอร์โทรศัพท์ควรเป็นตัวเลขเท่านั้น");
       return errors;
     },
     emailError() {
       const errors = [];
       if (!this.$v.lecturerForm.email.$dirty) return errors;
       !this.$v.lecturerForm.email.required && errors.push("กรุณากรอก email");
-      !this.$v.lecturerForm.email.email && errors.push("รูปแบบ email ไม่ถูกต้อง");
+      !this.$v.lecturerForm.email.email &&
+        errors.push("รูปแบบ email ไม่ถูกต้อง");
       return errors;
     },
     majorError() {
@@ -216,13 +254,29 @@ export default {
           "createLecturer",
           this.$v.lecturerForm.$model
         );
-        this.message = "เพิ่มอาจารย์ผู้สอนสำเร็จ"
+        this.message = "เพิ่มอาจารย์ผู้สอนสำเร็จ";
+        this.reset();
       } catch (error) {
         console.log(error);
-        this.message = "ไม่สามารถเพิ่มอาจารย์ผู้สอนได้"
+        this.message = "ไม่สามารถเพิ่มอาจารย์ผู้สอนได้";
       } finally {
-        this.snackbar = true
+        this.snackbar = true;
       }
+    },
+    reset: async function() {
+      this.$v.lecturerForm.$model = {
+        prefix: null,
+        name: null,
+        lecturerCode: null,
+        password: null,
+        gender: null,
+        personalId: null,
+        tel: null,
+        email: null,
+        major: null,
+        createdBy: this.$store.state.username
+      };
+      this.$v.institute.$model = null;
     }
   }
 };
