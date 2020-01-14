@@ -34,7 +34,7 @@ public class LecturerTests {
 
     // lecturer สามารถ save ได้
     @Test
-    void lecturerObjectShouldBeOK() {
+    void B5915088_lecturerObjectShouldBeOK() {
         // สร้าง Lecturer Object และใส่ข้อมูล
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
@@ -59,7 +59,7 @@ public class LecturerTests {
 
     // lecturerCode ต้องไม่ใช่ค่า null
     @Test
-    void lecturerCodeMustBeNotNull() {
+    void B5915088_lecturerCodeMustBeNotNull() {
         // สร้าง Lecturer Object และใส่ข้อมูล
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
@@ -80,7 +80,7 @@ public class LecturerTests {
 
     // email ต้องไม่ใช่ค่า null
     @Test
-    void emailMustBeNotNull() {
+    void B5915088_emailMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email(null)
                 .lecturerCode("A0001")
@@ -98,7 +98,7 @@ public class LecturerTests {
     }
 
     @Test
-    void emailMustBeMatch() {
+    void B5915088_emailMustBeMatch() {
         Lecturer lecturer = Lecturer.builder()
                 .email("email.com")
                 .lecturerCode("A0001")
@@ -116,7 +116,7 @@ public class LecturerTests {
     }
 
     @Test
-    void nameMustBeNotNull() {
+    void B5915088_nameMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -135,7 +135,7 @@ public class LecturerTests {
     }
 
     @Test
-    void passwordMustBeNotNull() {
+    void B5915088_passwordMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -153,7 +153,7 @@ public class LecturerTests {
     }
 
     @Test
-    void passwordMustBeAtLeast8Characters() {
+    void B5915088_passwordMustBeAtLeast8Characters() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -171,7 +171,7 @@ public class LecturerTests {
     }
 
     @Test
-    void personalIdMustBeNotNull() {
+    void B5915088_personalIdMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -190,7 +190,7 @@ public class LecturerTests {
     }
 
     @Test
-    void personalIdMustBeNotCharacters() {
+    void B5915088_personalIdMustBeNotCharacters() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -209,7 +209,7 @@ public class LecturerTests {
     }
 
     @Test
-    void personalIdMustBeNot12Digits() {
+    void B5915088_personalIdMustBeNot12Digits() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -228,7 +228,7 @@ public class LecturerTests {
     }
 
     @Test
-    void personalIdMustBeNot14Digits() {
+    void B5915088_personalIdMustBeNot14Digits() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -247,7 +247,7 @@ public class LecturerTests {
     }
 
     @Test
-    void telMustBeNotNull() {
+    void B5915088_telMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -266,7 +266,7 @@ public class LecturerTests {
     }
 
     @Test
-    void telMustBeDigit() {
+    void B5915088_telMustBeDigit() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -285,7 +285,7 @@ public class LecturerTests {
     }
 
     @Test
-    void telMustNotBe9Digit() {
+    void B5915088_telMustNotBe9Digit() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -304,7 +304,7 @@ public class LecturerTests {
     }
 
     @Test
-    void telMustNotBe11Digit() {
+    void B5915088_telMustNotBe11Digit() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -323,7 +323,7 @@ public class LecturerTests {
     }
 
     @Test
-    void telMustBe0AtIndex0() {
+    void B5915088_telMustBe0AtIndex0() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
