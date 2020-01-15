@@ -6,14 +6,14 @@
       <v-spacer />
     </v-app-bar>
     <v-navigation-drawer app v-model="drawer" clipped color="secondary">
-      <!-- <v-list-item>
-        <v-list-item-avatar>
+      <v-list-item link color="cyan" :to="lecturer">
+        <!-- <v-list-item-avatar>
           <v-img src="https://randomuser.me/api/portraits/men/78.jpg"/>
-        </v-list-item-avatar>
+        </v-list-item-avatar> -->
         <v-list-item-content>
-          <v-list-item-title>John Leider</v-list-item-title>
+          <v-list-item-title>รหัสอาจารย์ {{ lecturer }}</v-list-item-title>
         </v-list-item-content>
-      </v-list-item> -->
+      </v-list-item>
 
       <v-divider></v-divider>
 
@@ -45,13 +45,17 @@
 <script>
 export default {
   data: () => ({
-    drawer: null
+    drawer: null,
+    lecturer: null
   }),
   methods: {
     logout: async function() {
       localStorage.removeItem("payload")
       this.$router.push("/login")
     }
+  },
+  created() {
+    this.lecturer = this.$store.state.username
   }
 };
 </script>
