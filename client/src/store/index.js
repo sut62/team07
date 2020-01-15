@@ -12,7 +12,9 @@ export default new Vuex.Store({
     courses: null,
     prefixs: null,
     specificMajor: null,
-    username: null
+    lecturers: null,
+    username: null,
+    profile: null
   },
   mutations: {
     async setMajors(state) {
@@ -45,8 +47,18 @@ export default new Vuex.Store({
         state.specificMajor = response.data
       })
     },
+    async setLecturers(state) {
+      await axios.get('lecturers').then(response => {
+        state.lecturers = response.data
+      })
+    },
     async setUsername(state, payload) {
       state.username = payload
+    },
+    async setProfile(state, payload) {
+      await axios.get(`lecturers/lecturer/code/${payload}`).then(response => {
+        state.profile = response.data
+      })
     }
   },
   actions: {
