@@ -27,8 +27,6 @@ const routes = [
     path: '/courses',
     component: Course
   },
-
-  
   {
     path: '/login',
     component: () => import('@/views/Login')
@@ -48,6 +46,10 @@ const routes = [
       {
         path: 'viewreg',
         component: ViewRegister
+      },
+      {
+        path: 'lecturer-profile',
+        component: () => import('@/views/LecturerList')
       }
     ]
   },
