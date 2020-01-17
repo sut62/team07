@@ -41,8 +41,10 @@ public class RegistrationOfficer {
     private String name;
 
     @ManyToOne
+    @NotNull(message = "prefix must be not null")
     private Prefix prefix;
 
     @ManyToOne
+    @NotNull(message = "gender must be not null")
     private Gender gender;
 }
