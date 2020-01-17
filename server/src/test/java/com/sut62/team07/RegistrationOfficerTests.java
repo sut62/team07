@@ -10,9 +10,14 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import com.sut62.team07.entity.Gender;
+import com.sut62.team07.entity.Prefix;
 import com.sut62.team07.entity.RegistrationOfficer;
+import com.sut62.team07.repository.GenderRepository;
+import com.sut62.team07.repository.PrefixRepository;
 import com.sut62.team07.repository.RegistrationOfficerRepository;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +31,31 @@ public class RegistrationOfficerTests {
     @Autowired
     private RegistrationOfficerRepository registrationOfficerRepository;
 
+    @Autowired
+    private GenderRepository genderRepository;
+
+    @Autowired
+    private PrefixRepository prefixRepository;
+
+    Gender gender;
+    Prefix prefix;
+
     @BeforeEach
     public void setup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
+
+        gender = Gender.builder().name("Female").build();
+        gender = genderRepository.saveAndFlush(gender);
+
+        prefix = Prefix.builder().name("ผศ.ดร.").build();
+        prefix = prefixRepository.saveAndFlush(prefix);
+    }
+
+    @AfterEach
+    public void destroy() {
+        genderRepository.deleteAll();
+        prefixRepository.deleteAll();
     }
 
     @Test
@@ -38,6 +64,10 @@ public class RegistrationOfficerTests {
                 .name("John Doe")
                 .officerCode("R0001")
                 .password("12345678")
+
+                .prefix(prefix)
+                .gender(gender)
+
                 .build();
 
         registrationOfficer = registrationOfficerRepository.saveAndFlush(registrationOfficer);
@@ -45,6 +75,8 @@ public class RegistrationOfficerTests {
         assertEquals("R0001", found.get().getOfficerCode());
         assertEquals("John Doe", found.get().getName());
         assertEquals("12345678", found.get().getPassword());
+        assertEquals("Female", found.get().getGender().getName());
+        assertEquals("ผศ.ดร.", found.get().getPrefix().getName());
     }
 
     @Test
@@ -53,6 +85,10 @@ public class RegistrationOfficerTests {
                 .name(null)
                 .officerCode("R0001")
                 .password("12345678")
+
+                .prefix(prefix)
+                .gender(gender)
+
                 .build();
     
         Set<ConstraintViolation<RegistrationOfficer>> result = validator.validate(registrationOfficer);
@@ -68,6 +104,10 @@ public class RegistrationOfficerTests {
                 .name("John Doe")
                 .officerCode(null)
                 .password("12345678")
+
+                .prefix(prefix)
+                .gender(gender)
+
                 .build();
     
         Set<ConstraintViolation<RegistrationOfficer>> result = validator.validate(registrationOfficer);
@@ -83,6 +123,10 @@ public class RegistrationOfficerTests {
                 .name("John Doe")
                 .officerCode("R0001")
                 .password(null)
+
+                .prefix(prefix)
+                .gender(gender)
+
                 .build();
     
         Set<ConstraintViolation<RegistrationOfficer>> result = validator.validate(registrationOfficer);
@@ -98,11 +142,51 @@ public class RegistrationOfficerTests {
                 .name("John Doe")
                 .officerCode("R0001")
                 .password("1234567")
+
+                .prefix(prefix)
+                .gender(gender)
+
                 .build();
         Set<ConstraintViolation<RegistrationOfficer>> result = validator.validate(registrationOfficer);
         assertEquals(1, result.size());
         ConstraintViolation<RegistrationOfficer> violation = result.iterator().next();
         assertEquals("password at least 8 characters", violation.getMessage());
         assertEquals("password", violation.getPropertyPath().toString());
+    }
+
+    @Test
+    void prefixMustBeNotNull() {
+        RegistrationOfficer registrationOfficer = RegistrationOfficer.builder()
+                .name("John Doe")
+                .officerCode("R0001")
+                .password("12345678")
+
+                .prefix(null)
+                .gender(gender)
+
+                .build();
+        Set<ConstraintViolation<RegistrationOfficer>> result = validator.validate(registrationOfficer);
+        assertEquals(1, result.size());
+        ConstraintViolation<RegistrationOfficer> violation = result.iterator().next();
+        assertEquals("prefix must be not null", violation.getMessage());
+        assertEquals("prefix", violation.getPropertyPath().toString());
+    }
+
+    @Test
+    void genderMustBeNotNull() {
+        RegistrationOfficer registrationOfficer = RegistrationOfficer.builder()
+                .name("John Doe")
+                .officerCode("R0001")
+                .password("12345678")
+
+                .prefix(prefix)
+                .gender(null)
+
+                .build();
+        Set<ConstraintViolation<RegistrationOfficer>> result = validator.validate(registrationOfficer);
+        assertEquals(1, result.size());
+        ConstraintViolation<RegistrationOfficer> violation = result.iterator().next();
+        assertEquals("gender must be not null", violation.getMessage());
+        assertEquals("gender", violation.getPropertyPath().toString());
     }
 }

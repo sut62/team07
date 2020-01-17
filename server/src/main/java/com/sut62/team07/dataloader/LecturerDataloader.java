@@ -129,6 +129,8 @@ public class LecturerDataloader implements ApplicationRunner {
                 .officerCode("R0001")
                 .password("password1")
                 .prefix(prefixRepository.getOne(1L))
+
+
                 .build();
 
         registrationOfficerRepository.save(registrationOfficer);
@@ -140,6 +142,12 @@ public class LecturerDataloader implements ApplicationRunner {
                 .password("12345678")
                 .personalId("1234567890123")
                 .tel("0123456789")
+
+                .createdBy(registrationOfficerRepository.getOne(1L))
+                .gender(genderRepository.getOne(1L))
+                .major(majorRepository.getOne(1L))
+                .prefix(prefixRepository.getOne(1L))
+
                 .build();
         lecturerRepository.save(lecturer);
 
