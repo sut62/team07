@@ -31,5 +31,6 @@ public class Major {
     private String name;
 
     @ManyToOne
+    @NotNull(message = "institute must be not null")
     private Institute institute;
 }

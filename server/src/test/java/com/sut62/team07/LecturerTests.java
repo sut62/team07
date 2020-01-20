@@ -53,11 +53,11 @@ public class LecturerTests {
     private RegistrationOfficerRepository registrationOfficerRepository;
 
     // initial object
-    Major major;
-    Prefix prefix;
-    RegistrationOfficer registrationOfficer;
-    Gender gender;
-    Institute institute;
+    private Major major;
+    private Prefix prefix;
+    private RegistrationOfficer registrationOfficer;
+    private Gender gender;
+    private Institute institute;
 
     @BeforeEach
     public void setup() {

@@ -33,7 +33,7 @@ public class GenderTests {
     }
 
     @Test
-    void genderNameShouldBeOK(){
+    void B5915088_genderNameShouldBeOK(){
         Gender gender = Gender.builder().name("ชาย").build();
 
         gender = genderRepository.saveAndFlush(gender);
@@ -43,7 +43,7 @@ public class GenderTests {
     }
 
     @Test
-    void genderNameMustBeNotNull() {
+    void B5915088_genderNameMustBeNotNull() {
         Gender gender = Gender.builder().name(null).build();
 
         Set<ConstraintViolation<Gender>> result = validator.validate(gender);

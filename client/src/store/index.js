@@ -12,7 +12,7 @@ export default new Vuex.Store({
     courses: null,
     prefixs: null,
     specificMajor: null,
-    lecturers: null,
+    lecturers: [],
     username: null,
     profile: null
   },
@@ -48,7 +48,7 @@ export default new Vuex.Store({
       })
     },
     async setLecturers(state) {
-      await axios.get('lecturers').then(response => {
+      await axios.get(`lecturers`).then(response => {
         state.lecturers = response.data
       })
     },

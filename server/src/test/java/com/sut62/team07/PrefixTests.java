@@ -33,7 +33,7 @@ public class PrefixTests {
     }
 
     @Test
-    void prefixNameShouldBeOK() {
+    void B5915088_prefixNameShouldBeOK() {
         Prefix prefix = Prefix.builder().name("นาย").build();
         prefix = prefixRepository.saveAndFlush(prefix);
 
@@ -42,7 +42,7 @@ public class PrefixTests {
     }
 
     @Test
-    void prefixNameMustBeNotNull() {
+    void B5915088_prefixNameMustBeNotNull() {
         Prefix prefix = Prefix.builder().name(null).build();
 
         Set<ConstraintViolation<Prefix>> result = validator.validate(prefix);
