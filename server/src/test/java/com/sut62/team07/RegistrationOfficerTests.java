@@ -59,7 +59,7 @@ public class RegistrationOfficerTests {
     }
 
     @Test
-    void registrationOfficerObjectShouldBeOK() {
+    void B5915088_registrationOfficerObjectShouldBeOK() {
         RegistrationOfficer registrationOfficer = RegistrationOfficer.builder()
                 .name("John Doe")
                 .officerCode("R0001")
@@ -80,7 +80,7 @@ public class RegistrationOfficerTests {
     }
 
     @Test
-    void nameMustBeNotNull() {
+    void B5915088_nameMustBeNotNull() {
         RegistrationOfficer registrationOfficer = RegistrationOfficer.builder()
                 .name(null)
                 .officerCode("R0001")
@@ -99,7 +99,7 @@ public class RegistrationOfficerTests {
     }
 
     @Test
-    void officerCodeMustBeNotNull() {
+    void B5915088_officerCodeMustBeNotNull() {
         RegistrationOfficer registrationOfficer = RegistrationOfficer.builder()
                 .name("John Doe")
                 .officerCode(null)
@@ -118,7 +118,7 @@ public class RegistrationOfficerTests {
     }
 
     @Test
-    void passwordMustBeNotNull() {
+    void B5915088_passwordMustBeNotNull() {
         RegistrationOfficer registrationOfficer = RegistrationOfficer.builder()
                 .name("John Doe")
                 .officerCode("R0001")
@@ -137,7 +137,7 @@ public class RegistrationOfficerTests {
     }
 
     @Test
-    void passwordMustBeAtLeast8Characters() {
+    void B5915088_passwordMustBeAtLeast8Characters() {
         RegistrationOfficer registrationOfficer = RegistrationOfficer.builder()
                 .name("John Doe")
                 .officerCode("R0001")
@@ -155,7 +155,7 @@ public class RegistrationOfficerTests {
     }
 
     @Test
-    void prefixMustBeNotNull() {
+    void B5915088_prefixMustBeNotNull() {
         RegistrationOfficer registrationOfficer = RegistrationOfficer.builder()
                 .name("John Doe")
                 .officerCode("R0001")
@@ -173,7 +173,7 @@ public class RegistrationOfficerTests {
     }
 
     @Test
-    void genderMustBeNotNull() {
+    void B5915088_genderMustBeNotNull() {
         RegistrationOfficer registrationOfficer = RegistrationOfficer.builder()
                 .name("John Doe")
                 .officerCode("R0001")
