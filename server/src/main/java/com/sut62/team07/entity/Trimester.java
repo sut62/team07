@@ -30,4 +30,9 @@ public class Trimester {
 
     @OneToMany(fetch = FetchType.EAGER)
     private Collection<Course> Course;
+
+
+	public static Object builder() {
+		return null;
+	}
 }

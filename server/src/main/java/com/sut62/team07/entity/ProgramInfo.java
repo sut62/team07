@@ -26,5 +26,8 @@ public class ProgramInfo {
     @Column(name="ProgramInfo_ID",unique = true, nullable = true)
     private @NonNull Long id;
     private @NonNull String name;
+	public static Object builder() {
+		return null;
+	}
 
 }
