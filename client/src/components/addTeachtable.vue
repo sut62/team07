@@ -140,9 +140,10 @@
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <v-col cols="5">
-                            <v-btn color="success" @click="saveTeachtable">Save</v-btn>
-                            <v-btn style="margin-left: 15px;" @click="clear">Clear</v-btn>
+                        <v-col cols="4">
+                        <v-btn style="margin-left: 15px;" @click="saveTeachtable" color="success">save</v-btn>
+                        <v-snackbar v-model="snackbar">{{text}}</v-snackbar>
+                        <v-btn style="margin-left: 15px;" @click="clear" color="primary">clear</v-btn>
                         </v-col>
                     </v-row>
         </v-card>
@@ -161,6 +162,7 @@
                     daysId: null,
                     roomId: null
                 },
+                snackbar: false,
                 valid: false,
                 menu1: false,
                 menu2: false,
@@ -259,16 +261,19 @@
                         "/" +
                         this.teachtable.startTime +
                         "/" +
-                        this.teachtable.endTime
+                        this.teachtable.endTime,
+                        this.teachtable
                     )
                     .then(response => {
                         console.log(response);
-                        alert('บันทึกข้อมูลสำเร็จ');
-                        this.clear()
+                        this.text = 'บันทึกข้อมูลสำเร็จ';
+                        this.snackbar = true;
+                        this.$refs.form.reset();
                     })
                     .catch(e => {
                         console.log(e);
-                        alert('บันทึกข้อมูลไม่สำเร็จ');
+                        this.text = 'บันทึกข้อมูลไม่สำเร็จ';
+                        this.snackbar = true;
                     });
             },
 
