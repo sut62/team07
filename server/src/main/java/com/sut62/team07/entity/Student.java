@@ -6,6 +6,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -27,23 +30,25 @@ public class Student {
     @SequenceGenerator(name="id_student_seq",sequenceName="id_student_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="id_student_seq")
     @Column(name = "ID_STUDENT_ID", unique = true, nullable = true)
-    private @NonNull Long id;
+    private  Long id;
     
 
     @Column(name="STUDENT_ID")
-    private @NonNull String student_id;
+    private @NotNull String student_id;
 
     @Column(name="STUDENT_PHONE")
-    private @NonNull String student_phone;
+    @Pattern(regexp = "\\d{10}")
+    private @NotNull String student_phone;
 
     @Column(name="STUDENT_NAME")
-    private @NonNull String student_name;
+    private @NotNull String student_name;
     
     @Column(name="STUDENT_EMAIL")
-    private @NonNull String student_email;
+    private @NotNull String student_email;
     
     @Column(name="Password")
-    private @NonNull String password;
+    @Size(min=8,max=15 , message = "plassword min8")
+    private @NotNull String password;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Major.class)
     @JoinColumn(name = "majors", insertable = true)

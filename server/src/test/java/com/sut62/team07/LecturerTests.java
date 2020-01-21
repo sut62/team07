@@ -9,6 +9,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import javax.validation.constraints.Min;
 
 import com.sut62.team07.entity.Lecturer;
 import com.sut62.team07.repository.LecturerRepository;
@@ -338,4 +339,6 @@ public class LecturerTests {
         assertEquals("tel must be match", violation.getMessage());
         assertEquals("tel", violation.getPropertyPath().toString());
     }
+
+    
 }
