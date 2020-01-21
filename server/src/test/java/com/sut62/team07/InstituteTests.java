@@ -33,7 +33,7 @@ public class InstituteTests {
     }
 
     @Test
-    void nameShouldBeOK() {
+    void B5915088_nameShouldBeOK() {
         Institute institute = Institute.builder().name("สำนักวิชาวิศวกรรมศาสตร์").build();
         institute = instituteRepository.saveAndFlush(institute);
 
@@ -42,7 +42,7 @@ public class InstituteTests {
     }
 
     @Test
-    void nameMustBeNotNull() {
+    void B5915088_nameMustBeNotNull() {
         Institute institute = Institute.builder().name(null).build();
 
         Set<ConstraintViolation<Institute>> result = validator.validate(institute);

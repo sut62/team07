@@ -59,7 +59,7 @@
                     <v-row justify="center">
                         <v-col cols="12" sm="2" md="2">
                             <v-menu
-                                    v-model="menu2"
+                                    v-model="menu1"
                                     :close-on-content-click="false"
                                     :nudge-right="40"
                                     transition="scale-transition"
@@ -75,14 +75,14 @@
                                             v-on="on"
                                     ></v-text-field>
                                 </template>
-                                <v-date-picker v-model="examSchedule.date" @input="menu2 = false">
+                                <v-date-picker v-model="examSchedule.date" @input="menu1 = false">
                                 </v-date-picker>
                             </v-menu>
                         </v-col>
                         <v-col cols="12" sm="2">
                              <v-menu
-                                ref="menu"
-                                v-model="menu3"
+                                ref="menu2"
+                                v-model="menu2"
                                 :close-on-content-click="false"
                                 :nudge-right="40"
                                 :return-value.sync="time"
@@ -100,17 +100,17 @@
                                   ></v-text-field>
                              </template>
                              <v-time-picker
-                                  v-if="menu3"
+                                  v-if="menu2"
                                   v-model="examSchedule.startTime"
                                   full-width
-                                  @click:minute="$refs.menu.save(examSchedule.startTime)"
+                                  @click:minute="$refs.menu2.save(examSchedule.startTime)"
                              ></v-time-picker>
                              </v-menu>
                         </v-col>
                         <v-col cols="12" sm="2">
                              <v-menu
-                                ref="menu"
-                                v-model="menu4"
+                                ref="menu3"
+                                v-model="menu3"
                                 :close-on-content-click="false"
                                 :nudge-right="40"
                                 :return-value.sync="time"
@@ -128,10 +128,10 @@
                                   ></v-text-field>
                              </template>
                              <v-time-picker
-                                  v-if="menu4"
+                                  v-if="menu3"
                                   v-model="examSchedule.endTime"
                                   full-width
-                                  @click:minute="$refs.menu.save(examSchedule.endTime)"
+                                  @click:minute="$refs.menu3.save(examSchedule.endTime)"
                              ></v-time-picker>
                              </v-menu>
                         </v-col>
@@ -154,6 +154,7 @@
                     <v-row justify="center">
                         <v-col cols="12">
                             <v-btn :disabled="!valid" color="success" @click="saveExamSchedule">Save</v-btn>
+                            <v-snackbar v-model="snackbar">{{text}}</v-snackbar>
                             <v-btn style="margin-left: 15px;" @click="clear">Reset</v-btn>
                         </v-col>
                     </v-row>
@@ -175,12 +176,11 @@ export default {
         courseId: [],
         roomId: []
       },
+      snackbar: false,
       valid: false,
-      menu: false,
       menu1: false,
       menu2: false,
       menu3: false,
-      menu4: false,
       semester: null,
       academicYear: null,
       course: null,
@@ -255,13 +255,16 @@ export default {
               )
               .then(response => {
                   console.log(response);
-                  alert('บันทึกข้อมูลสำเร็จ');
+                  this.text = 'บันทึกข้อมูลสำเร็จ';
+                  this.snackbar = true;
                   this.$refs.form.reset();
               })
               .catch(e => {
                   console.log(e);
-                  alert('บันทึกข้อมูลไม่สำเร็จ');
+                  this.text = 'บันทึกข้อมูลไม่สำเร็จ';
+                  this.snackbar = true;
               });
+
       },
 
     clear() {

@@ -98,15 +98,13 @@
             </v-col>
           </v-row>
 
-          <v-row justify="center">
-            <v-col cols="12">
-              <v-btn 
-                style="margin-left: 40%;"
-                @click="saveCourse">save
-              </v-btn>
-              
-            </v-col>
-          </v-row>
+        <v-row justify="center">
+                <v-col cols="auto">
+                  <v-btn dark large @click="saveCourse" class="indigo">ยืนยัน</v-btn>
+                  <v-snackbar v-model="snackbar">{{text}}</v-snackbar>
+                 </v-col>
+                 
+                </v-row>
           
   </v-col>
   </v-row>
@@ -138,7 +136,8 @@ export default {
       programInfos:[],
       trimesters:[],
       types:[],
-      valid: false
+      valid: false,
+      snackbar: false,
     };
   },
   methods: {
@@ -204,17 +203,21 @@ export default {
             + "/" +
             this.courses.trimester_id
             + "/" +
-            this.courses.type_id
+            this.courses.type_id,
+            this.courses
         )
         .then(response => {
-          console.log(response);
-          this.$router.push("/courseData");
-        })
-        .catch(e => {
-          console.log(e);
-        });
-      this.submitted = true;
-    },
+                  console.log(response);
+                  this.text = 'บันทึกข้อมูลสำเร็จ';
+                  this.snackbar = true;
+                  this.$refs.form.reset();
+                    })
+                    .catch(e => {
+                        console.log(e);
+                        this.text = 'บันทึกข้อมูลไม่สำเร็จ';
+                        this.snackbar = true;
+                    });
+            },
     refreshList() {
     this.getProgramInfos();
     this.getTrimesters();

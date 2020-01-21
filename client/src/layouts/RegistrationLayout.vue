@@ -25,6 +25,14 @@
           <v-list-item-title>เพิ่มอาจารย์</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+      <v-list-item link to="register-lecturer-list" color="black">
+        <v-list-item-action>
+            <v-icon>mdi-account-multiple</v-icon>
+          </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>รายชื่ออาจารย์ผู้สอน</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-list-item link to="examSchedule" color="black">
         <v-list-item-action>
             <v-icon>mdi-table-edit</v-icon>

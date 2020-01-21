@@ -27,8 +27,6 @@ const routes = [
     path: '/courses',
     component: Course
   },
-
-  
   {
     path: '/login',
     component: () => import('@/views/Login')
@@ -48,6 +46,10 @@ const routes = [
       {
         path: 'viewreg',
         component: ViewRegister
+      },
+      {
+        path: 'lecturer-profile',
+        component: () => import('@/views/LecturerList')
       }
     ]
   },
@@ -64,6 +66,10 @@ const routes = [
         component: () => import('@/views/LecturerForm')
       },
       {
+        path: 'register-lecturer-list',
+        component: () => import('@/views/LecturerList')
+      },
+      {
         path: 'addteachtable',
         component: addTeachtable
       },
@@ -71,7 +77,6 @@ const routes = [
         path: 'examSchedule',
         component: ExamSchedule
       },
-
       {
         path: 'courses',
         component: () => import('@/components/Course')
@@ -89,6 +94,10 @@ const routes = [
       {
         path: 'courses',
         component: () => import('@/components/Course')
+      },
+      {
+        path: ':lecturerCode',
+        component: () => import('@/views/LecturerProfile')
       }
     ]
   }

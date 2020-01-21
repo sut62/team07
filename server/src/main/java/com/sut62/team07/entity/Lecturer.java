@@ -56,15 +56,19 @@ public class Lecturer {
     private String tel;
 
     @ManyToOne
+    @NotNull(message = "prefix must be not null")
     private Prefix prefix;
 
     @ManyToOne
+    @NotNull(message = "major must be not null")
     private Major major;
 
     @ManyToOne
+    @NotNull(message = "gender must be not null")
     private Gender gender;
 
     @ManyToOne
+    @NotNull(message = "registration officer must be not null")
     private RegistrationOfficer createdBy;
 
 }

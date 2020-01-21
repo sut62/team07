@@ -21,8 +21,7 @@ public class Room {
     @SequenceGenerator(name="ROOM_SEQ",sequenceName="ROOM_SEQ")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ROOM_SEQ")
     @Column(name="ROOM_ID",unique = true, nullable = true)
-
-    private @NotNull Long id;
+    private Long id;
 
     @NotNull(message = "Name cannot be null")
     private String name;
