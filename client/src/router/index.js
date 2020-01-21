@@ -98,6 +98,10 @@ const routes = [
       {
         path: ':lecturerCode',
         component: () => import('@/views/LecturerProfile')
+      },
+      {
+        path: 'lecturer-list',
+        component: () => import('@/views/LecturerList')
       }
     ]
   }
