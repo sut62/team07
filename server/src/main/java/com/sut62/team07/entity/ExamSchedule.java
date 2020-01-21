@@ -24,7 +24,7 @@ public class ExamSchedule  {
     @SequenceGenerator(name="EXAM_SCHEDULE_SEQ",sequenceName="EXAM_SCHEDULE_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="EXAM_SCHEDULE_SEQ")
     @Column(name = "EXAM_SCHEDULE_ID", unique = true, nullable = true)
-    private @NotNull Long id;
+    private Long id;
 
     @Column(name = "ACADEMIC_YEAR")
     @NotNull(message = "Academic year cannot be null")
@@ -32,14 +32,17 @@ public class ExamSchedule  {
     private String academicYear;
 
     @Column(name = "DATE")
+    @NotNull(message = "Date cannot be null")
     @Future(message = "The annotated element must be a date in the future.")
-    private @NotNull LocalDate date;
+    private LocalDate date;
 
     @Column(name = "START_TIME")
-    private @NotNull LocalTime startTime;
+    @NotNull(message = "Start time cannot be null")
+    private LocalTime startTime;
 
     @Column(name = "END_TIME")
-    private @NotNull LocalTime endTime;
+    @NotNull(message = "End time cannot be null")
+    private LocalTime endTime;
 
     @Column(name = "ANNOTATION")
     @NotNull(message = "Annotation cannot be null")
@@ -47,14 +50,17 @@ public class ExamSchedule  {
     private String annotation;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Room.class)
+    @NotNull(message = "Room cannot be null")
     @JoinColumn(name = "ROOM_ID", insertable = true)
     private Room room;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Semester.class)
+    @NotNull(message = "Semester cannot be null")
     @JoinColumn(name = "SEMESTER_ID", insertable = true)
     private Semester semester;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Course.class)
+    @NotNull(message = "Course cannot be null")
     @JoinColumn(name = "COURSE_ID", insertable = true)
     private Course course;
 
