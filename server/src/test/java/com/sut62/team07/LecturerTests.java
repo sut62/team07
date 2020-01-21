@@ -9,7 +9,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import javax.validation.constraints.Min;
 
 import com.sut62.team07.entity.Gender;
 import com.sut62.team07.entity.Institute;
@@ -503,9 +502,6 @@ public class LecturerTests {
         assertEquals("tel", violation.getPropertyPath().toString());
     }
 
-<<<<<<< HEAD
-    
-=======
     @Test
     void genderMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
@@ -597,5 +593,4 @@ public class LecturerTests {
         assertEquals("prefix must be not null", violation.getMessage());
         assertEquals("prefix", violation.getPropertyPath().toString());
     }
->>>>>>> b9904da40d92e9154c263cef5fa47a82ff4b815c
 }
