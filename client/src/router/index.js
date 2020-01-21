@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Register from '../components/Register';
 import ViewRegister from '../components/ViewRegister';
+import TableRegister from '../components/TableRegister';
 import StudentRegister from '../components/StudentRegister';
 import StudentData from '../components/StudentData';
 import ExamSchedule from '../components/ExamSchedule';
@@ -27,6 +28,8 @@ const routes = [
     path: '/courses',
     component: Course
   },
+
+  
   {
     path: '/login',
     component: () => import('@/views/Login')
@@ -48,9 +51,10 @@ const routes = [
         component: ViewRegister
       },
       {
-        path: 'lecturer-profile',
-        component: () => import('@/views/LecturerList')
+        path: 'tablereg',
+        component: TableRegister
       }
+
     ]
   },
   {
@@ -66,10 +70,6 @@ const routes = [
         component: () => import('@/views/LecturerForm')
       },
       {
-        path: 'register-lecturer-list',
-        component: () => import('@/views/LecturerList')
-      },
-      {
         path: 'addteachtable',
         component: addTeachtable
       },
@@ -77,6 +77,7 @@ const routes = [
         path: 'examSchedule',
         component: ExamSchedule
       },
+
       {
         path: 'courses',
         component: () => import('@/components/Course')

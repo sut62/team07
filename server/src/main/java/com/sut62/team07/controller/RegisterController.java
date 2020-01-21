@@ -39,13 +39,15 @@ public class RegisterController {
         return registerRepository.findRegister(id);
     }
     //save register
-    @PostMapping("/register/{student_id}/{semester_id}/{section_id}/{courseCode}/{credit}")
+    @PostMapping("/register/{student_id}/{semester_id}/{section_id}/{courseCode}/{credit}/{note}")
     public Register newRegister(Register newRegister,
     @PathVariable long student_id,
     @PathVariable long semester_id,
     @PathVariable long section_id,
     @PathVariable String courseCode,
-    @PathVariable int credit)
+    @PathVariable int credit,
+    @PathVariable String note
+    )
     {
 
     Student registerBy = studentRepository.findById(student_id);
@@ -59,6 +61,9 @@ public class RegisterController {
     newRegister.setRegisterDate(registerDate); //set date
     newRegister.setSubNum((String)courseCode); //set sub_num
     newRegister.setCredit(credit); //set credit
+    newRegister.setNote(note); //set credit
+    
+
     
     return registerRepository.save(newRegister); //บันทึก Objcet ชื่อ Register
     }

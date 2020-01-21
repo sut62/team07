@@ -109,71 +109,84 @@ public class Team07Application {
 			Section sec1 = new Section();
 			sec1.setSec("1");
 			sec1.setSubInSec(sj1);
+			sec1.setTime("Tu12:00-13:00 B4101 -- We17:00-20:00 Lab_Com1");
 			sectionRepository.save(sec1);
 
 			Section sec2 = new Section();
 			sec2.setSec("2");
 			sec2.setSubInSec(sj1);
+			sec2.setTime("Tu12:00-13:00 B4101 -- We17:00-20:00 Lab_Com2");
 			sectionRepository.save(sec2);
 
 			Section sec3 = new Section();
 			sec3.setSec("3");
 			sec3.setSubInSec(sj1);
+			sec3.setTime("Tu12:00-13:00 B4101 -- We17:00-20:00 Lab_Com3");
 			sectionRepository.save(sec3);
 
 			// micro
 			Section sec1_2 = new Section();
 			sec1_2.setSec("1");
 			sec1_2.setSubInSec(sj2);
+			sec1_2.setTime("Tu13:00-15:00 B1215 -- We13:00-15:00 B1215");
 			sectionRepository.save(sec1_2);
 
 			Section sec2_2 = new Section();
 			sec2_2.setSec("2");
 			sec2_2.setSubInSec(sj2);
+			sec2_2.setTime("Tu13:00-15:00 B1231 -- We13:00-15:00 B1125");
 			sectionRepository.save(sec2_2);
 
 			Section sec3_2 = new Section();
 			sec3_2.setSec("3");
 			sec3_2.setSubInSec(sj2);
+			sec3_2.setTime("Tu13:00-15:00 B1127 -- We13:00-15:00 B1127	");
 			sectionRepository.save(sec3_2);
 
 			Section sec4_2 = new Section();
 			sec4_2.setSec("4");
 			sec4_2.setSubInSec(sj2);
+			sec4_2.setTime("Tu13:00-15:00 B1119 -- We13:00-15:00 B1119	");
 			sectionRepository.save(sec4_2);
 
 			// com stat
 			Section sec1_3 = new Section();
 			sec1_3.setSec("1");
 			sec1_3.setSubInSec(sj3);
+			sec1_3.setTime("Th09:00-12:00 B1211 -- Fr13:00-16:00 F11-422.Software");
 			sectionRepository.save(sec1_3);
 
 			Section sec2_3 = new Section();
 			sec2_3.setSec("2");
 			sec2_3.setSubInSec(sj3);
+			sec2_3.setTime("Th09:00-12:00 B1211 -- Fr16:00-18:00 F11-422.Software");
 			sectionRepository.save(sec2_3);
 
 			// formal
 			Section sec1_4 = new Section();
 			sec1_4.setSec("1");
 			sec1_4.setSubInSec(sj4);
+			sec1_4.setTime("Th09:00-12:00 B1211 -- Fr13:00-15:00 F11-422.Software");
 			sectionRepository.save(sec1_4);
 
 			Section sec2_4 = new Section();
 			sec2_4.setSec("2");
 			sec2_4.setSubInSec(sj4);
+			sec2_4.setTime("Tu12:00-13:00 B4101 -- We17:00-20:00 Lab_Com3");
 			sectionRepository.save(sec2_4);
 
 			// man eco
 			Section sec1_5 = new Section();
 			sec1_5.setSec("1");
 			sec1_5.setSubInSec(sj5);
+			sec1_5.setTime("Mo10:00-12:00 B1127 -- We13:00-15:00 B1121");
 			sectionRepository.save(sec1_5);
 
 			// java
 			Section sec1_6 = new Section();
 			sec1_6.setSec("1");
 			sec1_6.setSubInSec(sj6);
+			sec1_6.setTime("Mo09:00-12:00 F11-422.Software -- Mo13:00-15:00 F11-422.Software");
 			sectionRepository.save(sec1_6);
 
 			trimesterRepository.findAll().forEach(System.out::println); 

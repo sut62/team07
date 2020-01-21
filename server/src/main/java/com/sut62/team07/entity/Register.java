@@ -1,8 +1,14 @@
 package com.sut62.team07.entity;
+
 import lombok.*;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 @Data
 @Entity
@@ -14,14 +20,20 @@ public class Register {
     @SequenceGenerator(name="register_seq",sequenceName="register_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="register_seq")
     @Column(name = "REGISTER_ID", unique = true, nullable = true)
-    private @NonNull Long id;
+    private Long id;
 
-    private @NonNull String sub_num;
+    private @NotNull String sub_num;
+    
+    @Size(max=30,min=5)
+    private @NotNull String note;
 
-    private @NonNull int credit;
+    @PositiveOrZero
+    @Max(value = 4)
+    private@NotNull Integer  credit;
+
 
     @Column(name="REGISTER_DATE")
-    private @NonNull LocalDateTime registerDate;
+    private @NotNull LocalDateTime registerDate;
     
     // *-1 with semester
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Semester.class)
@@ -39,32 +51,33 @@ public class Register {
     private Student registerBy;
 
 
-	public void setRegisterBy(Student registerBy) {
-                this.registerBy = registerBy;
-	}
+	// public void setRegisterBy(Student registerBy) {
+        //         this.registerBy = registerBy;
+	// }
 
-	public void setRegisterDate(LocalDateTime date) {
-                this.registerDate = date;
-	}
+	// public void setRegisterDate(LocalDateTime date) {
+        //         this.registerDate = date;
+	// }
 
 	public void setSemester(Semester inSemester) {
                 this.inSemester = inSemester;
 	}
 
-	public void setChooseSec(Section chooseSec) {
-                this.chooseSec = chooseSec;
-	}
+	// public void setChooseSec(Section chooseSec) {
+        //         this.chooseSec = chooseSec;
+	// }
 
 	public void setSubNum(String sub_num) {
         this.sub_num = sub_num;
 	}
 
-	public void setCredit(int credit) {
-        this.credit = credit;
-	}
 
-	public int getCredit() {
-		return credit;
-	}
+	// public void setCredit(int credit) {
+        // this.credit = credit;
+	// }
+
+	// public int getCredit() {
+	// 	return credit;
+	// }
         
 }
