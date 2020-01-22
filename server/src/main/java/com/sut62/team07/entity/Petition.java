@@ -8,11 +8,10 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.time.LocalDate;
 import javax.validation.constraints.*;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.time.LocalDate;
 
 @Data
 @Entity
