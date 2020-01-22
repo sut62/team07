@@ -13,7 +13,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 public class RoomController {
 
