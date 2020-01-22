@@ -39,7 +39,6 @@ public class RoomTests {
   void B5908042_testNameShouldBeOK() {
     Room room = new Room();
     room.setName("B4101");
-
     room = roomRepository.saveAndFlush(room);
 
     Optional<Room> found = roomRepository.findById(room.getId());

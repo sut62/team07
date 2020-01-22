@@ -3,6 +3,7 @@ package com.sut62.team07;
 import com.sut62.team07.entity.*;
 import com.sut62.team07.repository.*;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,42 +28,122 @@ public class ExamScheduleTests {
 
   private Validator validator;
 
-  @Autowired
-  private ExamScheduleRepository examScheduleRepository;
-  @Autowired
-  private SemesterRepository semesterRepository;
-  @Autowired
-  private CourseRepository courseRepository;
-  @Autowired
-  private RoomRepository roomRepository;
+  @Autowired private ExamScheduleRepository examScheduleRepository;
+  @Autowired private SemesterRepository semesterRepository;
+  @Autowired private RoomRepository roomRepository;
+
+  @Autowired private CourseRepository courseRepository;
+  @Autowired private TrimesterRepository trimesterRepository;
+  @Autowired private TypeRepository typeRepository;
+  @Autowired private ProgramInfoRepository programInfoRepository;
+
+  @Autowired private LecturerRepository lecturerRepository;
+  @Autowired private MajorRepository majorRepository;
+  @Autowired private InstituteRepository instituteRepository;
+  @Autowired private PrefixRepository prefixRepository;
+  @Autowired private GenderRepository genderRepository;
+  @Autowired private RegistrationOfficerRepository registrationOfficerRepository;
+  //สร้าง object สำหรับใช้ใน Lecturer
+  private Lecturer lecturer;
+  private Major major;
+  private Prefix prefix;
+  private RegistrationOfficer registrationOfficer;
+  private Gender gender;
+  private Institute institute;
+  // สร้าง object สำหรับใช้ใน Course
+  Course course = new Course();
+  Trimester trimester = new Trimester();
+  Type type = new Type();
+  ProgramInfo programInfo = new ProgramInfo();
+  // สร้าง object สำหรับใช้ใน ExamSchedule
+  Semester semester = new Semester();
+  Room room = new Room();
 
   @BeforeEach
   public void setup() {
     ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     validator = factory.getValidator();
-  }
-
-  // เทส ใส่ค่าถูกต้อง examSchedule สามารถ save ได้
-  @Test
-  void B5908042_examScheduleShouldBeOK() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
+    //เตรียมข้อมูลสำหรับใช้ใน Lecturer
+    institute = Institute.builder().name("Engineering").build();
+    institute = instituteRepository.saveAndFlush(institute);
+    major = Major.builder().name("Computer Engineering").institute(institute).build();
+    major = majorRepository.saveAndFlush(major);
+    prefix = Prefix.builder().name("Dr.").build();
+    prefix = prefixRepository.saveAndFlush(prefix);
+    gender = Gender.builder().name("Male").build();
+    gender = genderRepository.saveAndFlush(gender);
+    //เตรียมข้อมูลสำหรับใช้ใน RegistrationOfficer
+    registrationOfficer = RegistrationOfficer.builder()
+        .gender(gender)
+        .name("Albert Wesker")
+        .officerCode("R0025")
+        .password("12345678")
+        .prefix(prefix)
+        .build();
+    registrationOfficer = registrationOfficerRepository.saveAndFlush(registrationOfficer);
+    //เตรียมข้อมูล lecturer
+    Lecturer lecturer = Lecturer.builder()
+        .email("gg@gmail.com")
+        .lecturerCode("A0001")
+        .name("John Doe")
+        .password("12345678")
+        .personalId("1234567890123")
+        .tel("0987458745")
+        .createdBy(registrationOfficer)
+        .gender(gender)
+        .major(major)
+        .prefix(prefix)
+        .build();
+    lecturer = lecturerRepository.saveAndFlush(lecturer);
+    //เตรียมข้อมูลสำหรับ course
+    trimester.setName("ภาคกเรียนที่ 1");
+    trimester = trimesterRepository.saveAndFlush(trimester);
+    type.setName("วิชาภาคบังคับ");
+    type = typeRepository.saveAndFlush(type);
+    programInfo.setName("2554");
+    programInfo = programInfoRepository.saveAndFlush(programInfo);
+    //เตรียมข้อมูล course
     course.setSubNum("523351");
     course.setSubName("FORMAL METHODS AND COMPUTABILITY");
     course.setCredit(4);
+    course.setTrimester(trimester);
+    course.setType(type);
+    course.setProgramInfo(programInfo);
+    course.setLecturer(lecturer);
     course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
+    //เตรียมข้อมูลสำหรับ ExamSchedule
+    semester.setSem("1");
+    semester = semesterRepository.saveAndFlush(semester);
     room.setName("B4104");
     room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2021, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
+
+  }
+  // set Date and Time สำหรับ ExamSchedule
+  LocalDate today =  LocalDate.now();
+  LocalDate date = today.plusMonths(1);  // วันที่ต้องเป็นวันในอนาคตเท่านั้นโดยเลื่อนไป 1 เดือน
+  LocalTime startTime = LocalTime.of(9, 30);
+  LocalTime endTime = LocalTime.of(11, 30);
+
+  // ทำลาย Object เมื่อ Test เสร็จแล้ว
+  @AfterEach
+  public void destroy() {
+    instituteRepository.deleteAll();
+    majorRepository.deleteAll();
+    genderRepository.deleteAll();
+    prefixRepository.deleteAll();
+    registrationOfficerRepository.deleteAll();
+    lecturerRepository.deleteAll();
+    trimesterRepository.deleteAll();
+    typeRepository.deleteAll();
+    programInfoRepository.deleteAll();
+    semesterRepository.deleteAll();
+    roomRepository.deleteAll();
+    courseRepository.deleteAll();
+  }
+
+    // เทส ใส่ค่าถูกต้อง examSchedule สามารถ save ได้
+  @Test
+  void B5908042_examScheduleShouldBeOK() {
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
@@ -73,10 +154,11 @@ public class ExamScheduleTests {
     examSchedule.setStartTime(startTime);
     examSchedule.setEndTime(endTime);
     examSchedule.setAnnotation("ห้ามนำเครื่องคิดเลขเข้าห้องสอบ");
-
+    //save and flush ไว้ที่ examSchedule
     examSchedule = examScheduleRepository.saveAndFlush(examSchedule);
-
+    //ค้นหา examShedule ด้วย id
     Optional<ExamSchedule> found = examScheduleRepository.findById(examSchedule.getId());
+    //ตรวจสอบข้อมูล
     assertEquals(semester, found.get().getSemester());
     assertEquals("2020", found.get().getAcademicYear());
     assertEquals(course, found.get().getCourse());
@@ -89,24 +171,6 @@ public class ExamScheduleTests {
   // เทสค่า semester ต้องไม่เป็น Null
   @Test
   void B5908042_testSemesterMustNotBeNull() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(null); // test ใส่ค่า semester ที่เป็น null
@@ -130,24 +194,6 @@ public class ExamScheduleTests {
   // เทสค่า course ต้องไม่เป็น Null
   @Test
   void B5908042_testCourseMustNotBeNull() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
@@ -171,24 +217,6 @@ public class ExamScheduleTests {
   // เทสค่า room ต้องไม่เป็น Null
   @Test
   void B5908042_testRoomMustNotBeNull() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
@@ -212,24 +240,6 @@ public class ExamScheduleTests {
   // เทสค่า academicYear ต้องไม่เป็น Null
   @Test
   void B5908042_testAcademicYearMustNotBeNull() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
@@ -253,28 +263,10 @@ public class ExamScheduleTests {
   // เทสค่า academicYear ต้องตรงกับ pattern
   @Test
   void B5908042_testAcademicYearmustNotBePattern() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
-    examSchedule.setAcademicYear("Twenty and Twenty"); // test ใส่ค่า academicYear เป็นตังอักษร
+    examSchedule.setAcademicYear("Twenty and Twenty"); // test ใส่ค่า academicYear เป็นตัวอักษร
     examSchedule.setCourse(course);
     examSchedule.setRoom(room);
     examSchedule.setDate(date);
@@ -294,24 +286,6 @@ public class ExamScheduleTests {
   // เทสค่า academicYear ต้องไม่เป็น 3 digit
   @Test
   void B5908042_testAcademicYearmustNotBe3Digits() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
@@ -335,24 +309,6 @@ public class ExamScheduleTests {
   // เทสค่า academicYear ต้องไม่เป็น 5 digit
   @Test
   void B5908042_testAcademicYearmustNotBe5Digits() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
@@ -373,27 +329,9 @@ public class ExamScheduleTests {
     assertEquals("academicYear", violation.getPropertyPath().toString());
   }
 
-  // เทสค่า Date ต้องไม่เป็น Null
+  // เทสค่า date ต้องไม่เป็น Null
   @Test
   void B5908042_testDateMustNotBeNull() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
@@ -414,34 +352,17 @@ public class ExamScheduleTests {
     assertEquals("date", violation.getPropertyPath().toString());
   }
 
-  // เทสค่า Date ต้องไม่เป็นค่าในอดีต
+  // เทสค่า date ต้องไม่เป็นวันในอดีต
   @Test
   void B5908042_testDateMustNotBeADateInPast() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2019, 10, 19); // test ใส่ค่า date ที่เป็นอดีต
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
+    LocalDate datePast = LocalDate.of(2019, 10, 19); // test ใส่ค่า date ที่เป็นวันในอดีต
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
     examSchedule.setAcademicYear("2020");
     examSchedule.setCourse(course);
     examSchedule.setRoom(room);
-    examSchedule.setDate(date);
+    examSchedule.setDate(datePast);
     examSchedule.setStartTime(startTime);
     examSchedule.setEndTime(endTime);
     examSchedule.setAnnotation("ห้ามนำเครื่องคิดเลขเข้าห้องสอบ");
@@ -458,24 +379,6 @@ public class ExamScheduleTests {
   // เทสค่า startTime ต้องไม่เป็น Null
   @Test
   void B5908042_testStartTimeMustNotBeNull() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
@@ -499,24 +402,6 @@ public class ExamScheduleTests {
   // เทสค่า endTime ต้องไม่เป็น Null
   @Test
   void B5908042_testEndTimeMustNotBeNull() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
@@ -540,24 +425,6 @@ public class ExamScheduleTests {
   // เทสค่า annotation ต้องไม่เป็น Null
   @Test
   void B5908042_testAnnotationMustNotBeNull() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
@@ -581,24 +448,6 @@ public class ExamScheduleTests {
   // เทสค่า annotation ต้องไม่น้อยกว่า 5 ตัวอักษร
   @Test
   void B5908042_testAnnotationMustNotLessThan5Characters() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
@@ -622,24 +471,6 @@ public class ExamScheduleTests {
   // เทสค่า annotation ต้องไม่เกิน 200 ตัวอักษร
   @Test
   void B5908042_testAnnotationMustNotMoreThan5Characters() {
-    // สร้าง object semester
-    Semester semester = new Semester();
-    semester.setSem("1");
-    semester = semesterRepository.saveAndFlush(semester);
-    // สร้าง object course
-    Course course = new Course();
-    course.setSubNum("523351");
-    course.setSubName("FORMAL METHODS AND COMPUTABILITY");
-    course.setCredit(4);
-    course = courseRepository.saveAndFlush(course);
-    //สร้าง object room
-    Room room = new Room();
-    room.setName("B4104");
-    room = roomRepository.saveAndFlush(room);
-    // set date and time
-    LocalDate date = LocalDate.of(2020, 12, 25);
-    LocalTime startTime = LocalTime.of(9, 30);
-    LocalTime endTime = LocalTime.of(11, 30);
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
