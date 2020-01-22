@@ -44,11 +44,10 @@ public class PetitionController {
   public Collection<Petition> petitions() {
     return petitionRepository.findAll().stream().collect(Collectors.toList());
   }
-  @PostMapping("/petition/{student_id}/{petitionType_id}/{title}/{detail}")
+  @PostMapping("/petition/{student_id}/{petitionType_id}/{detail}")
   public Petition newPetition(Petition newPetition,
                               @PathVariable long student_id,
                               @PathVariable long petitionType_id,
-                              @PathVariable String titile,
                               @PathVariable String detail) {
 
     Student student = studentRepository.findById(student_id);
@@ -58,7 +57,6 @@ public class PetitionController {
 
     newPetition.setStudent(student);
     newPetition.setPetitionType(petitionType);
-    newPetition.setTitle(titile);
     newPetition.setDetail(detail);
     newPetition.setPetitionDate(petitionDate);
 

@@ -24,6 +24,6 @@ public class RoomDataloader implements ApplicationRunner {
             roomRepository.save(room);
         });
 
-        roomRepository.findAll().forEach(System.out::println);
+        //roomRepository.findAll().forEach(System.out::println);
     }
 }
