@@ -24,11 +24,6 @@ public class Petition  {
   @Column(name = "PETITION_ID", unique = true, nullable = true)
   private Long id;
 
-  @Column(name = "TITLE")
-  @NotNull(message = "Title cannot be null")
-  @Size(min = 5, max = 50, message = "Title must be between 5 and 50 characters")
-  private  String title;
-
   @Column(name = "DETAIL")
   @NotNull(message = "Detail cannot be null")
   @Size(min = 5, max = 200, message = "About Me must be between 5 and 200 characters")
