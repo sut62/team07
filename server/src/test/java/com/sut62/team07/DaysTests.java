@@ -4,15 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Optional;
 import java.util.Set;
-
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
 import com.sut62.team07.entity.Days;
 import com.sut62.team07.repository.DaysRepository;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +20,7 @@ public class DaysTests {
 
     private Validator validator;
 
-    @Autowired
-    private DaysRepository daysRepository;
+    @Autowired private DaysRepository daysRepository;
 
     @BeforeEach
     public void setup() {
