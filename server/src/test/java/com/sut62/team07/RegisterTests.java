@@ -147,7 +147,7 @@ public class RegisterTests {
         assertEquals("note", v.getPropertyPath().toString());
     }
 
-    // Note น้อยกว่า 4 ตัว
+    // Note น้อยกว่า 5  ตัว
     @Test
     void B6007089_test_NoteSizelessthan5() {
         System.out.println("\n=======================================");
@@ -157,7 +157,7 @@ public class RegisterTests {
         register.setSub_num("523332");
         register.setCredit(4);
         register.setRegisterDate(registerDate);
-        register.setNote("nn");
+        register.setNote("กด");
 
         Set<ConstraintViolation<Register>> result = validator.validate(register);
 
@@ -180,7 +180,7 @@ public class RegisterTests {
         register.setSub_num("523332");
         register.setCredit(4);
         register.setRegisterDate(registerDate);
-        register.setNote("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+        register.setNote("กกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกกก");
 
         Set<ConstraintViolation<Register>> result = validator.validate(register);
 
@@ -193,8 +193,28 @@ public class RegisterTests {
         assertEquals("note", v.getPropertyPath().toString());
     }
 
+
+     @Test
+    void B6007089_testNotePattern() {
+        // สร้าง
+        Register register = new Register();
+        register.setSub_num("523332");
+        register.setCredit(4);
+        register.setRegisterDate(registerDate);
+        register.setNote("Nueng Wong");
+
+        Set<ConstraintViolation<Register>> result = validator.validate(register);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+       ConstraintViolation<Register> v = result.iterator().next();
+        assertEquals("must match \"^[ก-๏\\-]+$\"", v.getMessage());
+        assertEquals("note", v.getPropertyPath().toString());
+    }
+
     // ======================================================================
-    // = [ Test rentDate] =
+    // =[ Test rentDate] =
     // ======================================================================
     @Test
     void B6007089_test_RegisterDateMustNotBeNull() {

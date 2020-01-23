@@ -8,6 +8,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
 @Data
@@ -25,6 +26,7 @@ public class Register {
     private @NotNull String sub_num;
     
     @Size(max=30,min=5)
+    @Pattern(regexp = "^[ก-๏\\-]+$")
     private @NotNull String note;
 
     @PositiveOrZero
@@ -51,33 +53,17 @@ public class Register {
     private Student registerBy;
 
 
-	// public void setRegisterBy(Student registerBy) {
-        //         this.registerBy = registerBy;
-	// }
-
-	// public void setRegisterDate(LocalDateTime date) {
-        //         this.registerDate = date;
-	// }
+	
 
 	public void setSemester(Semester inSemester) {
                 this.inSemester = inSemester;
 	}
 
-	// public void setChooseSec(Section chooseSec) {
-        //         this.chooseSec = chooseSec;
-	// }
 
 	public void setSubNum(String sub_num) {
         this.sub_num = sub_num;
 	}
 
 
-	// public void setCredit(int credit) {
-        // this.credit = credit;
-	// }
-
-	// public int getCredit() {
-	// 	return credit;
-	// }
         
 }

@@ -176,11 +176,12 @@ public class LecturerDataloader implements ApplicationRunner {
             programInfoRepository.save(programInfo);
         });
 
-        Stream.of("ชั้นปีการศึกษาที่ 1", "ชั้นปีการศึกษาที่ 2", "ชั้นปีการศึกษาที่ 3", "ชั้นปีการศึกษาที่ 4").forEach(name -> {
-            Year year = new Year();
-            year.setName(name);
-            yearRepository.save(year);
-        });
+        Stream.of("ชั้นปีการศึกษาที่ 1", "ชั้นปีการศึกษาที่ 2", "ชั้นปีการศึกษาที่ 3", "ชั้นปีการศึกษาที่ 4")
+                .forEach(name -> {
+                    Year year = new Year();
+                    year.setName(name);
+                    yearRepository.save(year);
+                });
 
         Stream.of("1", "2", "3").forEach(name -> { // aum
             Semester semester = new Semester(); // สร้าง Object Semester
@@ -204,18 +205,150 @@ public class LecturerDataloader implements ApplicationRunner {
                 .build();
         lecturer = lecturerRepository.save(lecturer);
 
-        Course course1 = Course.builder().courseCode("523331").credit(4).name("System Analysis and Design")
-                .lecturer(lecturer).programInfo(programInfoRepository.getOne(1L))
-                .trimester(trimesterRepository.getOne(1L)).type(typeRepository.getOne(1L)).build();
+        Course course1 = Course.builder()
+                .courseCode("523331")
+                .credit(4)
+                .name("SYSTEM ANALYSIS AND DESIGN")
+                .lecturer(lecturer)
+                .programInfo(programInfoRepository.getOne(1L))
+                .trimester(trimesterRepository.getOne(1L))
+                .type(typeRepository.getOne(1L)).build();
         course1 = courseRepository.save(course1);
 
+        Course course2 = Course.builder()
+                .courseCode("523371")
+                .credit(4)
+                .name("MICROPROCESSORS")
+                .lecturer(lecturer)
+                .programInfo(programInfoRepository.getOne(1L))
+                .trimester(trimesterRepository.getOne(1L))
+                .type(typeRepository.getOne(1L)).build();
+        course2 = courseRepository.save(course2);
+
+        Course course3 = Course.builder()
+                .courseCode("523301")
+                .credit(2)
+                .name("COMPUTER STATISTICS")
+                .lecturer(lecturer)
+                .programInfo(programInfoRepository.getOne(1L))
+                .trimester(trimesterRepository.getOne(1L))
+                .type(typeRepository.getOne(1L)).build();
+        course3 = courseRepository.save(course3);
+
+        Course course4 = Course.builder()
+                .courseCode("523351")
+                .credit(4)
+                .name("FORMAL METHODS AND COMPUTABILITY")
+                .lecturer(lecturer)
+                .programInfo(programInfoRepository.getOne(1L))
+                .trimester(trimesterRepository.getOne(1L))
+                .type(typeRepository.getOne(1L)).build();
+        course4 = courseRepository.save(course4);
+
+        Course course5 = Course.builder()
+                .courseCode("202212")
+                .credit(3)
+                .name("MAN, ECONOMY AND DEVELOPMENT")
+                .lecturer(lecturer)
+                .programInfo(programInfoRepository.getOne(1L))
+                .trimester(trimesterRepository.getOne(1L))
+                .type(typeRepository.getOne(1L)).build();
+        course5 = courseRepository.save(course5);
+
+        Course course6 = Course.builder()
+                .courseCode("523232")
+                .credit(4)
+                .name("OBJECT-ORIENTED TECHNOLOGY")
+                .lecturer(lecturer)
+                .programInfo(programInfoRepository.getOne(1L))
+                .trimester(trimesterRepository.getOne(1L))
+                .type(typeRepository.getOne(1L)).build();
+        course6 = courseRepository.save(course6);
+
+        // sa
         Section section1 = new Section();
         section1.setSec("1");
         section1.setSubInSec(course1);
-        section1.setTime("11:30 - 13:30");
-
+        section1.setTime("Tu12:00-13:00 B4101, We17:00-20:00 Lab_Com1");
         section1 = sectionRepository.save(section1);
 
-    }
+        Section sec2 = new Section();
+        sec2.setSec("2");
+        sec2.setSubInSec(course1);
+        sec2.setTime("Tu12:00-13:00 B4101, We17:00-20:00 Lab_Com2");
+        sec2 = sectionRepository.save(sec2);
+
+        Section sec3 = new Section();
+        sec3.setSec("3");
+        sec3.setSubInSec(course1);
+        sec3.setTime("Tu12:00-13:00 B4101, We17:00-20:00 Lab_Com3");
+        sec3 = sectionRepository.save(sec3);
+
+        // micro
+        Section sec1_2 = new Section();
+        sec1_2.setSec("1");
+        sec1_2.setSubInSec(course2);
+        sec1_2.setTime("Tu13:00-15:00 B1215, We13:00-15:00 B1215");
+        sec1_2 = sectionRepository.save(sec1_2);
+
+        Section sec2_2 = new Section();
+        sec2_2.setSec("2");
+        sec2_2.setSubInSec(course2);
+        sec2_2.setTime("Tu13:00-15:00 B1231, We13:00-15:00 B1125");
+        sec2_2 = sectionRepository.save(sec2_2);
+
+        Section sec3_2 = new Section();
+        sec3_2.setSec("3");
+        sec3_2.setSubInSec(course2);
+        sec3_2.setTime("Tu13:00-15:00 B1127, We13:00-15:00 B1127	");
+        sec3_2 = sectionRepository.save(sec3_2);
+
+        Section sec4_2 = new Section();
+        sec4_2.setSec("4");
+        sec4_2.setSubInSec(course2);
+        sec4_2.setTime("Tu13:00-15:00 B1119, We13:00-15:00 B1119	");
+        sec4_2 = sectionRepository.save(sec4_2);
+
+        // com stat
+        Section sec1_3 = new Section();
+        sec1_3.setSec("1");
+        sec1_3.setSubInSec(course3);
+        sec1_3.setTime("Th09:00-12:00 B1211, Fr13:00-16:00 F11-422.Software");
+        sec1_3 = sectionRepository.save(sec1_3);
+
+        Section sec2_3 = new Section();
+        sec2_3.setSec("2");
+        sec2_3.setSubInSec(course3);
+        sec2_3.setTime("Th09:00-12:00 B1211, Fr16:00-18:00 F11-422.Software");
+        sec2_3 = sectionRepository.save(sec2_3);
+
+        // formal
+        Section sec1_4 = new Section();
+        sec1_4.setSec("1");
+        sec1_4.setSubInSec(course4);
+        sec1_4.setTime("Th09:00-12:00 B1211, Fr13:00-15:00 F11-422.Software");
+        sec1_4 = sectionRepository.save(sec1_4);
+
+        Section sec2_4 = new Section();
+        sec2_4.setSec("2");
+        sec2_4.setSubInSec(course4);
+        sec2_4.setTime("Tu12:00-13:00 B4101, We17:00-20:00 Lab_Com3");
+        sec2_4 = sectionRepository.save(sec2_4);
+
+        // man eco
+        Section sec1_5 = new Section();
+        sec1_5.setSec("1");
+        sec1_5.setSubInSec(course5);
+        sec1_5.setTime("Mo10:00-12:00 B1127, We13:00-15:00 B1121");
+        sec1_5 = sectionRepository.save(sec1_5);
+
+        // java
+        Section sec1_6 = new Section();
+        sec1_6.setSec("1");
+        sec1_6.setSubInSec(course6);
+        sec1_6.setTime("Mo09:00-12:00 F11-422.Software, Mo13:00-15:00 F11-422.Software");
+        sec1_6 = sectionRepository.save(sec1_6);
+
+    };
 
 }

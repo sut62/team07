@@ -19,7 +19,7 @@ public class Section {
 
     private @NotNull String time;
 
-    // *-1 with subject
+    // *-1 with course
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Course.class)
     private Course subInSec;
 
