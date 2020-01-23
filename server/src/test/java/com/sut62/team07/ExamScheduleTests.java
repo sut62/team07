@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -21,7 +20,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DataJpaTest
 public class ExamScheduleTests {
@@ -82,7 +80,7 @@ public class ExamScheduleTests {
         .build();
     registrationOfficer = registrationOfficerRepository.saveAndFlush(registrationOfficer);
     //เตรียมข้อมูล lecturer
-    Lecturer lecturer = Lecturer.builder()
+    lecturer = Lecturer.builder()
         .email("gg@gmail.com")
         .lecturerCode("A0001")
         .name("John Doe")
