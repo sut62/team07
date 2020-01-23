@@ -29,12 +29,10 @@ public class TeachtableTests {
     @Autowired private SemesterRepository semesterRepository;
     @Autowired private DaysRepository daysRepository;
     @Autowired private RoomRepository roomRepository;
-
     @Autowired private CourseRepository courseRepository;
     @Autowired private TrimesterRepository trimesterRepository;
     @Autowired private TypeRepository typeRepository;
     @Autowired private ProgramInfoRepository programInfoRepository;
-
     @Autowired private LecturerRepository lecturerRepository;
     @Autowired private MajorRepository majorRepository;
     @Autowired private InstituteRepository instituteRepository;

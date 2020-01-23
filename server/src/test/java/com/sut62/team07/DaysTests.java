@@ -17,9 +17,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
 public class DaysTests {
-
     private Validator validator;
-
     @Autowired private DaysRepository daysRepository;
 
     @BeforeEach
