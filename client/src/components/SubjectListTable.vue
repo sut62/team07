@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" persistent class="mx-auto">
     <template v-slot:activator="{ on }">
-      <v-btn color="primary" v-on="on" expanded>เลือกรายวิชาที่เปิดสอน</v-btn>
+      <v-btn color="primary" v-on="on" expanded>รายวิชาที่เปิดสอน</v-btn>
     </template>
     <v-card raised>
       <v-toolbar color="primary">
@@ -51,6 +51,10 @@ export default {
         text: "หน่วยกิต",
         value: "credit"
       },
+      {text: "หลักสูตร",value: "programInfo.name"},
+      {text: "ประเภทวิชา",value: "type.name"},
+      {text: "ภาคเรียน",value: "trimester.name"},
+      {text: "อาจารย์ผู้สอน",value: "lecturer.name"},
     ]
   }),
   validations: {

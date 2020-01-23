@@ -4,6 +4,7 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <span class="title ml-3 mr-5">ระบบลงทะเบียนเรียน</span>
       <v-spacer />
+      <subject-list-table />
     </v-app-bar>
     <v-navigation-drawer app v-model="drawer" clipped color="secondary">
       <!-- <v-list-item>
@@ -49,6 +50,7 @@
           <v-list-item-title>เพิ่มตารางสอนอาจารย์</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+      
 
       <template v-slot:append>
         <div class="pa-2">
@@ -65,7 +67,12 @@
 </template>
 
 <script>
+import SubjectListTable from '@/components/SubjectListTable';
+
 export default {
+  components: {
+    SubjectListTable
+  },
   data: () => ({
     drawer: null
   }),
