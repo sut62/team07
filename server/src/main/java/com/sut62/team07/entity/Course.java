@@ -9,6 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 import lombok.AllArgsConstructor;
@@ -29,13 +30,16 @@ public class Course {
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_seq")
         private Long id;
 
+        @NotNull(message = "CourseCode cannot be null")
         @Pattern(regexp = "\\d{6}")
-        private @NotNull String courseCode;
+        private String courseCode;
 
-        private @NotNull String name;
+        @NotNull(message = "Name cannot be null")
+        private String name;
 
-        @Min(1)
-        private @NotNull int credit;
+        @Max(value = 4, message = "Credit should not be less than 1")
+        @NotNull(message = "Credit cannot be null")
+        private int credit;
 
         // @ManyToOne
         // private Major major;
@@ -52,15 +56,15 @@ public class Course {
                 credit = string;
         }
 
-        @NotNull
+        @NotNull(message = "Trimester cannot be null")
         @ManyToOne
         private Trimester trimester;
 
-        @NotNull
+        @NotNull(message = "Type cannot be null")
         @ManyToOne
         private Type type;
 
-        @NotNull
+        @NotNull(message = "ProgramInfo cannot be null")
         @ManyToOne
         private ProgramInfo programInfo;
 
