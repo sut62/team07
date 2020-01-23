@@ -1,15 +1,12 @@
 package com.sut62.team07;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.Optional;
 import java.util.Set;
-
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
 import com.sut62.team07.entity.Gender;
 import com.sut62.team07.entity.Institute;
 import com.sut62.team07.entity.Lecturer;
@@ -22,7 +19,6 @@ import com.sut62.team07.repository.LecturerRepository;
 import com.sut62.team07.repository.MajorRepository;
 import com.sut62.team07.repository.PrefixRepository;
 import com.sut62.team07.repository.RegistrationOfficerRepository;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,7 +48,7 @@ public class LecturerTests {
     @Autowired
     private RegistrationOfficerRepository registrationOfficerRepository;
 
-    // initial object
+     //initial object
     private Major major;
     private Prefix prefix;
     private RegistrationOfficer registrationOfficer;
@@ -126,6 +122,11 @@ public class LecturerTests {
         assertEquals("John Doe", found.get().getName());
         assertEquals("1234567890123", found.get().getPersonalId());
         assertEquals("0987458745", found.get().getTel());
+        assertEquals("Albert Wesker", found.get().getCreatedBy().getName());
+        assertEquals("Engineering", found.get().getMajor().getInstitute().getName());
+        assertEquals("Computer Engineering", found.get().getMajor().getName());
+        assertEquals("Dr.", found.get().getPrefix().getName());
+        assertEquals("Male", found.get().getGender().getName());
     }
 
     // lecturerCode ต้องไม่ใช่ค่า null
@@ -503,7 +504,7 @@ public class LecturerTests {
     }
 
     @Test
-    void genderMustBeNotNull() {
+    void B5915088_genderMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -526,7 +527,7 @@ public class LecturerTests {
     }
 
     @Test
-    void createdByMustBeNotNull() {
+    void B5915088_createdByMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -549,7 +550,7 @@ public class LecturerTests {
     }
 
     @Test
-    void majorMustBeNotNull() {
+    void B5915088_majorMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -572,7 +573,7 @@ public class LecturerTests {
     }
 
     @Test
-    void prefixMustBeNotNull() {
+    void B5915088_prefixMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
