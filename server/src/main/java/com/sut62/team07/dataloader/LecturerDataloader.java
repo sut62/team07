@@ -196,20 +196,29 @@ public class LecturerDataloader implements ApplicationRunner {
 
         registrationOfficerRepository.save(registrationOfficer);
 
-        Lecturer lecturer = Lecturer.builder().email("gg@gmail.com").lecturerCode("A0001").name("Tom")
+        Lecturer lecturer1 = Lecturer.builder().email("gg@gmail.com").lecturerCode("A0001").name("Tom")
                 .password("12345678").personalId("1234567890123").tel("0123456789")
 
                 .createdBy(registrationOfficerRepository.getOne(1L)).gender(genderRepository.getOne(1L))
                 .major(majorRepository.getOne(1L)).prefix(prefixRepository.getOne(1L))
 
                 .build();
-        lecturer = lecturerRepository.save(lecturer);
+        lecturer1 = lecturerRepository.save(lecturer1);
+
+        Lecturer lecturer2 = Lecturer.builder().email("eieiza@gmail.com").lecturerCode("A0002").name("Sompong")
+                .password("99999999").personalId("2345678901234").tel("0888888888")
+
+                .createdBy(registrationOfficerRepository.getOne(1L)).gender(genderRepository.getOne(1L))
+                .major(majorRepository.getOne(1L)).prefix(prefixRepository.getOne(1L))
+
+                .build();
+        lecturer2 = lecturerRepository.save(lecturer2);
 
         Course course1 = Course.builder()
                 .courseCode("523331")
                 .credit(4)
                 .name("SYSTEM ANALYSIS AND DESIGN")
-                .lecturer(lecturer)
+                .lecturer(lecturer1)
                 .programInfo(programInfoRepository.getOne(1L))
                 .trimester(trimesterRepository.getOne(1L))
                 .type(typeRepository.getOne(1L)).build();
@@ -219,7 +228,7 @@ public class LecturerDataloader implements ApplicationRunner {
                 .courseCode("523371")
                 .credit(4)
                 .name("MICROPROCESSORS")
-                .lecturer(lecturer)
+                .lecturer(lecturer1)
                 .programInfo(programInfoRepository.getOne(1L))
                 .trimester(trimesterRepository.getOne(1L))
                 .type(typeRepository.getOne(1L)).build();
@@ -229,7 +238,7 @@ public class LecturerDataloader implements ApplicationRunner {
                 .courseCode("523301")
                 .credit(2)
                 .name("COMPUTER STATISTICS")
-                .lecturer(lecturer)
+                .lecturer(lecturer1)
                 .programInfo(programInfoRepository.getOne(1L))
                 .trimester(trimesterRepository.getOne(1L))
                 .type(typeRepository.getOne(1L)).build();
@@ -239,7 +248,7 @@ public class LecturerDataloader implements ApplicationRunner {
                 .courseCode("523351")
                 .credit(4)
                 .name("FORMAL METHODS AND COMPUTABILITY")
-                .lecturer(lecturer)
+                .lecturer(lecturer1)
                 .programInfo(programInfoRepository.getOne(1L))
                 .trimester(trimesterRepository.getOne(1L))
                 .type(typeRepository.getOne(1L)).build();
@@ -249,7 +258,7 @@ public class LecturerDataloader implements ApplicationRunner {
                 .courseCode("202212")
                 .credit(3)
                 .name("MAN, ECONOMY AND DEVELOPMENT")
-                .lecturer(lecturer)
+                .lecturer(lecturer1)
                 .programInfo(programInfoRepository.getOne(1L))
                 .trimester(trimesterRepository.getOne(1L))
                 .type(typeRepository.getOne(1L)).build();
@@ -259,11 +268,31 @@ public class LecturerDataloader implements ApplicationRunner {
                 .courseCode("523232")
                 .credit(4)
                 .name("OBJECT-ORIENTED TECHNOLOGY")
-                .lecturer(lecturer)
+                .lecturer(lecturer1)
                 .programInfo(programInfoRepository.getOne(1L))
                 .trimester(trimesterRepository.getOne(1L))
                 .type(typeRepository.getOne(1L)).build();
         course6 = courseRepository.save(course6);
+
+        Course course7 = Course.builder()
+                .courseCode("202111")
+                .credit(4)
+                .name("THAI FOR COMMUNICATION")
+                .lecturer(lecturer2)
+                .programInfo(programInfoRepository.getOne(7L))
+                .trimester(trimesterRepository.getOne(2L))
+                .type(typeRepository.getOne(4L)).build();
+        course7 = courseRepository.save(course7);
+
+        Course course8 = Course.builder()
+        .courseCode("202324")
+        .credit(4)
+        .name("PLURI-CULTURAL THAI STUDIES")
+        .lecturer(lecturer2)
+        .programInfo(programInfoRepository.getOne(7L))
+        .trimester(trimesterRepository.getOne(2L))
+        .type(typeRepository.getOne(4L)).build();
+        course8 = courseRepository.save(course8);
 
         // sa
         Section section1 = new Section();
