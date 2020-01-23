@@ -75,7 +75,7 @@
            <v-row justify="center">
           <v-col cols="12" sm="6" md="3">
           <v-text-field
-            label="หมายเหตุ"
+            label="หมายเหตุ(ภาษาไทย)"
              v-model="register.note"
              required
           ></v-text-field>
