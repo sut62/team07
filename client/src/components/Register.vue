@@ -70,7 +70,17 @@
                       ></v-select>
                     </v-col>
                 </v-row>
-                
+
+                   <!-- Note  -->
+           <v-row justify="center">
+          <v-col cols="12" sm="6" md="3">
+          <v-text-field
+            label="หมายเหตุ"
+             v-model="register.note"
+             required
+          ></v-text-field>
+        </v-col>
+           </v-row>      
 
 
               <!-- submit -->
@@ -88,6 +98,8 @@
 
               </div>
             </v-form>
+            
+          
         </v-flex>
       </v-layout>
     </v-container>
@@ -110,7 +122,9 @@ export default {
         sectionId: "",
         courseId:"",
         courseCode:null,
-        credit:null
+        credit:null,
+        note:""
+      
       },
       semesters:[],
       students:[],
@@ -121,7 +135,8 @@ export default {
       getSectionCheck: false,
       saveCheck: false,
       studentName: "",
-      courseName: ""
+      courseName: "",
+      note:""
     };
   },
   methods: {
@@ -210,13 +225,14 @@ export default {
             + "/" +
             this.register.courseCode
             + "/" +
-            this.register.credit,
-          this.register
+            this.register.credit
+             + "/" +
+            this.register.note
         )
-        // .then(response => {
-        //   console.log(response);
-        //   this.$router.push("viewreg");
-        // })
+        .then(response => {
+          console.log(response);
+          // this.$router.push("viewreg");
+        })
         .catch(e => {
           console.log(e);
         });
@@ -229,7 +245,8 @@ export default {
         sectionId: "",
         courseId:"",
         courseCode:null,
-        credit:null
+        credit:null,
+        note:"",
       }
           
         },
@@ -239,6 +256,7 @@ export default {
     this.getCourses();
     this.getSections();
     this.getSubnum();
+ 
     },
     getCourse(course) {
       this.register.courseId = course[0].id
