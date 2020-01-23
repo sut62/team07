@@ -9,8 +9,7 @@ import java.util.stream.Collectors;
 import java.time.LocalDateTime;
 import com.sut62.team07.entity.*;
 import com.sut62.team07.repository.*;
-// import com.okta.springbootvue.Student.entity.Student;
-// import com.okta.springbootvue.Register.repository.StudentRepsitory;
+
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -60,8 +59,8 @@ public class RegisterController {
     newRegister.setChooseSec(chooseSec); //section
     newRegister.setRegisterDate(registerDate); //set date
     newRegister.setSubNum((String)courseCode); //set sub_num
-    newRegister.setCredit(credit); //set credit
-    newRegister.setNote(note); //set credit
+    newRegister.setCredit(credit); 
+    newRegister.setNote(note); 
     
 
     
