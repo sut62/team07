@@ -8,15 +8,10 @@ import javax.validation.constraints.Pattern;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.FetchType;
-import com.fasterxml.jackson.annotation.*;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.time.LocalDate;
 import java.time.LocalTime;
-
-import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

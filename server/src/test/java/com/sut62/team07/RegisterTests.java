@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -17,9 +16,6 @@ import java.util.Set;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-
 
 @DataJpaTest
 public class RegisterTests {
@@ -34,6 +30,7 @@ public class RegisterTests {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
+
     LocalDateTime registerDate = LocalDateTime.now();
 
     // ตั้งชื่อ test ให้สอดคล้องกับสิ่งที่ต้อง test
@@ -52,9 +49,9 @@ public class RegisterTests {
         assertEquals("หมายเหตุ", found.get().getNote());
 
     }
-    //======================================================================
-    //                            [ Test Sub_num ]                       
-    //======================================================================
+    // ======================================================================
+    // [ Test Sub_num ]
+    // ======================================================================
 
     @Test
     void B6007089_test_SubNumMustNotBeNull() {
@@ -67,7 +64,6 @@ public class RegisterTests {
         register.setRegisterDate(registerDate);
         register.setNote("หมายเหตุ");
 
-
         Set<ConstraintViolation<Register>> result = validator.validate(register);
         assertEquals(1, result.size());
 
@@ -76,10 +72,9 @@ public class RegisterTests {
         assertEquals("sub_num", v.getPropertyPath().toString());
     }
 
-    
-    //======================================================================
-    //                            [ Test Credit ]                       
-    //======================================================================
+    // ======================================================================
+    // [ Test Credit ]
+    // ======================================================================
 
     @Test
     void B6007089_test_CreditMustNotBeNull() {
@@ -91,7 +86,6 @@ public class RegisterTests {
         register.setCredit(null);
         register.setRegisterDate(registerDate);
         register.setNote("หมายเตุ");
-
 
         Set<ConstraintViolation<Register>> result = validator.validate(register);
 
@@ -127,10 +121,8 @@ public class RegisterTests {
         assertEquals("credit", v.getPropertyPath().toString());
     }
 
-
-
     // ======================================================================
-    //                            [ Test Note ]                       
+    // [ Test Note ]
     // ======================================================================
 
     @Test
@@ -201,9 +193,9 @@ public class RegisterTests {
         assertEquals("note", v.getPropertyPath().toString());
     }
 
-    //======================================================================
-    //=                             [ Test rentDate]                       =
-    //======================================================================
+    // ======================================================================
+    // = [ Test rentDate] =
+    // ======================================================================
     @Test
     void B6007089_test_RegisterDateMustNotBeNull() {
         System.out.println("\n=======================================");
@@ -218,30 +210,10 @@ public class RegisterTests {
         Set<ConstraintViolation<Register>> result = validator.validate(register);
         assertEquals(1, result.size());
 
-       // error message ตรงชนิด และถูก field
-       ConstraintViolation<Register> v = result.iterator().next();
-       assertEquals("must not be null", v.getMessage());
-       assertEquals("registerDate", v.getPropertyPath().toString());
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Register> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("registerDate", v.getPropertyPath().toString());
     }
 
-    
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

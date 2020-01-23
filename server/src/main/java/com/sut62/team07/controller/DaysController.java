@@ -4,15 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.sut62.team07.repository.*;
 import com.sut62.team07.entity.*;
-import com.sut62.team07.*;
 import java.util.Collection;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 public class DaysController {

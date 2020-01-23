@@ -1,14 +1,7 @@
 package com.sut62.team07.controller;
 
-import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.net.URLDecoder;
 
 import com.sut62.team07.entity.Course;
 import com.sut62.team07.entity.Lecturer;
@@ -20,8 +13,6 @@ import com.sut62.team07.repository.LecturerRepository;
 import com.sut62.team07.repository.TrimesterRepository;
 import com.sut62.team07.repository.TypeRepository;
 import com.sut62.team07.repository.ProgramInfoRepository;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
