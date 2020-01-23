@@ -34,6 +34,7 @@ public class Student {
     
 
     @Column(name="STUDENT_ID")
+    @Size(min=2,max=8)
     private @NotNull String student_id;
 
     @Column(name="STUDENT_PHONE")
@@ -47,7 +48,7 @@ public class Student {
     private @NotNull String student_email;
     
     @Column(name="Password")
-    @Size(min=8,max=15 , message = "plassword min8")
+    @Size(min=8,max=15)
     private @NotNull String password;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Major.class)
