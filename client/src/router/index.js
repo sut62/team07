@@ -53,6 +53,10 @@ const routes = [
       {
         path: 'tablereg',
         component: TableRegister
+      },
+      {
+        path: 'lecturer',
+        component: () => import('@/views/LecturerList')
       }
 
     ]
@@ -77,10 +81,13 @@ const routes = [
         path: 'examSchedule',
         component: ExamSchedule
       },
-
       {
         path: 'courses',
         component: () => import('@/components/Course')
+      },
+      {
+        path: 'register-lecturer-list',
+        component: () => import('@/views/LecturerList')
       }
     ]
   },
@@ -96,12 +103,12 @@ const routes = [
         path: 'courses',
         component: () => import('@/components/Course')
       },
+      // {
+      //   path: ':lecturerCode',
+      //   component: () => import('@/views/LecturerProfile')
+      // },
       {
-        path: ':lecturerCode',
-        component: () => import('@/views/LecturerProfile')
-      },
-      {
-        path: 'lecturer-list',
+        path: 'list',
         component: () => import('@/views/LecturerList')
       }
     ]

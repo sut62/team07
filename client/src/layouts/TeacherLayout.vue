@@ -6,7 +6,7 @@
       <v-spacer />
     </v-app-bar>
     <v-navigation-drawer app v-model="drawer" clipped color="secondary">
-      <v-list-item link color="cyan" :to="lecturer">
+      <v-list-item link color="cyan">
         <!-- <v-list-item-avatar>
           <v-img src="https://randomuser.me/api/portraits/men/78.jpg"/>
         </v-list-item-avatar> -->
@@ -26,7 +26,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item link to="lecturer-list" color="black">
+      <v-list-item link to="list" color="black">
         <v-list-item-action>
             <v-icon>mdi-account-multiple</v-icon>
           </v-list-item-action>
