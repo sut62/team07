@@ -4,7 +4,7 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <span class="title ml-3 mr-5">ระบบลงทะเบียนเรียน</span>
       <v-spacer />
-      <subject-list-table />
+      <!-- <subject-list-table /> -->
     </v-app-bar>
     <v-navigation-drawer app v-model="drawer" clipped color="secondary">
       <!-- <v-list-item>
@@ -54,7 +54,14 @@
         </v-list-item-content>
       </v-list-item>
 
-      
+      <v-list-item link to="courselist" color="black">
+        <v-list-item-action>
+            <v-icon>mdi-account-multiple</v-icon>
+          </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>รายชื่อวิชา</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
 
       
 
@@ -73,12 +80,12 @@
 </template>
 
 <script>
-import SubjectListTable from '@/components/SubjectListTable';
+// import SubjectListTable from '@/components/SubjectListTable';
 
 export default {
-  components: {
-    SubjectListTable
-  },
+  // components: {
+  //   SubjectListTable
+  // },
   data: () => ({
     drawer: null
   }),
