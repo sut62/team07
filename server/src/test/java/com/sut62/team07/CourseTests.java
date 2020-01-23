@@ -30,6 +30,8 @@ import com.sut62.team07.repository.TrimesterRepository;
 import com.sut62.team07.repository.TypeRepository;
 
 import org.junit.jupiter.api.AfterEach;
+import java.util.Set;
+import javax.validation.ConstraintViolation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +88,7 @@ public class CourseTests {
         validator = factory.getValidator();
 
         trimester = new Trimester();
-        trimester.setName("ภาคกเรียนที่ 1");
+        trimester.setName("ภาคเรียนที่ 1");
         trimester = trimesterRepository.saveAndFlush(trimester);
 
         type = new Type();
@@ -169,4 +171,161 @@ public class CourseTests {
         assertEquals(trimester, found.get().getTrimester());
         assertEquals(type, found.get().getType());
     }
+    
+    @Test
+  void B6019440_testcourseCodeMustNotBeNull() {
+    //สร้าง object course
+    Course course = new Course();
+        course.setCourseCode(null);
+        course.setCredit(4);
+        course.setName("Thai");
+        course.setProgramInfo(programInfo);
+        course.setTrimester(trimester);
+        course.setType(type);
+        course.setLecturer(lecturer);
+
+    Set<ConstraintViolation<Course>> result = validator.validate(course);
+    // result ต้องมี error 1 ค่าเท่านั้น
+    assertEquals(1, result.size());
+    // error message ตรงชนิด และถูก field
+    ConstraintViolation<Course> violation = result.iterator().next();
+    assertEquals("CourseCode cannot be null", violation.getMessage());
+    assertEquals("courseCode", violation.getPropertyPath().toString());
+  }
+
+  @Test
+  void B6019440_testcodeMustNoteq6() {
+    //สร้าง object course
+    Course course = new Course();
+        course.setCourseCode("12345");
+        course.setCredit(4);
+        course.setName("Thai");
+        course.setProgramInfo(programInfo);
+        course.setTrimester(trimester);
+        course.setType(type);
+        course.setLecturer(lecturer);
+
+    Set<ConstraintViolation<Course>> result = validator.validate(course);
+    // result ต้องมี error 1 ค่าเท่านั้น
+    assertEquals(1, result.size());
+    // error message ตรงชนิด และถูก field
+    ConstraintViolation<Course> violation = result.iterator().next();
+    assertEquals("must match \"\\d{6}\"", violation.getMessage());
+    assertEquals("courseCode", violation.getPropertyPath().toString());
+  }
+
+    @Test
+//credit มากกว่า 1 digit
+  void B6019440_testcreditMustNotmoreonedigit() {
+    //สร้าง object course
+    Course course = new Course();
+    course.setCourseCode("123456");
+    course.setCredit(11);//ใส่ค่า มากกว่า 1 ตัว
+    course.setName("Thai");
+    course.setProgramInfo(programInfo);
+    course.setTrimester(trimester);
+    course.setType(type);
+    course.setLecturer(lecturer);
+  
+
+    Set<ConstraintViolation<Course>> result = validator.validate(course);
+    // result ต้องมี error 1 ค่าเท่านั้น
+    assertEquals(1, result.size());
+    // error message ตรงชนิด และถูก field
+    ConstraintViolation<Course> violation = result.iterator().next();
+    assertEquals("Credit should not be less than 1", violation.getMessage());
+    assertEquals("credit", violation.getPropertyPath().toString());
+  }
+
+  @Test
+// name = null
+  void B6019440_testnameMustNotBeNull() {
+    //สร้าง object course
+    Course course = new Course();
+    course.setCourseCode("123456");
+    course.setCredit(4);
+    course.setName(null);//ใส่ค่า null
+    course.setProgramInfo(programInfo);
+    course.setTrimester(trimester);
+    course.setType(type);
+    course.setLecturer(lecturer);
+  
+
+    Set<ConstraintViolation<Course>> result = validator.validate(course);
+    // result ต้องมี error 1 ค่าเท่านั้น
+    assertEquals(1, result.size());
+    // error message ตรงชนิด และถูก field
+    ConstraintViolation<Course> violation = result.iterator().next();
+    assertEquals("Name cannot be null", violation.getMessage());
+    assertEquals("name", violation.getPropertyPath().toString());
+  }
+
+  @Test
+  // programInfo = null
+  void B6019440_testprogramMustNotBeNull() {
+    //สร้าง object course
+    Course course = new Course();
+    course.setCourseCode("123456");
+    course.setCredit(4);
+    course.setName("Thai");
+    course.setProgramInfo(null);//ใส่ค่า null
+    course.setTrimester(trimester);
+    course.setType(type);
+    course.setLecturer(lecturer);
+  
+
+    Set<ConstraintViolation<Course>> result = validator.validate(course);
+    // result ต้องมี error 1 ค่าเท่านั้น
+    assertEquals(1, result.size());
+    // error message ตรงชนิด และถูก field
+    ConstraintViolation<Course> violation = result.iterator().next();
+    assertEquals("ProgramInfo cannot be null", violation.getMessage());
+    assertEquals("programInfo", violation.getPropertyPath().toString());
+  }
+
+  @Test
+  // trimester = null
+  void B6019440_testTrimesterMustNotBeNull() {
+    //สร้าง object course
+    Course course = new Course();
+    course.setCourseCode("123456");
+    course.setCredit(4);
+    course.setName("Thai");
+    course.setProgramInfo(programInfo);
+    course.setTrimester(null);//ใส่ค่า null
+    course.setType(type);
+    course.setLecturer(lecturer);
+  
+
+    Set<ConstraintViolation<Course>> result = validator.validate(course);
+    // result ต้องมี error 1 ค่าเท่านั้น
+    assertEquals(1, result.size());
+    // error message ตรงชนิด และถูก field
+    ConstraintViolation<Course> violation = result.iterator().next();
+    assertEquals("Trimester cannot be null", violation.getMessage());
+    assertEquals("trimester", violation.getPropertyPath().toString());
+  }
+
+  @Test
+  // type = null
+  void B6019440_testTypeMustNotBeNull() {
+    //สร้าง object course
+    Course course = new Course();
+    course.setCourseCode("123456");
+    course.setCredit(4);
+    course.setName("Thai");
+    course.setProgramInfo(programInfo);
+    course.setTrimester(trimester);
+    course.setType(null);//ใส่ค่า null
+    course.setLecturer(lecturer);
+  
+
+    Set<ConstraintViolation<Course>> result = validator.validate(course);
+    // result ต้องมี error 1 ค่าเท่านั้น
+    assertEquals(1, result.size());
+    // error message ตรงชนิด และถูก field
+    ConstraintViolation<Course> violation = result.iterator().next();
+    assertEquals("Type cannot be null", violation.getMessage());
+    assertEquals("type", violation.getPropertyPath().toString());
+  }
 }
