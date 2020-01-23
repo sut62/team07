@@ -1,15 +1,12 @@
 package com.sut62.team07;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.Optional;
 import java.util.Set;
-
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
 import com.sut62.team07.entity.Gender;
 import com.sut62.team07.entity.Institute;
 import com.sut62.team07.entity.Lecturer;
@@ -22,7 +19,6 @@ import com.sut62.team07.repository.LecturerRepository;
 import com.sut62.team07.repository.MajorRepository;
 import com.sut62.team07.repository.PrefixRepository;
 import com.sut62.team07.repository.RegistrationOfficerRepository;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,7 +48,7 @@ public class LecturerTests {
     @Autowired
     private RegistrationOfficerRepository registrationOfficerRepository;
 
-    // initial object
+     //initial object
     private Major major;
     private Prefix prefix;
     private RegistrationOfficer registrationOfficer;
