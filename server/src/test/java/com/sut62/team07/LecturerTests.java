@@ -122,6 +122,11 @@ public class LecturerTests {
         assertEquals("John Doe", found.get().getName());
         assertEquals("1234567890123", found.get().getPersonalId());
         assertEquals("0987458745", found.get().getTel());
+        assertEquals("Albert Wesker", found.get().getCreatedBy().getName());
+        assertEquals("Engineering", found.get().getMajor().getInstitute().getName());
+        assertEquals("Computer Engineering", found.get().getMajor().getName());
+        assertEquals("Dr.", found.get().getPrefix().getName());
+        assertEquals("Male", found.get().getGender().getName());
     }
 
     // lecturerCode ต้องไม่ใช่ค่า null
@@ -499,7 +504,7 @@ public class LecturerTests {
     }
 
     @Test
-    void genderMustBeNotNull() {
+    void B5915088_genderMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -522,7 +527,7 @@ public class LecturerTests {
     }
 
     @Test
-    void createdByMustBeNotNull() {
+    void B5915088_createdByMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -545,7 +550,7 @@ public class LecturerTests {
     }
 
     @Test
-    void majorMustBeNotNull() {
+    void B5915088_majorMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
@@ -568,7 +573,7 @@ public class LecturerTests {
     }
 
     @Test
-    void prefixMustBeNotNull() {
+    void B5915088_prefixMustBeNotNull() {
         Lecturer lecturer = Lecturer.builder()
                 .email("gg@gmail.com")
                 .lecturerCode("A0001")
