@@ -20,7 +20,7 @@
 
       <v-list-item link to="register" color="black">
         <v-list-item-action>
-            <v-icon>mdi-account-plus</v-icon>
+            <v-icon>mdi-account-edit</v-icon>
           </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>ลงทะเบียนเรียน</v-list-item-title>
@@ -29,7 +29,7 @@
 
       <v-list-item link to="viewreg" color="black">
         <v-list-item-action>
-            <v-icon>mdi-account-plus</v-icon>
+            <v-icon>mdi-library-books</v-icon>
           </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>ผลการลงทะเบียนเรียน</v-list-item-title>
@@ -67,7 +67,7 @@
 
       <v-list-item link to="student-course" color="black">
         <v-list-item-action>
-            <v-icon>mdi-account-multiple</v-icon>
+            <v-icon>mdi-developer-board</v-icon>
           </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>รายชื่อวิชา</v-list-item-title>
