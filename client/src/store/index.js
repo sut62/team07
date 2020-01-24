@@ -9,7 +9,7 @@ export default new Vuex.Store({
     majors: null,
     institutes: null,
     genders: null,
-    courses: null,
+    courses: [],
     prefixs: null,
     specificMajor: null,
     lecturers: [],
