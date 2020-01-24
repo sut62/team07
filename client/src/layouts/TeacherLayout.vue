@@ -45,10 +45,6 @@
         </v-list-item-content>
       </v-list-item> -->
   
-    
-
-      
-
       <template v-slot:append>
         <v-row justify="center">
           <div class="pa-2">
