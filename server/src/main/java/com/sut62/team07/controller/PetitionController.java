@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
-import java.time.LocalDate;
 
 import com.sut62.team07.entity.*;
 import com.sut62.team07.repository.*;
@@ -39,12 +38,9 @@ public class PetitionController {
     Student student = studentRepository.findById(student_id);
     PetitionType petitionType = petitionTypeRepository.findById(petitionType_id);
 
-    LocalDate petitionDate = LocalDate.now();
-
     newPetition.setStudent(student);
     newPetition.setPetitionType(petitionType);
     newPetition.setDetail(detail);
-    newPetition.setPetitionDate(petitionDate);
 
     return petitionRepository.save(newPetition);
   }

@@ -27,9 +27,7 @@ public class StudentDataloader implements ApplicationRunner {
       Major major1 = majorRepository.findById(id1).get();
       Major major2 = majorRepository.findById(id2).get();
       Year year1 = yearRepository.findById(id1);
-      System.out.println("Why Year = " + year1);
       Year year2 = yearRepository.findById(id2);
-      System.out.println("Why Year = " + year2);
 
       Student student = new Student();
         student.setStudent_id("B5900000");
@@ -39,7 +37,7 @@ public class StudentDataloader implements ApplicationRunner {
         student.setYear(year1);
         student.setStudent_email("B5900000@gmail.com");
         student.setStudent_phone("0988888888");
-        student.setPassword("zx0123456");
+        student.setPassword("zx012345");
       studentRepository.save(student);
 
       Student student2 = new Student();
@@ -61,7 +59,7 @@ public class StudentDataloader implements ApplicationRunner {
        student3.setYear(year2);
        student3.setStudent_email("B5999999@gmail.com");
        student3.setStudent_phone("0980808080");
-       student3.setPassword("1597532486");
+       student3.setPassword("12341234");
       studentRepository.save(student3);
 
     //studentRepository.findAll().forEach(System.out::println);

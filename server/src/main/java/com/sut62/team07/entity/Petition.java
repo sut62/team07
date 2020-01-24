@@ -11,7 +11,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.time.LocalDate;
 
 @Data
 @Entity
@@ -28,10 +27,6 @@ public class Petition  {
   @NotNull(message = "Detail cannot be null")
   @Size(min = 5, max = 200, message = "About Me must be between 5 and 200 characters")
   private String detail;
-
-  @Column(name = "PETITION_DATE")
-  @NotNull(message = "Petition date cannot be null")
-  private LocalDate petitionDate;
 
   @ManyToOne(fetch = FetchType.EAGER, targetEntity = Student.class)
   @NotNull(message = "Student id cannot be null")
