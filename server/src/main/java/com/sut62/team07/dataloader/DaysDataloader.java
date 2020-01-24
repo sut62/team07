@@ -22,7 +22,7 @@ public class DaysDataloader implements ApplicationRunner {
             days.setName(name); // set ชื่อ (name) ให้ Object ชื่อ days
             daysRepository.save(days); // บันทึก Objcet ชื่อ days
         });
-        daysRepository.findAll().forEach(System.out::println);
+        //daysRepository.findAll().forEach(System.out::println);
     }
 
 }

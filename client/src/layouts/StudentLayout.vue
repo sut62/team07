@@ -84,7 +84,14 @@
         </v-list-item-content>
       </v-list-item>
 
-      
+      <v-list-item link to="petition" color="black">
+        <v-list-item-action>
+            <v-icon>mdi-ninja</v-icon>
+          </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>ยื่นคำร้อง</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
 
       <template v-slot:append>
         <!-- <v-row justify="center">

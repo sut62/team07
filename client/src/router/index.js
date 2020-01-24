@@ -10,6 +10,7 @@ import addTeachtable from '../components/addTeachtable';
 import SearchTeachtable from '../components/SearchTeachtable';
 import Course from '../components/Course';
 import StudentShowHistory from '../components/StudentShowHistory';
+import Petition from '../components/Petition.vue';
 
 Vue.use(VueRouter)
 
@@ -72,6 +73,10 @@ const routes = [
       {
         path: 'student-course',
         component: () => import('@/views/CourseList')
+      },
+      {
+        path: 'petition',
+        component: Petition
       }
 
     ]
