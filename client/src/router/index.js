@@ -57,11 +57,11 @@ const routes = [
       {
         path: 'lecturer',
         component: () => import('@/views/LecturerList')
-      },
-      {
-        path: 'courselist',
-        component: () => import('@/views/CourseList')
       }
+      // {
+      //   path: 'courselist',
+      //   component: () => import('@/views/CourseList')
+      // }
 
     ]
   },
@@ -92,11 +92,11 @@ const routes = [
       {
         path: 'register-lecturer-list',
         component: () => import('@/views/LecturerList')
-      },
-      {
-        path: 'courselist',
-        component: () => import('@/views/CourseList')
       }
+      // {
+      //   path: 'courselist',
+      //   component: () => import('@/views/CourseList')
+      // }
     ]
   },
   {
@@ -118,11 +118,11 @@ const routes = [
       {
         path: 'list',
         component: () => import('@/views/LecturerList')
-      },
-      {
-        path: 'courselist',
-        component: () => import('@/views/CourseList')
       }
+      // {
+      //   path: 'courselist',
+      //   component: () => import('@/views/CourseList')
+      // }
     ]
   }
 ]
