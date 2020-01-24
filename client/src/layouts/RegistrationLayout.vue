@@ -53,7 +53,7 @@
       
       <v-list-item link to="register-course-list" color="black">
         <v-list-item-action>
-            <v-icon>mdi-account-multiple</v-icon>
+            <v-icon>mdi-developer-board</v-icon>
           </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>รายชื่อวิชา</v-list-item-title>
