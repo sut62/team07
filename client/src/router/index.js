@@ -8,6 +8,7 @@ import StudentData from '../components/StudentData';
 import ExamSchedule from '../components/ExamSchedule';
 import addTeachtable from '../components/addTeachtable';
 import Course from '../components/Course';
+import StudentShowHistory from '../components/StudentShowHistory';
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,7 @@ const routes = [
     path: '/studentdata',
     component: StudentData
   },
+  
   {
     path: '/courses',
     component: Course
@@ -57,6 +59,10 @@ const routes = [
       {
         path: 'lecturer',
         component: () => import('@/views/LecturerList')
+      },
+      {
+        path: 'studentShowHistory',
+        component: StudentShowHistory
       }
       // {
       //   path: 'courselist',

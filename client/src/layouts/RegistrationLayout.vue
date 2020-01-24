@@ -51,24 +51,6 @@
         </v-list-item-content>
       </v-list-item>
       
-      <!-- <v-list-item link to="courselist" color="black">
-        <v-list-item-action>
-            <v-icon>mdi-account-multiple</v-icon>
-          </v-list-item-action>
-        <v-list-item-content>
-          <v-list-item-title>รายชื่อวิชา</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item> -->
-
-       <v-list-item link to="tablereg" color="black">
-        <v-list-item-action>
-            <v-icon>mdi-table-large</v-icon>
-          </v-list-item-action>
-        <v-list-item-content>
-          <v-list-item-title>แสดงตารางเรียนเบียนเรียน</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
       <template v-slot:append>
         <v-row justify="center">
           <div class="pa-2">
