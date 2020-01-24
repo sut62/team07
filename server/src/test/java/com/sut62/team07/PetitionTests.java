@@ -152,7 +152,7 @@ public class PetitionTests {
     assertEquals("detail", violation.getPropertyPath().toString());
   }
 
-  // เทสค่า detail ต้องไม่น้อยกว่า 5 ตัวอักษร
+  // เทสค่า detail ต้องไม่มีน้อยกว่า 5 ตัวอักษร
   @Test
   void B5908042_testDetailMustNotLessThan5Characters() {
     //สร้าง object petition  
@@ -170,7 +170,7 @@ public class PetitionTests {
     assertEquals("detail", violation.getPropertyPath().toString());
   }
 
-  // เทสค่า detail ต้องไม่เกิน 200 ตัวอักษร
+  // เทสค่า detail ต้องมีไม่เกิน 200 ตัวอักษร
   @Test
   void B5908042_testDetailMustNotMoreThan5Characters() {
     //สร้าง object petition  
