@@ -7,6 +7,7 @@ import StudentRegister from '../components/StudentRegister';
 import StudentData from '../components/StudentData';
 import ExamSchedule from '../components/ExamSchedule';
 import addTeachtable from '../components/addTeachtable';
+import SearchTeachtable from '../components/SearchTeachtable';
 import Course from '../components/Course';
 import StudentShowHistory from '../components/StudentShowHistory';
 
@@ -57,6 +58,10 @@ const routes = [
         component: TableRegister
       },
       {
+        path: 'searchteachtable',
+        component: SearchTeachtable
+      },
+      {
         path: 'lecturer',
         component: () => import('@/views/LecturerList')
       },
@@ -86,6 +91,10 @@ const routes = [
       {
         path: 'addteachtable',
         component: addTeachtable
+      },
+      {
+        path: 'searchteachtable',
+        component: SearchTeachtable
       },
       {
         path: 'examSchedule',
@@ -124,6 +133,10 @@ const routes = [
       {
         path: 'courses',
         component: () => import('@/components/Course')
+      },
+      {
+        path: 'searchteachtable',
+        component: SearchTeachtable
       },
       // {
       //   path: ':lecturerCode',

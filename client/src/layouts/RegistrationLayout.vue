@@ -69,6 +69,15 @@
         </v-list-item-content>
       </v-list-item>
 
+      <v-list-item link to="SearchTeachtable" color="black">
+        <v-list-item-action>
+          <v-icon>mdi-account-search</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>ค้นหาตารางสอนอาจารย์</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
       <template v-slot:append>
         <!-- <v-row justify="center">
           <div class="pa-2">

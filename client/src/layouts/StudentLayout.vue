@@ -64,12 +64,23 @@
         </v-list-item-content>
       </v-list-item>
 
+
       <v-list-item link to="student-course" color="black">
         <v-list-item-action>
             <v-icon>mdi-account-multiple</v-icon>
           </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>รายชื่อวิชา</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-list-item link to="SearchTeachtable" color="black">
+        <v-list-item-action>
+          <v-icon>mdi-account-search</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>ค้นหาตารางสอนอาจารย์</v-list-item-title>
+
         </v-list-item-content>
       </v-list-item>
 
