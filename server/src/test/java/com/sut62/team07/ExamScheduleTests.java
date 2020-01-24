@@ -141,7 +141,7 @@ public class ExamScheduleTests {
 
     // เทส ใส่ค่าถูกต้อง examSchedule สามารถ save ได้
   @Test
-  void B5908042_examScheduleShouldBeOK() {
+  void B5908042_testexamScheduleShouldBeOK() {
     //สร้าง object examSchedule
     ExamSchedule examSchedule = new ExamSchedule();
     examSchedule.setSemester(semester);
