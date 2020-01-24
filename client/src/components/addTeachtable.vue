@@ -262,14 +262,13 @@
                         "/" +
                         this.teachtable.startTime +
                         "/" +
-                        this.teachtable.endTime,
-                        this.teachtable
+                        this.teachtable.endTime
                     )
                     .then(response => {
                         console.log(response);
                         this.text = 'บันทึกข้อมูลสำเร็จ';
                         this.snackbar = true;
-                        this.$refs.form.reset();
+                        //this.$refs.form.reset();
                     })
                     .catch(e => {
                         console.log(e);
