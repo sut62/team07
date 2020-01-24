@@ -157,7 +157,7 @@ public class RegisterTests {
         register.setSub_num("523332");
         register.setCredit(4);
         register.setRegisterDate(registerDate);
-        register.setNote("กด");
+        register.setNote(" ");
 
         Set<ConstraintViolation<Register>> result = validator.validate(register);
 
@@ -166,7 +166,7 @@ public class RegisterTests {
 
         // error message ตรงชนิด และถูก field
         ConstraintViolation<Register> v = result.iterator().next();
-        assertEquals("size must be between 5 and 30", v.getMessage());
+        assertEquals("must match \"^[ก-๏\\-]+$\"", v.getMessage());
         assertEquals("note", v.getPropertyPath().toString());
     }
 
@@ -189,7 +189,7 @@ public class RegisterTests {
 
         // error message ตรงชนิด และถูก field
         ConstraintViolation<Register> v = result.iterator().next();
-        assertEquals("size must be between 5 and 30", v.getMessage());
+        assertEquals("size must be between 1 and 30", v.getMessage());
         assertEquals("note", v.getPropertyPath().toString());
     }
 

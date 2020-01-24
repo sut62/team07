@@ -86,6 +86,10 @@ const routes = [
         component: ExamSchedule
       },
       {
+        path: 'tablereg',
+        component: TableRegister
+      },
+      {
         path: 'courses',
         component: () => import('@/components/Course')
       },
@@ -106,6 +110,10 @@ const routes = [
       {
         path: '',
         redirect: 'courses'
+      },
+      {
+        path: 'tablereg',
+        component: TableRegister
       },
       {
         path: 'courses',
