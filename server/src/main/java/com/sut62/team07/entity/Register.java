@@ -25,7 +25,7 @@ public class Register {
 
     private @NotNull String sub_num;
     
-    @Size(max=30,min=5)
+    @Size(max=30,min=1)
     @Pattern(regexp = "^[ก-๏\\-]+$")
     private @NotNull String note;
 
