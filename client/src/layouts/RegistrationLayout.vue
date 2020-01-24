@@ -76,6 +76,15 @@
         <v-list-item-content>
           <v-list-item-title>ค้นหาตารางสอนอาจารย์</v-list-item-title>
         </v-list-item-content>
+      </v-list-item> 
+       <v-list-item link to="studentShowHistory" color="black">
+        <v-list-item-action>
+          
+            <v-icon>mdi-account-plus</v-icon>
+          </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>แสดงประวัตินักศึกษา</v-list-item-title>
+        </v-list-item-content>
       </v-list-item>
 
       <template v-slot:append>

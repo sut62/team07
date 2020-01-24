@@ -108,6 +108,10 @@ const routes = [
       {
         path: 'tablereg',
         component: TableRegister
+      }, 
+      {
+        path: 'studentShowHistory',
+        component: StudentShowHistory
       },
       {
         path: 'courses',
@@ -142,6 +146,10 @@ const routes = [
       {
         path: 'searchteachtable',
         component: SearchTeachtable
+      }, 
+      {
+        path: 'studentShowHistory',
+        component: StudentShowHistory
       },
       // {
       //   path: ':lecturerCode',
