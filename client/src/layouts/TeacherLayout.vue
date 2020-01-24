@@ -36,21 +36,21 @@
         </v-list-item-content>
       </v-list-item>
 
-      <!-- <v-list-item link to="courselist" color="black">
+      <v-list-item link to="courselist" color="black">
         <v-list-item-action>
             <v-icon>mdi-account-multiple</v-icon>
           </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>รายชื่อวิชา</v-list-item-title>
         </v-list-item-content>
-      </v-list-item> -->
+      </v-list-item>
   
       <template v-slot:append>
-        <v-row justify="center">
+        <!-- <v-row justify="center">
           <div class="pa-2">
         <subject-list-table />
           </div>
-        </v-row>
+        </v-row> -->
         <div class="pa-2">
           <v-btn block color="error" @click="logout">Logout</v-btn>
         </div>
@@ -67,12 +67,12 @@
 
 
 <script>
-import SubjectListTable from '@/components/SubjectListTable';
+//import SubjectListTable from '@/components/SubjectListTable';
 
 export default {
-  components: {
-    SubjectListTable
-  },
+  // components: {
+  //   SubjectListTable
+  // },
   data: () => ({
     drawer: null,
     lecturer: null

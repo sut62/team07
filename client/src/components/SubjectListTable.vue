@@ -53,8 +53,6 @@ export default {
       },
       {text: "หลักสูตร",value: "programInfo.name"},
       {text: "ประเภทวิชา",value: "type.name"},
-      {text: "ภาคเรียน",value: "trimester.name"},
-      {text: "อาจารย์ผู้สอน",value: "lecturer.name"},
     ]
   }),
   validations: {
