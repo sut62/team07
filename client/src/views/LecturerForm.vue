@@ -161,7 +161,6 @@ export default {
     this.$store.commit("setInstitutes");
     this.$store.commit("setPrefixs");
     this.$v.lecturerForm.createdBy.$model = this.$store.state.username;
-    console.log(this.$store.state.username);
   },
   computed: {
     ...mapState({
@@ -257,8 +256,8 @@ export default {
         this.message = "เพิ่มอาจารย์ผู้สอนสำเร็จ";
         this.reset();
       } catch (error) {
-        console.log(error);
         this.message = "ไม่สามารถเพิ่มอาจารย์ผู้สอนได้";
+        this.reset();
       } finally {
         this.snackbar = true;
       }

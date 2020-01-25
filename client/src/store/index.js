@@ -6,11 +6,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    majors: null,
-    institutes: null,
-    genders: null,
+    majors: [],
+    institutes: [],
+    genders: [],
     courses: [],
-    prefixs: null,
+    prefixs: [],
     specificMajor: null,
     lecturers: [],
     username: null,
