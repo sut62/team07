@@ -1,6 +1,6 @@
 <template> 
 
-    <v-temp class="cyan lighten-5" > 
+    <v-temp class="cyan lighten-5"> 
 
   <v-container class="cyan darken-1" >
     
@@ -24,7 +24,7 @@
  
 </template>
 
-//<script >
+<script >
 
 
  
@@ -34,17 +34,17 @@ export default {
     return {
       headers: [
         {
-          text: "Student_ID",
+          text: "รหัสนักศึกษา",
           align: "left",
           sortable: false,
           value: "student_id"
         },
-        { text: "prefix", value: "prefix.name" },
-        { text: "Name", value: "student_name" },
-        { text: "Major", value: "major.name" },
-        { text: "Year", value: "year.year_name" },
+        { text: "คำนำหน้า", value: "prefix.name" },
+        { text: "่ชื่อ", value: "student_name" },
+        { text: "สาขาวิชา", value: "major.name" },
+        { text: "ชั้นปีการศึกษา", value: "year.year_name" },
         { text: "Email", value: "student_email" },
-        { text: "phone", value: "student_phone" }
+        { text: "เบอร์โทรศัพท์", value: "student_phone" }
        // { text: "Password", value: "password" },
 
         
