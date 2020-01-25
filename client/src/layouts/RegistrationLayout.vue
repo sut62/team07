@@ -79,7 +79,8 @@
       </v-list-item> 
        <v-list-item link to="studentShowHistory" color="black">
         <v-list-item-action>
-          
+             
+        
             <v-icon>mdi-account-plus</v-icon>
           </v-list-item-action>
         <v-list-item-content>
