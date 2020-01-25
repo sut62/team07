@@ -65,7 +65,7 @@
             <v-icon>mdi-table-large</v-icon>
           </v-list-item-action>
         <v-list-item-content>
-          <v-list-item-title>แสดงตารางเรียนเบียนเรียน</v-list-item-title>
+          <v-list-item-title>แสดงตารางเรียน</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
