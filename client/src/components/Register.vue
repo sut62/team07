@@ -98,7 +98,7 @@
 
               </div>
             </v-form>
-            
+            <v-snackbar v-model="snackbar">{{ message }}</v-snackbar>
           
         </v-flex>
       </v-layout>
@@ -136,7 +136,9 @@ export default {
       saveCheck: false,
       studentName: "",
       courseName: "",
-      note:""
+      note:"",
+      message: null,
+      snackbar: false
     };
   },
   methods: {
@@ -231,11 +233,15 @@ export default {
         )
         .then(response => {
           console.log(response);
+          this.message = "บันทึกสำเร็จ"
+          this.snackbar = !this.snackbar
           // this.$router.push("viewreg");
         })
         .catch(e => {
+          this.message = "บันทึกไม่สำเร็จ"
+          this.snackbar = !this.snackbar
           console.log(e);
-        });
+        })
       this.submitted = true;
     },
      clear(){
