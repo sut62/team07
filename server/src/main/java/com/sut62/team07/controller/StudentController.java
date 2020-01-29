@@ -46,7 +46,7 @@ public class StudentController {
     
  
     @PostMapping("/student/{student_id}/{Prefixs}/{student_name}/{majors}/{id}/{student_email}/{student_phone}/{password}")
-    public Student newStudent(Student newStudent,
+    public Student newStudent(
     @PathVariable String student_id,
     @PathVariable long Prefixs,
     @PathVariable String student_name,
@@ -57,7 +57,7 @@ public class StudentController {
     @PathVariable String password){
     
     
-    
+        Student newStudent = new Student();
         Major major = majorRepository.findById(majors).get();
         Prefix Prefix = prefixRepository.findById(Prefixs).get();
         Year year = yearRepository.findById(id);
