@@ -28,7 +28,7 @@
             </v-row>
 
             <!-- student -->
-            <v-row justify="center">
+            <!-- <v-row justify="center">
               <v-col cols="auto">
                 <v-select
                   label="รหัสนักศึกษา"
@@ -42,7 +42,7 @@
                   required
                   ></v-select>
                 </v-col>
-              </v-row>
+              </v-row> -->
 
               <subject-list-table @selectedCourses="getCourse"></subject-list-table>
            
@@ -219,7 +219,7 @@ export default {
       this.$http
         .post(
           "/register/" +
-            this.register.studentId
+            this.$store.state.username
             + "/"  +
             this.register.semesterId
             + "/"  +

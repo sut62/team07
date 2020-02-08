@@ -35,21 +35,22 @@ public class RegisterController {
     }
     @GetMapping("/register/{id}")
     public Collection<Register> getRegister(@PathVariable("id") Long id) {
-        return registerRepository.findRegister(id);
+        return registerRepository.findRegister(id);  
     }
     //save register
     @PostMapping("/register/{student_id}/{semester_id}/{section_id}/{courseCode}/{credit}/{note}")
     public Register newRegister(Register newRegister,
-    @PathVariable long student_id,
+    @PathVariable String student_id,
     @PathVariable long semester_id,
     @PathVariable long section_id,
     @PathVariable String courseCode,
     @PathVariable int credit,
     @PathVariable String note
+
     )
     {
 
-    Student registerBy = studentRepository.findById(student_id);
+    Student registerBy = studentRepository.findByStudentId(student_id).get();
     Semester inSemester = semesterRepository.findById(semester_id);
     Section chooseSec = sectionRepository.findById(section_id);
     LocalDateTime registerDate = LocalDateTime.now();
