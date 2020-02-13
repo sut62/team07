@@ -147,7 +147,6 @@ public class RegisterTests {
         assertEquals("note", v.getPropertyPath().toString());
     }
 
-    // Note น้อยกว่า 5  ตัว
     @Test
     void B6007089_test_NoteSizelessthan5() {
         System.out.println("\n=======================================");

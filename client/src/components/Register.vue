@@ -27,23 +27,6 @@
               </v-col>
             </v-row>
 
-            <!-- student -->
-            <!-- <v-row justify="center">
-              <v-col cols="auto">
-                <v-select
-                  label="รหัสนักศึกษา"
-                  outlined
-                  v-model="register.studentId"
-                  :items="students"
-                  item-text="student_id"
-                  item-value="id"
-                  hide-selected
-                  :rules="[(v) => !!v || '*กรุณาเลือกรหัสนักศึกษา']"
-                  required
-                  ></v-select>
-                </v-col>
-              </v-row> -->
-
               <subject-list-table @selectedCourses="getCourse"></subject-list-table>
            
               <v-col cols='auto'> 
