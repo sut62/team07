@@ -37,7 +37,8 @@ public class Course {
         @NotNull(message = "Name cannot be null")
         private String name;
 
-        @Max(value = 4, message = "Credit should not be less than 1")
+        @Max(value = 4, message = "Credit should not be than 4")
+        @Min(1)
         @NotNull(message = "Credit cannot be null")
         private int credit;
 
