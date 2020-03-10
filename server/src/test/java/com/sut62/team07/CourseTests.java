@@ -233,7 +233,7 @@ public class CourseTests {
     assertEquals(1, result.size());
     // error message ตรงชนิด และถูก field
     ConstraintViolation<Course> violation = result.iterator().next();
-    assertEquals("must be greater than or equal to 1", violation.getMessage());
+    assertEquals("Credit cannot be null or cannot be 0", violation.getMessage());
     assertEquals("credit", violation.getPropertyPath().toString());
   }
 
