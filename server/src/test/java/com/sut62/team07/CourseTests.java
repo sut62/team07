@@ -214,13 +214,13 @@ public class CourseTests {
     assertEquals("courseCode", violation.getPropertyPath().toString());
   }
 
-    @Test
-//credit มากกว่า 1 digit
-  void B6019440_testcreditMustNotmoreonedigit() {
+  @Test
+//credit null
+  void B6019440_testcreditMustNotBeNull() {
     //สร้าง object course
     Course course = new Course();
     course.setCourseCode("123456");
-    course.setCredit(11);//ใส่ค่า มากกว่า 1 ตัว
+    course.setCredit(0);
     course.setName("Thai");
     course.setProgramInfo(programInfo);
     course.setTrimester(trimester);
@@ -233,7 +233,30 @@ public class CourseTests {
     assertEquals(1, result.size());
     // error message ตรงชนิด และถูก field
     ConstraintViolation<Course> violation = result.iterator().next();
-    assertEquals("Credit should not be less than 1", violation.getMessage());
+    assertEquals("must be greater than or equal to 1", violation.getMessage());
+    assertEquals("credit", violation.getPropertyPath().toString());
+  }
+
+    @Test
+//credit มากกว่า 4
+  void B6019440_testcreditMustNotmorethenfour() {
+    //สร้าง object course
+    Course course = new Course();
+    course.setCourseCode("123456");
+    course.setCredit(5);//ใส่ค่า มากกว่า 1 ตัว
+    course.setName("Thai");
+    course.setProgramInfo(programInfo);
+    course.setTrimester(trimester);
+    course.setType(type);
+    course.setLecturer(lecturer);
+  
+
+    Set<ConstraintViolation<Course>> result = validator.validate(course);
+    // result ต้องมี error 1 ค่าเท่านั้น
+    assertEquals(1, result.size());
+    // error message ตรงชนิด และถูก field
+    ConstraintViolation<Course> violation = result.iterator().next();
+    assertEquals("Credit should not be than 4", violation.getMessage());
     assertEquals("credit", violation.getPropertyPath().toString());
   }
 
