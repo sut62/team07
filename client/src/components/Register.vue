@@ -27,6 +27,24 @@
               </v-col>
             </v-row>
 
+             <!-- student -->
+            <v-row justify="center">
+              <v-col cols="auto">
+                <v-select
+                  label="รหัสนักศึกษา"
+                  outlined
+                  v-model="register.studentId"
+                  :items="students"
+                  item-text="username"
+                  item-value="id"
+                  hide-selected
+                  :rules="[(v) => !!v || '*กรุณาเลือกรหัสนักศึกษา']"
+                  required
+                  ></v-select>
+                </v-col>
+              </v-row>
+
+
               <subject-list-table @selectedCourses="getCourse"></subject-list-table>
            
               <v-col cols='auto'> 
@@ -97,6 +115,7 @@ export default {
   components: {
     SubjectListTable
   },
+  
   data() {
     return {
       register: {
@@ -140,8 +159,9 @@ export default {
       this.$http
         .get("/student")
         .then(response => {
-          this.students = response.data;
-          console.log(response.data);
+         if (response.data != localStorage.getItem("username"))
+          this.students = localStorage.getItem("username");
+          console.log(this.students);
         })
         .catch(e => {
           console.log(e);
@@ -227,6 +247,7 @@ export default {
         })
       this.submitted = true;
     },
+   
      clear(){
         this.register = {
         studentId: "",
