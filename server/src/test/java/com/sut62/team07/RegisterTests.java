@@ -148,9 +148,9 @@ public class RegisterTests {
     }
 
     @Test
-    void B6007089_test_NoteSizelessthan5() {
+    void B6007089_test_NoteSizelessthan1() {
         System.out.println("\n=======================================");
-        System.out.println("\nTest Note size must be between 5 and 30");
+        System.out.println("\nTest Note size must be between 1 and 30");
         System.out.println("\n=======================================\n");
         Register register = new Register();
         register.setSub_num("523332");
