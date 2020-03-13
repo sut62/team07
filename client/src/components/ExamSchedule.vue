@@ -250,8 +250,7 @@ export default {
                   "/" +
                   this.examSchedule.endTime +
                   "/" +
-                  this.examSchedule.annotation,
-                  this.examSchedule
+                  this.examSchedule.annotation
               )
               .then(response => {
                   console.log(response);

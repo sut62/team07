@@ -29,13 +29,14 @@ public class PetitionController {
   public Collection<Petition> petitions() {
     return petitionRepository.findAll().stream().collect(Collectors.toList());
   }
+  
   @PostMapping("/petition/{student_id}/{petitionType_id}/{detail}")
   public Petition newPetition(Petition newPetition,
-                              @PathVariable long student_id,
+                              @PathVariable String student_id,
                               @PathVariable long petitionType_id,
                               @PathVariable String detail) {
 
-    Student student = studentRepository.findById(student_id);
+    Student student = studentRepository.findByStudentId(student_id).get();
     PetitionType petitionType = petitionTypeRepository.findById(petitionType_id);
 
     newPetition.setStudent(student);

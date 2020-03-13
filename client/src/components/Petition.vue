@@ -7,18 +7,20 @@
                         <p class="font-weight-black display-1">ยื่นคำร้อง</p>
                     </div>
                     <v-row justify="center">
-                        <v-col class="d-flex" cols="12" sm="4">
-                            <v-select
+                        <v-col cols="12" sm="3">
+                            <v-text-field
+                                    v-model="petition.studentId"
                                     label="รหัสนักศึกษา"
                                     outlined
-                                    v-model="petition.studentId"
-                                    :items="student"
-                                    item-text="student_id"
-                                    item-value="id"
-                                    :rules="[(v) => !!v || 'กรุณาเลือกรหัสนักศึกษา']"
+                                    clearable
+                                    :rules="[(v) => !!v || 'กรุณาใส่รหัสนักศึกษา']"
                                     required
-                            ></v-select>
+                            ></v-text-field>
                         </v-col>
+                        <v-col cols="12" sm="1">
+                            <v-btn :color="success" @click="checkStudentId">ค้นหา</v-btn>
+                            <v-snackbar v-model="snackbars">{{message}}</v-snackbar>
+                        </v-Col>
                     </v-row>
                     <v-row justify="center">
                         <v-col class="d-flex" cols="12" sm="4">
@@ -70,12 +72,14 @@ export default {
   data() {
     return {
         petition: {
-        studentId: [],
+        studentId: [localStorage.getItem("username")],
         petitionTypeId: []
       },
       text: null,
+      message: null,
       valid: false,
       snackbar: false,
+      snackbars: false,
       student: null,
       petitionType: null,
       detail: null
@@ -85,15 +89,20 @@ export default {
   methods: {
   /* eslint-disable no-console */
 
-    getStudent() {
+    checkStudentId() {
       this.$http
-        .get("/student")
+        .get("/student/" + this.petition.studentId)
         .then(response => {
-          this.student = response.data;
-          console.log(response.data);
+          if (this.petition.studentId == response.data.student_id ) {
+            this.message = 'พบรหัสนักศึกษา';
+            this.snackbars = true;
+          }
+          this.petition.studentId = localStorage.getItem("username");
         })
         .catch(e => {
-          console.log(e);
+            console.log(e);
+            this.message = 'ไม่พบรหัสนักศึกษา';
+            this.snackbars = true;
         });
     },
 
@@ -113,12 +122,11 @@ export default {
         this.$http
             .post(
                 "/petition/" +
-                this.petition.studentId +
+                localStorage.getItem("username") +
                 "/" +
                 this.petition.petitionTypeId +
                 "/" +
-                this.petition.detail,
-                this.petition
+                this.petition.detail
             )
             .then(response => {
                 console.log(response);
@@ -141,7 +149,6 @@ export default {
   },
 
   mounted() {
-      this.getStudent();
       this.getPetitionType();
   }
 };

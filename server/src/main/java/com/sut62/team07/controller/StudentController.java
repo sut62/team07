@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
+import java.util.Optional;
 
 import java.util.stream.Collectors;
 import com.sut62.team07.entity.Student;
@@ -17,9 +18,6 @@ import com.sut62.team07.repository.MajorRepository;
 import com.sut62.team07.repository.PrefixRepository;
 import com.sut62.team07.repository.StudentRepository;
 import com.sut62.team07.repository.YearRepository;
-
-
-
 
 @RestController
 public class StudentController {
@@ -32,18 +30,19 @@ public class StudentController {
     @Autowired
     private YearRepository yearRepository;
 
-
-   
-
     StudentController(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
+
     @GetMapping("/student")
     public Collection<Student> Student() {
         return studentRepository.findAll().stream().collect(Collectors.toList());
     }
-    
-    
+
+    @GetMapping("/student/{student_id}")
+    public Optional<Student> findBystudentId(@PathVariable String student_id){
+        return studentRepository.findByStudentId(student_id);
+    }
  
     @PostMapping("/student/{student_id}/{Prefixs}/{student_name}/{majors}/{id}/{student_email}/{student_phone}/{password}")
     public Student newStudent(
