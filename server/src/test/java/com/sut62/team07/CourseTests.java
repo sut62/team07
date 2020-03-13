@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import javax.validation.constraints.Null;
 
 import com.sut62.team07.entity.Course;
 import com.sut62.team07.entity.Gender;
@@ -216,7 +217,30 @@ public class CourseTests {
 
   @Test
 //credit null
-  void B6019440_testcreditMustNotBeNull() {
+  void B6019440_testcreditMustNotNull() {
+    //สร้าง object course
+    Course course = new Course();
+    course.setCourseCode("123456");
+    course.setCredit(null);
+    course.setName("Thai");
+    course.setProgramInfo(programInfo);
+    course.setTrimester(trimester);
+    course.setType(type);
+    course.setLecturer(lecturer);
+  
+
+    Set<ConstraintViolation<Course>> result = validator.validate(course);
+    // result ต้องมี error 1 ค่าเท่านั้น
+    assertEquals(1, result.size());
+    // error message ตรงชนิด และถูก field
+    ConstraintViolation<Course> violation = result.iterator().next();
+    assertEquals("Credit cannot be null", violation.getMessage());
+    assertEquals("credit", violation.getPropertyPath().toString());
+  }
+
+  @Test
+//credit null
+  void B6019440_testcreditMustNotBezero() {
     //สร้าง object course
     Course course = new Course();
     course.setCourseCode("123456");
@@ -233,7 +257,7 @@ public class CourseTests {
     assertEquals(1, result.size());
     // error message ตรงชนิด และถูก field
     ConstraintViolation<Course> violation = result.iterator().next();
-    assertEquals("Credit cannot be null or cannot be 0", violation.getMessage());
+    assertEquals("Credit cannot be 0", violation.getMessage());
     assertEquals("credit", violation.getPropertyPath().toString());
   }
 
