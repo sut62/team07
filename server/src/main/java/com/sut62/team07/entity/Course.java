@@ -37,10 +37,11 @@ public class Course {
         @NotNull(message = "Name cannot be null")
         private String name;
 
+        
         @Max(value = 4, message = "Credit should not be than 4")
-        @Min(value = 1, message = "Credit cannot be null or cannot be 0")
+        @Min(value = 1, message = "Credit cannot be 0")
         @NotNull(message = "Credit cannot be null")
-        private int credit;
+        private Integer credit;
 
         // @ManyToOne
         // private Major major;
@@ -53,9 +54,6 @@ public class Course {
                 name = string;
         }
 
-        public void setCredit(int string) {
-                credit = string;
-        }
 
         @NotNull(message = "Trimester cannot be null")
         @ManyToOne
