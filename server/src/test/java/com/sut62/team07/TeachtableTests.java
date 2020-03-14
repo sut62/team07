@@ -146,6 +146,7 @@ public class TeachtableTests {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(course);
         teachtable.setSemester(semester);
         teachtable.setAcademicYear("2020");
@@ -153,13 +154,15 @@ public class TeachtableTests {
         teachtable.setRoom(room);
         teachtable.setStartTime(startTime);
         teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         //save and flush ไว้ที่ teachtable
         teachtable = teachtableRepository.saveAndFlush(teachtable);
-        //ค้นหา examShedule ด้วย id
+        //ค้นหา Teachtable ด้วย id
         Optional<Teachtable> found = teachtableRepository.findById(teachtable.getId());
         //ตรวจสอบข้อมูล
         assertEquals(lecturer, found.get().getLecturer());
+        assertEquals("B5906406@gmail.com", found.get().getEmail());
         assertEquals(course, found.get().getCourse());
         assertEquals(semester, found.get().getSemester());
         assertEquals("2020", found.get().getAcademicYear());
@@ -167,6 +170,7 @@ public class TeachtableTests {
         assertEquals(room, found.get().getRoom());
         assertEquals(startTime, found.get().getStartTime());
         assertEquals(endTime, found.get().getEndTime());
+        assertEquals("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด", found.get().getAnnotation());
     }
 
     //เทส Lecturer ต้องไม่เป็น Null
@@ -175,6 +179,7 @@ public class TeachtableTests {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(null); //ลองใส่ค่า Lecturer ที่เป็น null
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(course);
         teachtable.setSemester(semester);
         teachtable.setAcademicYear("2020");
@@ -182,6 +187,7 @@ public class TeachtableTests {
         teachtable.setRoom(room);
         teachtable.setStartTime(startTime);
         teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
         // result ต้องมี error 1 ค่าเท่านั้น
@@ -198,6 +204,7 @@ public class TeachtableTests {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(course);
         teachtable.setSemester(semester);
         teachtable.setAcademicYear("2020");
@@ -205,6 +212,7 @@ public class TeachtableTests {
         teachtable.setRoom(null); //ลองใส่ค่า Room ที่เป็น null
         teachtable.setStartTime(startTime);
         teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
         // result ต้องมี error 1 ค่าเท่านั้น
@@ -221,6 +229,7 @@ public class TeachtableTests {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(course);
         teachtable.setSemester(null); //ลองใส่ค่า Semester ที่เป็น null
         teachtable.setAcademicYear("2020");
@@ -228,6 +237,7 @@ public class TeachtableTests {
         teachtable.setRoom(room);
         teachtable.setStartTime(startTime);
         teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
         // result ต้องมี error 1 ค่าเท่านั้น
@@ -244,6 +254,7 @@ public class TeachtableTests {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(null); //ลองใส่ค่า Course ที่เป็น null
         teachtable.setSemester(semester);
         teachtable.setAcademicYear("2020");
@@ -251,6 +262,7 @@ public class TeachtableTests {
         teachtable.setRoom(room);
         teachtable.setStartTime(startTime);
         teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
         // result ต้องมี error 1 ค่าเท่านั้น
@@ -267,6 +279,7 @@ public class TeachtableTests {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(course);
         teachtable.setSemester(semester);
         teachtable.setAcademicYear("2563");
@@ -274,6 +287,7 @@ public class TeachtableTests {
         teachtable.setRoom(room);
         teachtable.setStartTime(startTime);
         teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
         // result ต้องมี error 1 ค่าเท่านั้น
@@ -290,6 +304,7 @@ public class TeachtableTests {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(course);
         teachtable.setSemester(semester);
         teachtable.setAcademicYear(null); //ลองใส่ค่า AcademicYear ที่เป็น null
@@ -297,6 +312,7 @@ public class TeachtableTests {
         teachtable.setRoom(room);
         teachtable.setStartTime(startTime);
         teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
         // result ต้องมี error 1 ค่าเท่านั้น
@@ -307,26 +323,54 @@ public class TeachtableTests {
         assertEquals("academicYear", violation.getPropertyPath().toString());
     }
 
-    // เทสค่า academicYear ต้องตรงกับ pattern
+
+// เทสค่า academicYear ต้องตรงกับ pattern ต้องไม่เป็น String
     @Test
-    void B5906406_testAcademicYearmustNotBePattern() {
+    void B5906406_testAcademicYearmustBeNotCharacter() {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(course);
         teachtable.setSemester(semester);
-        teachtable.setAcademicYear("Computer Parts"); //ลองใส่ค่า AcademicYear ที่เป็น string
+        teachtable.setAcademicYear("aeiou"); //ลองใส่ค่า AcademicYear ที่เป็น string
         teachtable.setDays(days);
         teachtable.setRoom(room);
         teachtable.setStartTime(startTime);
         teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
         // result ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
         // error message ตรงชนิด และถูก field
         ConstraintViolation<Teachtable> violation = result.iterator().next();
-        assertEquals("must match \"\\d{4}\"", violation.getMessage());
+        assertEquals("Academic must be match", violation.getMessage());
+        assertEquals("academicYear", violation.getPropertyPath().toString());
+    }
+
+// เทสค่า academicYear ต้องตรงกับ pattern ต้องไม่เป็น String
+    @Test
+    void B5906406_testAcademicYearBe2or3AtIndex0() {
+        //สร้าง object Teachtable
+        Teachtable teachtable = new Teachtable();
+        teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
+        teachtable.setCourse(course);
+        teachtable.setSemester(semester);
+        teachtable.setAcademicYear("4456"); //ลองใส่ค่าที่ไม่ขึ้นต้นด้วย 2 ที่ Index 0
+        teachtable.setDays(days);
+        teachtable.setRoom(room);
+        teachtable.setStartTime(startTime);
+        teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
+
+        Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Teachtable> violation = result.iterator().next();
+        assertEquals("Academic must be match", violation.getMessage());
         assertEquals("academicYear", violation.getPropertyPath().toString());
     }
 
@@ -336,6 +380,7 @@ public class TeachtableTests {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(course);
         teachtable.setSemester(semester);
         teachtable.setAcademicYear("789"); //ลองใส่ค่า AcademicYear ที่เเป็นตัวเลข 3 digit
@@ -343,13 +388,14 @@ public class TeachtableTests {
         teachtable.setRoom(room);
         teachtable.setStartTime(startTime);
         teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
         // result ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
         // error message ตรงชนิด และถูก field
         ConstraintViolation<Teachtable> violation = result.iterator().next();
-        assertEquals("must match \"\\d{4}\"", violation.getMessage());
+        assertEquals("Academic must be match", violation.getMessage());
         assertEquals("academicYear", violation.getPropertyPath().toString());
     }
 
@@ -359,6 +405,7 @@ public class TeachtableTests {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(course);
         teachtable.setSemester(semester);
         teachtable.setAcademicYear("67890"); //ลองใส่ค่า AcademicYear ที่เป็นตัวเลข 5 digit
@@ -366,13 +413,14 @@ public class TeachtableTests {
         teachtable.setRoom(room);
         teachtable.setStartTime(startTime);
         teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
         // result ต้องมี error 1 ค่าเท่านั้น
         assertEquals(1, result.size());
         // error message ตรงชนิด และถูก field
         ConstraintViolation<Teachtable> violation = result.iterator().next();
-        assertEquals("must match \"\\d{4}\"", violation.getMessage());
+        assertEquals("Academic must be match", violation.getMessage());
         assertEquals("academicYear", violation.getPropertyPath().toString());
     }
 
@@ -382,6 +430,7 @@ public class TeachtableTests {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(course);
         teachtable.setSemester(semester);
         teachtable.setAcademicYear("2563");
@@ -389,6 +438,7 @@ public class TeachtableTests {
         teachtable.setRoom(room);
         teachtable.setStartTime(null); //ลองใส่ค่า StartTime ที่เป็น null
         teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
         // result ต้องมี error 1 ค่าเท่านั้น
@@ -405,6 +455,7 @@ public class TeachtableTests {
         //สร้าง object Teachtable
         Teachtable teachtable = new Teachtable();
         teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
         teachtable.setCourse(course);
         teachtable.setSemester(semester);
         teachtable.setAcademicYear("2563");
@@ -412,6 +463,7 @@ public class TeachtableTests {
         teachtable.setRoom(room);
         teachtable.setStartTime(startTime);
         teachtable.setEndTime(null); //ลองใส่ค่า endTime ที่เป็น null
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
 
         Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
         // result ต้องมี error 1 ค่าเท่านั้น
@@ -420,5 +472,132 @@ public class TeachtableTests {
         ConstraintViolation<Teachtable> violation = result.iterator().next();
         assertEquals("End time cannot be null", violation.getMessage());
         assertEquals("endTime", violation.getPropertyPath().toString());
+    }
+
+        //เทส Email ต้องไม่เป็น Null
+    @Test
+    void B5906406_testEmailMustNotBeNull() {
+        //สร้าง object Teachtable
+        Teachtable teachtable = new Teachtable();
+        teachtable.setLecturer(lecturer);
+        teachtable.setEmail(null); //ลองใส่ค่า Email ที่เป็น null
+        teachtable.setCourse(course);
+        teachtable.setSemester(semester);
+        teachtable.setAcademicYear("2020");
+        teachtable.setDays(days);
+        teachtable.setRoom(room);
+        teachtable.setStartTime(startTime);
+        teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
+
+        Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Teachtable> violation = result.iterator().next();
+        assertEquals("email cannot be null", violation.getMessage());
+        assertEquals("email", violation.getPropertyPath().toString());
+    }
+
+    //เทส Email ต้องตรงรูปแบบ => มี '@'
+    @Test
+    void B5906406_testEmailMustMatch() {
+        //สร้าง object Teachtable
+        Teachtable teachtable = new Teachtable();
+        teachtable.setLecturer(lecturer);
+        teachtable.setEmail("aaa.com"); //ลองใส่ค่า Email ที่ไม่ตรงรูปแบบที่กำหนด
+        teachtable.setCourse(course);
+        teachtable.setSemester(semester);
+        teachtable.setAcademicYear("2020");
+        teachtable.setDays(days);
+        teachtable.setRoom(room);
+        teachtable.setStartTime(startTime);
+        teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("ไม่อนุญาตให้ใช้เครื่องมือสื่อสารทุกชนิด");
+
+        Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Teachtable> violation = result.iterator().next();
+        assertEquals("email is invalid", violation.getMessage());
+        assertEquals("email", violation.getPropertyPath().toString());
+    }
+
+  // เทสค่า annotation ต้องไม่เป็น Null
+  @Test
+  void B5906406_testAnnotationMustNotBeNull() {
+    //สร้าง object Teachtable
+        Teachtable teachtable = new Teachtable();
+        teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
+        teachtable.setCourse(course);
+        teachtable.setSemester(semester);
+        teachtable.setAcademicYear("2563");
+        teachtable.setDays(days);
+        teachtable.setRoom(room);
+        teachtable.setStartTime(startTime);
+        teachtable.setEndTime(endTime);
+        teachtable.setAnnotation(null); // ลองใส่ค่า annotation ที่เป็น null
+
+    Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
+    // result ต้องมี error 1 ค่าเท่านั้น
+    assertEquals(1, result.size());
+    // error message ตรงชนิด และถูก field
+    ConstraintViolation<Teachtable> violation = result.iterator().next();
+    assertEquals("Annotation cannot be null", violation.getMessage());
+    assertEquals("annotation", violation.getPropertyPath().toString());
+  }
+
+   //เทส Annotation ต้องไม่น้อยกว่า 2 ตัวอักษร
+    @Test
+    void B5906406_testAnnotationMustBeMoreThan2Characters() {
+        //สร้าง object Teachtable
+        Teachtable teachtable = new Teachtable();
+        teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
+        teachtable.setCourse(course);
+        teachtable.setSemester(semester);
+        teachtable.setAcademicYear("2563");
+        teachtable.setDays(days);
+        teachtable.setRoom(room);
+        teachtable.setStartTime(startTime);
+        teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("A");  //ลองใส่ค่า annotation ที่น้อยกว่า 2 ตัวอักษร
+
+        Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Teachtable> violation = result.iterator().next();
+        assertEquals("Annotation must be between 2 and 100 characters", violation.getMessage());
+        assertEquals("annotation", violation.getPropertyPath().toString());
+    }
+
+   //เทส Annotation ต้องไม่เกิน 100 ตัวอักษร
+    @Test
+    void B5906406_testAnnotationMustBeLessThan100Characters() {
+        //สร้าง object Teachtable
+        Teachtable teachtable = new Teachtable();
+        teachtable.setLecturer(lecturer);
+        teachtable.setEmail("B5906406@gmail.com");
+        teachtable.setCourse(course);
+        teachtable.setSemester(semester);
+        teachtable.setAcademicYear("2563");
+        teachtable.setDays(days);
+        teachtable.setRoom(room);
+        teachtable.setStartTime(startTime);
+        teachtable.setEndTime(endTime);
+        teachtable.setAnnotation("The Java programming language distinguishes between null and empty strings." + 
+                    " An empty string is a string instance of zero length,  whereas a null string has no value at all." + 
+                    " See Validating Persistent Fields and Properties for more information on using validation constraints.");  //ลองใส่ค่า annotation ที่เกิน 100 ตัวอักษร
+
+        Set<ConstraintViolation<Teachtable>> result = validator.validate(teachtable);
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Teachtable> violation = result.iterator().next();
+        assertEquals("Annotation must be between 2 and 100 characters", violation.getMessage());
+        assertEquals("annotation", violation.getPropertyPath().toString());
     }
 }

@@ -26,13 +26,15 @@
         data: () => ({
             headers: [
                 { text: 'ชื่ออาจารย์',  value: "lecturer.name"},
+                { text: 'Email', value: 'email' },
                 { text: 'วิชาที่สอน', value: 'course.name' },
                 { text: 'ภาคการศึกษา', value: 'semester.sem' },
                 { text: 'ปีการศึกษา', value: 'academicYear' },
                 { text: 'วัน', value: 'days.name' },
                 { text: 'ห้อง', value: 'room.name' },
                 { text: 'เวลาเริ่ม', value: 'startTime' },
-                { text: 'หมดเวลา', value: 'endTime' }
+                { text: 'หมดเวลา', value: 'endTime' },
+                { text: 'หมายเหตุ', value: 'annotation' },
             ],
             search: null,
             teachTable: []

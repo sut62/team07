@@ -34,16 +34,19 @@ public class TeachtableController {
     public Collection<Teachtable> teachtables() {
         return teachtableRepository.findAll().stream().collect(Collectors.toList());
     }
-    @PostMapping("/teachtable/{lecturer_id}/{course_id}/{semester_id}/{academicYear}/{days_id}/{room_id}/{START_TIME}/{END_TIME}")
+
+    @PostMapping("/teachtable/{lecturer_id}/{email}/{course_id}/{semester_id}/{academicYear}/{days_id}/{room_id}/{START_TIME}/{END_TIME}/{annotation}")
     public Teachtable newTeachtable(Teachtable newTeachtable,
                                         @PathVariable long lecturer_id,
+                                        @PathVariable String email,
                                         @PathVariable long course_id,
                                         @PathVariable long semester_id,
                                         @PathVariable String academicYear,
                                         @PathVariable long days_id,
                                         @PathVariable long room_id,
                                         @PathVariable String START_TIME,
-                                        @PathVariable String END_TIME) {
+                                        @PathVariable String END_TIME,
+                                        @PathVariable String annotation) {
 
         Lecturer lecturer = lecturerRepository.findById(lecturer_id).get();
         Course course = courseRepository.findById(course_id).get();
@@ -58,6 +61,7 @@ public class TeachtableController {
         LocalTime endTime = LocalTime.parse(END_TIME, formatEndTime);
 
         newTeachtable.setLecturer(lecturer);
+        newTeachtable.setEmail(email);
         newTeachtable.setCourse(course);
         newTeachtable.setSemester(semester);
         newTeachtable.setAcademicYear(academicYear);
@@ -65,6 +69,7 @@ public class TeachtableController {
         newTeachtable.setRoom(room);
         newTeachtable.setStartTime(startTime);
         newTeachtable.setEndTime(endTime);
+        newTeachtable.setAnnotation(annotation);
 
         return teachtableRepository.save(newTeachtable);
     }
