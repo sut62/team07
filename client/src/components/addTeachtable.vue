@@ -3,7 +3,7 @@
         <v-card-title>เพิ่มตารางสอนสำหรับอาจารย์</v-card-title>
 
                     <v-row justify="center">
-                        <v-col class="d-flex" cols="10" >
+                        <v-col class="d-flex" cols="9" >
                             <v-select
                                     label="ชื่ออาจารย์"
                                     outlined
@@ -11,13 +11,25 @@
                                     :items="lecturers"
                                     item-text="name"
                                     item-value="id"
-                                    :rules="[(v) => !!v || 'กรุณาเลือกชื่ออาจารย์']"
+                                    :rules="[(v) => !!v || '*กรุณาเลือกชื่ออาจารย์']"
                                     required
                             ></v-select>
                         </v-col>
                     </v-row>
                     <v-row justify="center">
-                        <v-col class="d-flex" cols="8">
+                        <v-col cols="9">
+                            <v-text-field
+                                    label="Email"
+                                    outlined
+                                    v-model="teachtable.email"
+                                    clearable
+                                    :rules="[(v) => !!v || '*กรุณากรอก Email และต้องมี @']"
+                                    required
+                            ></v-text-field>
+                        </v-col>
+                    </v-row>
+                    <v-row justify="center">
+                        <v-col class="d-flex" cols="9">
                             <v-select
                                     label="วิชา"
                                     outlined
@@ -25,7 +37,7 @@
                                     :items="course"
                                     item-text="name"
                                     item-value="id"
-                                    :rules="[(v) => !!v || 'กรุณาใส่วิชา']"
+                                    :rules="[(v) => !!v || '*กรุณาใส่วิชา']"
                                     required
                             ></v-select>
                         </v-col>
@@ -39,7 +51,7 @@
                                     :items="semester"
                                     item-text="sem"
                                     item-value="id"
-                                    :rules="[(v) => !!v || 'กรุณาเลือกภาคการศึกษา']"
+                                    :rules="[(v) => !!v || '*กรุณาเลือกภาคการศึกษา']"
                                     required
                             ></v-select>
                         </v-col>
@@ -49,7 +61,7 @@
                                     outlined
                                     v-model="teachtable.academicYear"
                                     clearable
-                                    :rules="[(v) => !!v || 'กรุณาใส่ปีการศึกษา']"
+                                    :rules="[(v) => !!v || '*กรุณาใส่ปีการศึกษาเป็นตัวเลข 4 ตัวและขึ้นต้นด้วยเลข 2']"
                                     required
                             ></v-text-field>
                         </v-col>
@@ -63,7 +75,7 @@
                                     :items="days"
                                     item-text="name"
                                     item-value="id"
-                                    :rules="[(v) => !!v || 'กรุณาเลือกวัน']"
+                                    :rules="[(v) => !!v || '*กรุณาเลือกวัน']"
                                     required
                             ></v-select>
                         </v-col>
@@ -75,7 +87,7 @@
                                     :items="room"
                                     item-text="name"
                                     item-value="id"
-                                    :rules="[(v) => !!v || 'กรุณาเลือกห้องเรียน']"
+                                    :rules="[(v) => !!v || '*กรุณาเลือกห้องเรียน']"
                                     required
                             ></v-select>
                         </v-col>
@@ -85,7 +97,7 @@
                         <v-col cols="4">
                             <v-menu
                                     ref="menu"
-                                    v-model="menu3"
+                                    v-model="start"
                                     :close-on-content-click="false"
                                     :nudge-right="40"
                                     :return-value.sync="time"
@@ -103,8 +115,9 @@
                                     ></v-text-field>
                                 </template>
                                 <v-time-picker
-                                        v-if="menu3"
+                                        v-if="start"
                                         v-model="teachtable.startTime"
+                                        :max="teachtable.endTime"
                                         full-width
                                         @click:minute="$refs.menu.save(teachtable.startTime)"
                                 ></v-time-picker>
@@ -113,7 +126,7 @@
                         <v-col cols="4">
                             <v-menu
                                     ref="menu"
-                                    v-model="menu4"
+                                    v-model="end"
                                     :close-on-content-click="false"
                                     :nudge-right="40"
                                     :return-value.sync="time"
@@ -131,12 +144,25 @@
                                     ></v-text-field>
                                 </template>
                                 <v-time-picker
-                                        v-if="menu4"
+                                        v-if="end"
                                         v-model="teachtable.endTime"
+                                        :min="teachtable.startTime"
                                         full-width
                                         @click:minute="$refs.menu.save(teachtable.endTime)"
                                 ></v-time-picker>
                             </v-menu>
+                        </v-col>
+                    </v-row>
+                    <v-row justify="center">
+                        <v-col cols="9">
+                            <v-text-field
+                                    label="หมายเหตุ"
+                                    outlined
+                                    v-model="teachtable.annotation"
+                                    clearable
+                                    :rules="[(v) => !!v || '*กรุณากรอกหมายเหตุจำนวน 2-100 ตัวอักษร']"
+                                    required
+                            ></v-text-field>
                         </v-col>
                     </v-row>
                     <v-row justify="center">
@@ -165,11 +191,10 @@
                 snackbar: false,
                 valid: false,
                 text: null,
-                menu1: false,
-                menu2: false,
-                menu3: false,
-                menu4: false,
+                start: null,
+                end: null,
                 lecturers: null,
+                emails: null,
                 course: null,
                 semester: null,
                 academicYear: null,
@@ -177,7 +202,8 @@
                 room: null,
                 time: null,
                 startTime: null,
-                endTime: null
+                endTime: null,
+                annotation: null
             };
         },
 
@@ -250,6 +276,8 @@
                         "/teachtable/" +
                         this.teachtable.lecturersId +
                         "/" +
+                        this.teachtable.email +
+                        "/" +
                         this.teachtable.courseId +
                         "/" +
                         this.teachtable.semesterId +
@@ -262,29 +290,38 @@
                         "/" +
                         this.teachtable.startTime +
                         "/" +
-                        this.teachtable.endTime
+                        this.teachtable.endTime +
+                        "/" +
+                        this.teachtable.annotation
                     )
                     .then(response => {
                         console.log(response);
                         this.text = 'บันทึกข้อมูลสำเร็จ';
                         this.snackbar = true;
-                        //this.$refs.form.reset();
+                       // this.$refs.form.reset();
                     })
                     .catch(e => {
                         console.log(e);
                         this.text = 'บันทึกข้อมูลไม่สำเร็จ';
                         this.snackbar = true;
-                    });
-            },
+                    })
 
+            },
+             
             clear() {
                 this.teachtable = {
                         lecturersId: null,
                         courseId: null,
                         semesterId: null,
                         daysId: null,
-                        roomId: null
+                        roomId: null,
+                        // email: "",
+                        // academicYear: "",
+                        // startTime: "",
+                        // endTime:"",
+                        // annotation: "",
                 }
+                //this.$refs.form.reset();
             },
 
             /* eslint-enable no-console */
@@ -295,6 +332,7 @@
             this.getSemesters();
             this.getCourses();
             this.getRooms();
+            //this.getDayss();
             console.log(this.days)
         },
         created() {

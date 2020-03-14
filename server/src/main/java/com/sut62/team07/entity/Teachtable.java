@@ -2,8 +2,12 @@ package com.sut62.team07.entity;
 
 import lombok.*;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+// import javax.validation.constraints.NotNull;
+// import javax.validation.constraints.Pattern;
+// import javax.validation.constraints.Email;
+// import javax.validation.constraints.Size;
+// import javax.validation.constraints.Max;
+import javax.validation.constraints.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.FetchType;
@@ -36,6 +40,11 @@ public class Teachtable  {
 	@JoinColumn(name = "LECTURER_ID", insertable = true)
 	private Lecturer lecturer;
 
+	@Column(name = "EMAIL")
+    @Email(message = "email is invalid")
+    @NotNull(message = "email cannot be null")
+    private String email;
+
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Course.class)
 	@NotNull(message = "Course cannot be null")
 	@JoinColumn(name = "COURSE_ID", insertable = true)
@@ -43,7 +52,7 @@ public class Teachtable  {
 
 	@Column(name = "ACADEMIC_YEAR")
 	@NotNull(message = "Academic year cannot be null")
-	@Pattern(regexp = "\\d{4}")
+	@Pattern(regexp = "[2]\\d{3}", message = "Academic must be match")
 	private String academicYear;
 
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Semester.class)
@@ -68,5 +77,10 @@ public class Teachtable  {
 	@Column(name = "END_TIME")
 	@NotNull(message = "End time cannot be null")
 	private LocalTime endTime;
+
+	@Column(name = "ANNOTATION")
+	@NotNull(message = "Annotation cannot be null")
+	@Size(min = 2, max = 100, message = "Annotation must be between 2 and 100 characters")
+	private String annotation;
 
 }
