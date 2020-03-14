@@ -196,7 +196,7 @@
 
 <script>
 
-
+//
 export default {
   name: "student",
   data() {
@@ -212,7 +212,7 @@ export default {
         student_id : '',
         student_name : '',
         student_email : '',
-        student_phone : '',
+        student_phone : '', 
         password : '',
         repassword : '',
         
@@ -230,7 +230,7 @@ export default {
   methods: {
     /* eslint-disable no-console */
 
-    // ดึงข้อมูล NameTppe ใส่ combobox
+    // ดึงข้อมูล prefix ใส่ combobox
     getprefix() {
       this.$http
         .get("/prefixs")
