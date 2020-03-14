@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -45,6 +46,7 @@ public class Student {
     private @NotNull String student_name;
     
     @Column(name="STUDENT_EMAIL")
+    @Email(message = "email is invalid")
     private @NotNull String student_email;
     
     @Column(name="Password")
